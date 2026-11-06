@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avaliação de Perfil DISC</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --D: #C0392B;
+    --I: #E67E22;
+    --S: #27AE60;
+    --C: #2980B9;
+    --bg: #F7F5F0;
+    --surface: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --border: #E0DDD6;
+    --gold: #B8860B;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: #1A1A1A;
+    color: white;
+    padding: 40px 60px 30px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: 'DISC';
+    position: absolute;
+    right: -20px; top: -30px;
+    font-family: 'Playfair Display', serif;
+    font-size: 220px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.04);
+    pointer-events: none;
+    line-height: 1;
+  }
+  header .label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  header p {
+    margin-top: 10px;
+    color: #aaa;
+    font-size: 14px;
+    max-width: 500px;
+  }
+  .disc-badges {
+    display: flex; gap: 8px; margin-top: 20px;
+  }
+  .disc-badge {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 15px; color: white;
+  }
+
+  /* ── CONTAINER ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 40px 20px 60px; }
+
+  /* ── SECTION CARD ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 36px 40px;
+    margin-bottom: 24px;
+  }
+  .card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    margin-bottom: 24px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    align-items: center; gap: 10px;
+  }
+  .card h2 .dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--gold);
+    display: inline-block;
+  }
+
+  /* ── IDENTIFICATION ── */
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group.full { grid-column: 1/-1; }
+  label { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  input, select {
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 10px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--bg);
+    outline: none;
+    transition: border-color .2s;
+  }
+  input:focus, select:focus { border-color: #1A1A1A; background: white; }
+
+  /* ── INSTRUCTIONS ── */
+  .instructions {
+    background: #1A1A1A;
+    color: white;
+    border-radius: 4px;
+    padding: 24px 32px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .instructions strong { color: var(--gold); }
+
+  /* ── STATUS BADGE ── */
+  .q-status {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 2px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    float: right;
+    margin-top: -2px;
+  }
+  .q-status.pending  { background: var(--border); color: var(--muted); }
+  .q-status.partial  { background: #FFF3CD; color: #856404; }
+  .q-status.complete { background: #D4EDDA; color: #155724; }
+
+  /* ── QUESTION BLOCK ── */
+  .question-block {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    margin-bottom: 18px;
+    overflow: hidden;
+    transition: box-shadow .2s;
+  }
+  .question-block:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+  .q-header {
+    background: var(--bg);
+    padding: 14px 22px;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+  }
+  .q-scenario {
+    padding: 16px 22px 10px;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--text);
+  }
+  /* Column headers */
+  .options-header {
+    display: grid;
+    grid-template-columns: 1fr 72px 72px;
+    gap: 0;
+    padding: 6px 22px 4px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .options-header .col-mais { text-align: center; color: #C0392B; }
+  .options-header .col-menos { text-align: center; color: #2980B9; }
+
+  /* Option rows */
+  .options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 4px 22px 18px;
+  }
+  .option-row {
+    display: grid;
+    grid-template-columns: 1fr 72px 72px;
+    align-items: center;
+    gap: 0;
+    border: 1.5px solid var(--border);
+    border-radius: 4px;
+    background: white;
+    overflow: hidden;
+    transition: border-color .15s;
+  }
+  .option-row.row-most  { border-color: #C0392B; background: rgba(192,57,43,0.04); }
+  .option-row.row-least { border-color: #2980B9; background: rgba(41,128,185,0.04); }
+
+  .option-text {
+    padding: 11px 14px;
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-right: 1px solid var(--border);
+  }
+  .opt-letter {
+    flex-shrink: 0;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    text-align: center; line-height: 22px;
+    font-size: 11px; font-weight: 700;
+    background: var(--border);
+    color: var(--text);
+  }
+  .option-row.row-most  .opt-letter { background: #C0392B; color: white; }
+  .option-row.row-least .opt-letter { background: #2980B9; color: white; }
+
+  .opt-action {
+    height: 100%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: background .12s, color .12s;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-height: 44px;
+    border-left: 1px solid var(--border);
+  }
+  .opt-action:hover { background: var(--bg); color: var(--text); }
+  .opt-action.active-mais { background: #C0392B; color: white; }
+  .opt-action.active-menos { background: #2980B9; color: white; }
+
+  /* ── PROGRESS ── */
+  .progress-wrap {
+    background: var(--border);
+    border-radius: 2px; height: 4px;
+    margin: 0 22px 4px;
+  }
+  .progress-bar { height: 4px; background: #1A1A1A; border-radius: 2px; transition: width .3s; }
+
+  /* ── SUBMIT ── */
+  .submit-area { text-align: center; margin-top: 32px; }
+  .btn-primary {
+    background: #1A1A1A;
+    color: white;
+    border: none;
+    padding: 16px 52px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background .2s;
+  }
+  .btn-primary:hover { background: #333; }
+  .btn-primary:disabled { background: #ccc; cursor: not-allowed; }
+  #answer-progress { font-size: 13px; color: var(--muted); margin-top: 10px; }
+
+  /* ── RESULTS ── */
+  #results-section { display: none; }
+
+  .profile-hero {
+    background: #1A1A1A;
+    color: white;
+    border-radius: 4px;
+    padding: 40px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .profile-hero::after {
+    content: attr(data-letter);
+    position: absolute;
+    right: 30px; bottom: -20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 180px;
+    font-weight: 900;
+    opacity: 0.07;
+    line-height: 1;
+  }
+  .profile-hero .name-display { font-size: 13px; color: #888; margin-bottom: 6px; letter-spacing: 2px; text-transform: uppercase; }
+  .profile-hero h2 { font-family: 'Playfair Display', serif; font-size: 36px; margin-bottom: 4px; }
+  .profile-hero .profile-title { font-size: 16px; color: var(--gold); font-weight: 600; margin-bottom: 14px; }
+  .profile-hero .tagline { color: #ccc; font-size: 14px; line-height: 1.6; max-width: 520px; }
+
+  /* BARS */
+  .disc-bars { display: flex; flex-direction: column; gap: 16px; }
+  .disc-bar-row { display: flex; align-items: center; gap: 14px; }
+  .disc-bar-label { width: 120px; font-weight: 600; font-size: 14px; }
+  .disc-bar-label small { display: block; font-size: 11px; font-weight: 400; color: var(--muted); }
+  .disc-bar-track { flex: 1; background: var(--border); border-radius: 2px; height: 14px; overflow: hidden; }
+  .disc-bar-fill { height: 100%; border-radius: 2px; transition: width 1s ease; }
+  .disc-bar-pct { width: 38px; text-align: right; font-size: 14px; font-weight: 600; }
+
+  /* QUADRANT CHART */
+  .quadrant-wrap { text-align: center; margin: 10px 0; }
+  canvas#discChart { max-width: 340px; }
+
+  /* INFO GRID */
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .info-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px;
+  }
+  .info-box h4 { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .info-box ul { list-style: none; padding: 0; }
+  .info-box ul li { font-size: 13px; padding: 4px 0; border-bottom: 1px solid var(--border); }
+  .info-box ul li:last-child { border: none; }
+  .info-box ul li::before { content: '→ '; color: var(--gold); font-weight: 700; }
+
+  /* AREAS */
+  .areas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .area-card {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px 14px;
+    position: relative;
+  }
+  .area-card .area-icon { font-size: 22px; margin-bottom: 8px; }
+  .area-card h4 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .area-card p { font-size: 12px; color: var(--muted); line-height: 1.4; }
+  .area-card .match-bar {
+    height: 3px; background: var(--border); margin-top: 10px; border-radius: 2px;
+  }
+  .area-card .match-fill { height: 3px; border-radius: 2px; }
+
+  /* COMBINATION PROFILE */
+  .combo-tag {
+    display: inline-block;
+    background: #1A1A1A; color: white;
+    padding: 4px 14px; border-radius: 2px;
+    font-size: 12px; letter-spacing: 1px;
+    text-transform: uppercase; font-weight: 600;
+    margin-right: 8px; margin-bottom: 8px;
+  }
+
+  /* RADAR placeholder */
+  .radar-wrap { display: flex; justify-content: center; }
+
+  /* ── PRINT BUTTON ── */
+  .print-btn {
+    background: var(--gold);
+    color: #1A1A1A;
+    border: none;
+    padding: 14px 40px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: opacity .2s;
+    text-transform: uppercase;
+  }
+  .print-btn:hover { opacity: 0.85; }
+
+  /* ── RESET BUTTON ── */
+  .btn-reset {
+    background: transparent;
+    color: var(--muted);
+    border: 1.5px solid var(--border);
+    padding: 14px 36px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all .2s;
+    text-transform: uppercase;
+    margin-left: 12px;
+  }
+  .btn-reset:hover { border-color: var(--D); color: var(--D); }
+
+  /* ── COMPATIBILITY SECTION ── */
+  .compat-hero {
+    border-radius: 4px;
+    padding: 28px 32px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    border: 2px solid var(--border);
+  }
+  .compat-gauge {
+    flex-shrink: 0;
+    width: 110px; height: 110px;
+    position: relative;
+  }
+  .compat-gauge canvas { width: 110px; height: 110px; }
+  .compat-gauge .gauge-label {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  .compat-gauge .gauge-pct {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 1;
+  }
+  .compat-gauge .gauge-sub {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+  }
+  .compat-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    margin-bottom: 6px;
+  }
+  .compat-info .compat-verdict {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 2px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .compat-info p { font-size: 13px; line-height: 1.65; color: var(--muted); }
+
+  .compat-dims {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 4px;
+  }
+  .compat-dim-card {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 14px 12px;
+    text-align: center;
+    background: var(--bg);
+  }
+  .compat-dim-card .dim-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1;
+  }
+  .compat-dim-card .dim-name { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; margin-top: 2px; }
+  .compat-dim-card .dim-user-bar-wrap { background: var(--border); height: 6px; border-radius: 3px; margin-bottom: 3px; }
+  .compat-dim-card .dim-user-bar { height: 6px; border-radius: 3px; }
+  .compat-dim-card .dim-area-bar-wrap { background: var(--border); height: 6px; border-radius: 3px; margin-bottom: 3px; }
+  .compat-dim-card .dim-area-bar { height: 6px; border-radius: 3px; opacity: 0.45; }
+  .compat-dim-card .dim-legend { font-size: 9px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
+  .compat-dim-card .dim-diff {
+    font-size: 12px; font-weight: 700; margin-top: 4px;
+  }
+
+  .compat-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+  .compat-table th { background: #1A1A1A; color: white; padding: 10px 14px; text-align: left; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+  .compat-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .compat-table tr:last-child td { border: none; }
+  .compat-table tr:nth-child(even) td { background: var(--bg); }
+  .compat-table .tag {
+    display: inline-block; padding: 2px 8px; border-radius: 2px;
+    font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  }
+  .tag-alto { background: #D4EDDA; color: #155724; }
+  .tag-medio { background: #FFF3CD; color: #856404; }
+  .tag-baixo { background: #F8D7DA; color: #721C24; }
+
+  /* ── PRINT STYLES ── */
+  @media print {
+    body { background: white; font-size: 12px; }
+    header { padding: 20px 30px; }
+    header::before { display: none; }
+    .container { padding: 20px; max-width: 100%; }
+    .card { break-inside: avoid; padding: 20px 24px; margin-bottom: 14px; }
+    #test-section, .instructions, .submit-area, .print-btn, .btn-primary { display: none !important; }
+    #results-section { display: block !important; }
+    .profile-hero { background: #1A1A1A !important; color: white !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .disc-bar-fill { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .area-card, .info-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .areas-grid { grid-template-columns: repeat(3,1fr); }
+    @page { margin: 1.5cm; size: A4; }
+    .no-print { display: none !important; }
+  }
+
+  /* ── VALIDATION ── */
+  .q-unanswered { border-color: #e74c3c !important; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="label">Instrumento de Avaliação Comportamental</div>
+  <h1>Perfil DISC</h1>
+  <p>Análise de estilo comportamental baseada na metodologia DISC de William Moulton Marston</p>
+  <div class="disc-badges">
+    <div class="disc-badge" style="background:var(--D)">D</div>
+    <div class="disc-badge" style="background:var(--I)">I</div>
+    <div class="disc-badge" style="background:var(--S)">S</div>
+    <div class="disc-badge" style="background:var(--C)">C</div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- IDENTIFICATION -->
+  <div class="card" id="identification-card">
+    <h2><span class="dot"></span> Identificação</h2>
+    <div class="form-grid">
+      <div class="form-group full">
+        <label>Nome Completo *</label>
+        <input type="text" id="f-name" placeholder="Seu nome completo">
+      </div>
+      <div class="form-group">
+        <label>Cargo / Função</label>
+        <input type="text" id="f-role" placeholder="Ex.: Gerente de Projetos">
+      </div>
+      <div class="form-group">
+        <label>Empresa / Organização</label>
+        <input type="text" id="f-org" placeholder="Nome da empresa">
+      </div>
+      <div class="form-group">
+        <label>Área de Atuação</label>
+        <input type="text" id="f-area" placeholder="Ex.: Tecnologia, Saúde, Educação">
+      </div>
+      <div class="form-group">
+        <label>Faixa Etária</label>
+        <select id="f-age">
+          <option value="">Selecione</option>
+          <option>18 – 24 anos</option>
+          <option>25 – 34 anos</option>
+          <option>35 – 44 anos</option>
+          <option>45 – 54 anos</option>
+          <option>55+ anos</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Data da Avaliação</label>
+        <input type="date" id="f-date">
+      </div>
+    </div>
+  </div>
+
+  <!-- INSTRUCTIONS -->
+  <div class="instructions">
+    <strong>Como responder:</strong> Em cada questão há 4 opções. Para cada uma:<br><br>
+    &nbsp;&nbsp;▲ <strong style="color:#f4a;">MAIS</strong> — clique na opção que <strong>mais</strong> descreve você <span style="background:#C0392B;color:white;padding:1px 7px;border-radius:2px;font-size:11px;font-weight:700;letter-spacing:1px">OBRIGATÓRIO</span><br>
+    &nbsp;&nbsp;▼ <strong style="color:#8cf;">MENOS</strong> — clique na opção que <strong>menos</strong> descreve você <span style="background:#555;color:white;padding:1px 7px;border-radius:2px;font-size:11px;font-weight:700;letter-spacing:1px">OPCIONAL</span><br><br>
+    O "Menos" é opcional mas enriquece a análise do perfil. Responda com base em como você realmente é. Leva em média <strong>8–12 minutos</strong>.
+  </div>
+
+  <!-- TEST -->
+  <div id="test-section"></div>
+
+  <!-- SUBMIT -->
+  <div class="submit-area no-print">
+    <button class="btn-primary" id="btn-submit" onclick="submitTest()">Calcular Meu Perfil DISC</button>
+    <p id="answer-progress"></p>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results-section">
+
+    <!-- HERO -->
+    <div class="profile-hero" id="hero-block" data-letter="D">
+      <div class="name-display" id="res-name-display">—</div>
+      <h2 id="res-profile-name">—</h2>
+      <div class="profile-title" id="res-profile-title">—</div>
+      <div class="tagline" id="res-tagline">—</div>
+      <div id="res-data-quality" style="margin-top:14px"></div>
+    </div>
+
+    <!-- SCORES -->
+    <div class="card">
+      <h2><span class="dot"></span> Pontuação por Dimensão</h2>
+      <div class="disc-bars" id="disc-bars"></div>
+    </div>
+
+    <!-- CHART + COMBO -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;">
+      <div class="card" style="margin:0">
+        <h2><span class="dot"></span> Gráfico de Perfil</h2>
+        <div class="quadrant-wrap">
+          <canvas id="discChart" width="300" height="300"></canvas>
+        </div>
+      </div>
+      <div class="card" style="margin:0">
+        <h2><span class="dot"></span> Perfil Combinado</h2>
+        <div id="combo-tags"></div>
+        <p id="combo-description" style="font-size:13px;line-height:1.7;color:var(--muted);margin-top:12px;"></p>
+      </div>
+    </div>
+
+    <!-- STRENGTHS & CHALLENGES -->
+    <div class="card">
+      <h2><span class="dot"></span> Forças & Pontos de Atenção</h2>
+      <div class="info-grid">
+        <div class="info-box">
+          <h4>✦ Pontos Fortes</h4>
+          <ul id="strengths-list"></ul>
+        </div>
+        <div class="info-box">
+          <h4>⚠ Pontos de Atenção</h4>
+          <ul id="challenges-list"></ul>
+        </div>
+        <div class="info-box">
+          <h4>🤝 Estilo de Comunicação</h4>
+          <ul id="comm-list"></ul>
+        </div>
+        <div class="info-box">
+          <h4>⚡ Motivadores</h4>
+          <ul id="motiv-list"></ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEADERSHIP & ENVIRONMENT -->
+    <div class="card">
+      <h2><span class="dot"></span> Liderança & Ambiente Ideal</h2>
+      <div class="info-grid">
+        <div class="info-box">
+          <h4>👑 Estilo de Liderança</h4>
+          <ul id="leadership-list"></ul>
+        </div>
+        <div class="info-box">
+          <h4>🏡 Ambiente de Trabalho Ideal</h4>
+          <ul id="env-list"></ul>
+        </div>
+        <div class="info-box">
+          <h4>😰 Medos & Pressões</h4>
+          <ul id="fears-list"></ul>
+        </div>
+        <div class="info-box">
+          <h4>📈 Como se Desenvolver</h4>
+          <ul id="develop-list"></ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- AREAS -->
+    <div class="card">
+      <h2><span class="dot"></span> Áreas de Atuação Recomendadas</h2>
+      <div class="areas-grid" id="areas-grid"></div>
+    </div>
+
+    <!-- COMPATIBILITY WITH CURRENT AREA -->
+    <div class="card" id="compat-card">
+      <h2><span class="dot"></span> Compatibilidade com Sua Área de Atuação</h2>
+      <div id="compat-hero-block" class="compat-hero"></div>
+      <div class="compat-dims" id="compat-dims-block"></div>
+      <div style="margin-top:20px">
+        <table class="compat-table" id="compat-table"></table>
+      </div>
+    </div>
+
+    <!-- INTERACTION -->
+    <div class="card">
+      <h2><span class="dot"></span> Como Interagir com Este Perfil</h2>
+      <div class="info-grid">
+        <div class="info-box">
+          <h4>✅ O que fazer</h4>
+          <ul id="do-list"></ul>
+        </div>
+        <div class="info-box">
+          <h4>🚫 O que evitar</h4>
+          <ul id="dont-list"></ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRINT BUTTON -->
+    <div class="submit-area no-print">
+      <button class="print-btn" onclick="window.print()">⬡ Imprimir / Salvar PDF</button>
+      <button class="btn-reset" onclick="resetTest()">↺ Refazer Teste</button>
+    </div>
+
+  </div><!-- /results -->
+</div><!-- /container -->
+
+<script>
+// ═══════════════════════════════════════════════════════
+//  DATA – 28 questions (7 per dimension, forced-choice)
+// ═══════════════════════════════════════════════════════
+const QUESTIONS = [
+  // Each option: {text, dim} where dim = 'D','I','S','C'
+  {
+    scenario: "Em reuniões de trabalho, você geralmente:",
+    opts: [
+      {text:"Assume o controle e direciona a discussão para decisões rápidas",dim:"D"},
+      {text:"Anima o grupo, conta histórias e mantém o clima positivo",dim:"I"},
+      {text:"Ouve todos com atenção antes de dar sua opinião",dim:"S"},
+      {text:"Faz perguntas detalhadas para garantir que tudo está correto",dim:"C"}
+    ]
+  },
+  {
+    scenario: "Quando recebe uma tarefa nova e desafiadora, sua primeira reação é:",
+    opts: [
+      {text:"Traçar imediatamente um plano de ação e começar",dim:"D"},
+      {text:"Comentar com colegas e buscar entusiasmo coletivo",dim:"I"},
+      {text:"Verificar como isso afeta a equipe e pedir suporte",dim:"S"},
+      {text:"Pesquisar o máximo possível antes de dar um passo",dim:"C"}
+    ]
+  },
+  {
+    scenario: "Na resolução de conflitos, você prefere:",
+    opts: [
+      {text:"Ser direto, dizer o que pensa e resolver na hora",dim:"D"},
+      {text:"Usar humor e empatia para suavizar a situação",dim:"I"},
+      {text:"Manter a harmonia e evitar confrontos diretos",dim:"S"},
+      {text:"Analisar os fatos com calma antes de agir",dim:"C"}
+    ]
+  },
+  {
+    scenario: "Como você prefere receber feedback do seu trabalho?",
+    opts: [
+      {text:"Objetivo e direto, focado em resultados",dim:"D"},
+      {text:"Positivo e encorajador, valorizando o esforço",dim:"I"},
+      {text:"Gentil, considerando meu empenho e impacto na equipe",dim:"S"},
+      {text:"Detalhado e específico, com exemplos concretos",dim:"C"}
+    ]
+  },
+  {
+    scenario: "Ao trabalhar em equipe, seu papel costuma ser:",
+    opts: [
+      {text:"Quem define metas e cobra resultados",dim:"D"},
+      {text:"Quem motiva, conecta pessoas e cria energia",dim:"I"},
+      {text:"Quem mantém o time unido e apoia os colegas",dim:"S"},
+      {text:"Quem garante qualidade e organiza processos",dim:"C"}
+    ]
+  },
+  {
+    scenario: "Quando um projeto está atrasado, você reage:",
+    opts: [
+      {text:"Tomando decisões rápidas e cortando o que não é essencial",dim:"D"},
+      {text:"Mobilizando a equipe com otimismo para superar o prazo",dim:"I"},
+      {text:"Verificando como todos estão e redistribuindo tarefas com cuidado",dim:"S"},
+      {text:"Identificando a causa raiz do problema e criando um plano detalhado",dim:"C"}
+    ]
+  },
+  {
+    scenario: "Seu ambiente de trabalho ideal é:",
+    opts: [
+      {text:"Dinâmico, com autonomia para tomar decisões importantes",dim:"D"},
+      {text:"Criativo, colaborativo e com muita interação social",dim:"I"},
+      {text:"Estável, previsível e com boas relações interpessoais",dim:"S"},
+      {text:"Estruturado, com processos claros e alto padrão de qualidade",dim:"C"}
+    ]
+  },
+  {
+    scenario: "Ao tomar decisões importantes, você:",
+    opts: [
+      {text:"Age com rapidez e confiança, mesmo com informação incompleta",dim:"D"},
+      {text:"Conversa com várias pessoas para sentir o ambiente",dim:"I"},
+      {text:"Prefere consenso e busca aprovação do grupo",dim:"S"},
+      {text:"Coleta dados extensivos antes de qualquer escolha",dim:"C"}
+    ]
+  },
+  {
+    scenario: "O que mais te incomoda em colegas de trabalho?",
+    opts: [
+      {text:"Indecisão e falta de foco em resultados",dim:"D"},
+      {text:"Frieza excessiva e falta de entusiasmo",dim:"I"},
+      {text:"Instabilidade e mudanças frequentes sem aviso",dim:"S"},
+      {text:"Descuido com qualidade e falta de atenção aos detalhes",dim:"C"}
+    ]
+  },
+  {
+    scenario: "Como você lida com prazos apertados?",
+    opts: [
+      {text:"Enfrenta de frente com energia e foco total",dim:"D"},
+      {text:"Usa criatividade e improviso para encontrar saídas",dim:"I"},
+      {text:"Pede ajuda e coordena esforços da equipe com calma",dim:"S"},
+      {text:"Organiza tudo metodicamente para não perder nenhum detalhe",dim:"C"}
+    ]
+  },
+  {
+    scenario: "Em uma negociação difícil, você costuma:",
+    opts: [
+      {text:"Ir direto ao ponto e pressionar pelos seus objetivos",dim:"D"},
+      {text:"Criar rapport e usar o relacionamento como vantagem",dim:"I"},
+      {text:"Buscar soluções que satisfaçam todas as partes",dim:"S"},
+      {text:"Preparar argumentos sólidos com dados e evidências",dim:"C"}
+    ]
+  },
+  {
+    scenario: "Diante de uma mudança organizacional grande, sua postura é:",
+    opts: [
+      {text:"Lidera a transformação e vê como oportunidade",dim:"D"},
+      {text:"Anima as pessoas e ajuda a vender a mudança",dim:"I"},
+      {text:"Prefere adaptação gradual e precisa de tempo para se ajustar",dim:"S"},
+      {text:"Questiona os motivos e quer entender todos os impactos",dim:"C"}
+    ]
+  },
+  {
+    scenario: "Ao planejar suas atividades, você geralmente:",
+    opts: [
+      {text:"Define prioridades com foco no resultado final",dim:"D"},
+      {text:"Faz de forma flexível, adaptando conforme surgem oportunidades",dim:"I"},
+      {text:"Cria uma rotina consistente e segue um ritmo constante",dim:"S"},
+      {text:"Elabora planos detalhados com etapas e checklists",dim:"C"}
+    ]
+  },
+  {
+    scenario: "Quando comete um erro, sua reação imediata é:",
+    opts: [
+      {text:"Assumir a responsabilidade e corrigir rapidamente",dim:"D"},
+      {text:"Minimizar o impacto emocional e buscar apoio",dim:"I"},
+      {text:"Se preocupar com o impacto nas pessoas ao redor",dim:"S"},
+      {text:"Analisar o que deu errado para não repetir",dim:"C"}
+    ]
+  },
+  {
+    scenario: "Sua abordagem ao aprender algo novo é:",
+    opts: [
+      {text:"Preferir aprender na prática, testando diretamente",dim:"D"},
+      {text:"Aprender em grupo, trocando experiências com outros",dim:"I"},
+      {text:"Seguir um tutor confiável, em um ritmo confortável",dim:"S"},
+      {text:"Estudar profundamente antes de colocar em prática",dim:"C"}
+    ]
+  },
+  {
+    scenario: "Quando lidera uma equipe, você tende a:",
+    opts: [
+      {text:"Definir metas arrojadas e cobrar alta performance",dim:"D"},
+      {text:"Inspirar com visão e criar um clima de entusiasmo",dim:"I"},
+      {text:"Apoiar individualmente e zelar pelo bem-estar do grupo",dim:"S"},
+      {text:"Estabelecer processos claros e monitorar a qualidade",dim:"C"}
+    ]
+  },
+  {
+    scenario: "Como você prefere que seu trabalho seja reconhecido?",
+    opts: [
+      {text:"Pelo impacto e conquistas alcançadas",dim:"D"},
+      {text:"Pelo reconhecimento público e prestígio social",dim:"I"},
+      {text:"Pela gratidão sincera das pessoas que ajudou",dim:"S"},
+      {text:"Pela precisão e excelência do trabalho entregue",dim:"C"}
+    ]
+  },
+  {
+    scenario: "Em uma conversa difícil com alguém, você:",
+    opts: [
+      {text:"Vai direto ao ponto, sem rodeios",dim:"D"},
+      {text:"Usa empatia verbal e muito entusiasmo para dissipar tensão",dim:"I"},
+      {text:"Escolhe as palavras com cuidado para não magoar",dim:"S"},
+      {text:"Apresenta fatos e argumentos racionais",dim:"C"}
+    ]
+  },
+  {
+    scenario: "Ao receber uma instrução com a qual discorda, você:",
+    opts: [
+      {text:"Questiona diretamente e propõe alternativas",dim:"D"},
+      {text:"Expressa sua opinião de forma animada e busca convencer",dim:"I"},
+      {text:"Segue a instrução e depois conversa em particular",dim:"S"},
+      {text:"Documenta sua discordância com embasamento técnico",dim:"C"}
+    ]
+  },
+  {
+    scenario: "O que você mais valoriza em um projeto de trabalho?",
+    opts: [
+      {text:"Atingir os objetivos com velocidade e eficiência",dim:"D"},
+      {text:"O engajamento e a conexão entre as pessoas envolvidas",dim:"I"},
+      {text:"A colaboração e o cuidado com todos os membros",dim:"S"},
+      {text:"A qualidade e a correção de cada etapa entregue",dim:"C"}
+    ]
+  },
+  {
+    scenario: "Quando precisa apresentar uma ideia nova, você:",
+    opts: [
+      {text:"É conciso, vai direto ao objetivo e ao retorno esperado",dim:"D"},
+      {text:"Conta uma história envolvente e usa entusiasmo",dim:"I"},
+      {text:"Destaca como beneficiará toda a equipe",dim:"S"},
+      {text:"Prepara uma apresentação detalhada com dados e análises",dim:"C"}
+    ]
+  },
+  {
+    scenario: "Ao encarar incerteza e riscos, sua postura é:",
+    opts: [
+      {text:"Avança com confiança e aceita riscos como parte do jogo",dim:"D"},
+      {text:"Enxerga possibilidades e se empolga com o desafio",dim:"I"},
+      {text:"Prefere segurança e estabilidade antes de agir",dim:"S"},
+      {text:"Mapeia todos os riscos antes de qualquer movimento",dim:"C"}
+    ]
+  },
+  {
+    scenario: "No dia a dia de trabalho, a palavra que mais te define é:",
+    opts: [
+      {text:"Resultado",dim:"D"},
+      {text:"Entusiasmo",dim:"I"},
+      {text:"Harmonia",dim:"S"},
+      {text:"Precisão",dim:"C"}
+    ]
+  },
+  {
+    scenario: "Em um projeto em equipe, a parte que mais te motiva é:",
+    opts: [
+      {text:"Superar desafios e bater metas ambiciosas",dim:"D"},
+      {text:"Criar conexões e trabalhar em clima positivo",dim:"I"},
+      {text:"Ver todos colaborando e se ajudando",dim:"S"},
+      {text:"Entregar algo de alta qualidade e bem estruturado",dim:"C"}
+    ]
+  },
+  {
+    scenario: "Quando alguém é lento para tomar decisões, você:",
+    opts: [
+      {text:"Fica impaciente e toma a decisão por conta própria",dim:"D"},
+      {text:"Tenta animar e dar energia para a pessoa decidir",dim:"I"},
+      {text:"Oferece suporte e paciência, entendendo que cada um tem seu ritmo",dim:"S"},
+      {text:"Apresenta um análise racional para facilitar a escolha",dim:"C"}
+    ]
+  },
+  {
+    scenario: "Em momentos de pressão extrema, você:",
+    opts: [
+      {text:"Fica mais focado e objetivo do que nunca",dim:"D"},
+      {text:"Recorre às pessoas e busca energia no grupo",dim:"I"},
+      {text:"Mantém a calma e tenta estabilizar o ambiente",dim:"S"},
+      {text:"Recorre a sistemas, checklists e processos para não errar",dim:"C"}
+    ]
+  },
+  {
+    scenario: "Seu estilo de comunicação escrita tende a ser:",
+    opts: [
+      {text:"Curto, direto, focado em ação",dim:"D"},
+      {text:"Caloroso, amigável, cheio de exemplos e histórias",dim:"I"},
+      {text:"Gentil, cuidadoso, pensando no impacto emocional",dim:"S"},
+      {text:"Formal, estruturado, detalhado e referenciado",dim:"C"}
+    ]
+  },
+  {
+    scenario: "Quando pensa em seus maiores sucessos profissionais, eles costumam envolver:",
+    opts: [
+      {text:"Superar obstáculos e entregar resultados expressivos",dim:"D"},
+      {text:"Inspirar pessoas e criar algo memorável em grupo",dim:"I"},
+      {text:"Construir relações duradouras e ajudar quem precisava",dim:"S"},
+      {text:"Resolver problemas complexos com excelência técnica",dim:"C"}
+    ]
+  }
+];
+
+// ═══════════════════════════════════════════════════════
+//  PROFILE DATA
+// ═══════════════════════════════════════════════════════
+const PROFILES = {
+  D: {
+    name: "Dominância",
+    title: "O Realizador Assertivo",
+    color: "var(--D)",
+    tagline: "Orientado a resultados, direto e confiante, o perfil D lidera pelo exemplo e pela velocidade de decisão. Enfrenta desafios de frente e não recua diante de obstáculos.",
+    strengths: ["Liderança natural e assertiva","Foco total em resultados","Tomada de decisão rápida","Alta energia e determinação","Capacidade de enfrentar conflitos","Iniciativa e proatividade"],
+    challenges: ["Pode ser percebido como arrogante","Pouca paciência com processos lentos","Tende a ignorar sentimentos alheios","Dificuldade em delegar","Pode ser excessivamente controlador","Impulsividade nas decisões"],
+    comm: ["Comunicação direta e objetiva","Vai direto ao ponto","Prefere fatos a opiniões","Usa linguagem de ação","Pouco tolerante a rodeios"],
+    motivators: ["Autonomia e poder de decisão","Desafios e metas ambiciosas","Reconhecimento por resultados","Progressão rápida na carreira","Competição saudável"],
+    leadership: ["Liderança diretiva e orientada a metas","Define visão clara e cobra execução","Delega resultados, não métodos","Prefere equipes de alta performance","Tolerância baixa a erros repetidos"],
+    environment: ["Ambientes dinâmicos e desafiadores","Autonomia para tomar decisões","Pouca burocracia","Oportunidades de progresso rápido","Projetos de alto impacto"],
+    fears: ["Perda de controle ou autoridade","Ser visto como fraco","Estagnação e falta de progresso","Dependência excessiva de outros","Ambiguidade prolongada"],
+    develop: ["Praticar escuta ativa","Desenvolver empatia e inteligência emocional","Aprender a valorizar processos","Treinar paciência com diferentes ritmos","Solicitar feedback de sua equipe"],
+    areas: [
+      {icon:"🏆",name:"Gestão Executiva",desc:"CEO, Diretor, Gerente Geral — liderança de alto nível com autonomia",match:95},
+      {icon:"💼",name:"Empreendedorismo",desc:"Fundação e escala de negócios; tolerância natural ao risco",match:93},
+      {icon:"📊",name:"Vendas Estratégicas",desc:"Vendas B2B complexas, negociação e fechamento de grandes contas",match:88},
+      {icon:"⚖️",name:"Direito Empresarial",desc:"Advocacia de resultado, contencioso e arbitragem",match:82},
+      {icon:"🏗️",name:"Gestão de Projetos",desc:"PMO, liderança de grandes projetos com múltiplas entregas",match:85},
+      {icon:"🚀",name:"Desenvolvimento de Negócios",desc:"Expansão de mercado, parcerias estratégicas e M&A",match:87}
+    ],
+    do: ["Seja direto e objetivo","Apresente fatos e resultados","Respeite sua autonomia","Mostre eficiência e competência","Proponha desafios instigantes"],
+    dont: ["Seja indireto ou enrole","Controle excessivamente","Tome muito tempo com detalhes","Mostre fraqueza ou hesitação","Questione sua autoridade sem base sólida"],
+    combo: "DC"
+  },
+  I: {
+    name: "Influência",
+    title: "O Comunicador Inspirador",
+    color: "var(--I)",
+    tagline: "Carismático, entusiasta e orientado a pessoas, o perfil I transforma ambientes com sua energia positiva. Conecta, motiva e cria relações duradouras onde quer que esteja.",
+    strengths: ["Comunicação carismática e persuasiva","Alta inteligência social","Motivação e entusiasmo contagiantes","Criatividade e inovação","Facilidade em construir redes","Otimismo e positividade"],
+    challenges: ["Pode ser superficial em análises","Dificuldade com disciplina e rotina","Tendência a superprometer","Pode ser desorganizado","Sensível a críticas","Dificuldade com tarefas solitárias"],
+    comm: ["Comunicação verbal rica e emotiva","Usa histórias e exemplos","Linguagem entusiasmada e expressiva","Prefere conversas pessoais","Tom amigável e caloroso"],
+    motivators: ["Reconhecimento público e aprovação","Trabalho com pessoas","Projetos criativos e inovadores","Liberdade de expressão","Ambientes sociais vibrantes"],
+    leadership: ["Liderança inspiracional e carismática","Motiva pelo propósito e visão","Cria cultura positiva e engajada","Pode ter dificuldade com disciplina","Muito forte em onboarding e cultura"],
+    environment: ["Ambientes colaborativos e sociais","Liberdade criativa","Reconhecimento frequente","Variedade de tarefas","Pouca burocracia e controle"],
+    fears: ["Rejeição e desaprovação social","Perder o foco da atenção","Ambientes frios e impessoais","Isolamento social","Rotinas muito rígidas"],
+    develop: ["Melhorar foco e disciplina","Desenvolver análise crítica","Aprender a ouvir antes de falar","Cumprir compromissos com rigor","Organizar melhor seu tempo"],
+    areas: [
+      {icon:"📣",name:"Marketing & Comunicação",desc:"Branding, campanhas, relações públicas e conteúdo",match:96},
+      {icon:"🎤",name:"Treinamento & Palestras",desc:"T&D corporativo, facilitação, coaching e keynote speaking",match:94},
+      {icon:"🤝",name:"Vendas Consultivas",desc:"Venda relacional, inside sales e gestão de contas-chave",match:91},
+      {icon:"🎨",name:"Design & Criação",desc:"UX, criação de produtos, direção de arte",match:83},
+      {icon:"🌐",name:"Relações Institucionais",desc:"Lobbying, parcerias, representação e diplomacia corporativa",match:87},
+      {icon:"🏫",name:"Educação & Coaching",desc:"Docência, mentoria, desenvolvimento humano",match:89}
+    ],
+    do: ["Seja caloroso e amigável","Valorize suas ideias e entusiasmo","Dê espaço para se expressar","Reconheça publicamente","Crie um ambiente animado"],
+    dont: ["Seja frio ou distante","Ignore sua necessidade de reconhecimento","Force rotinas rígidas sem sentido","Corte sua comunicação","Isole-o de interações sociais"],
+    combo: "ID"
+  },
+  S: {
+    name: "Estabilidade",
+    title: "O Colaborador Fiel",
+    color: "var(--S)",
+    tagline: "Paciente, confiável e orientado a relações, o perfil S é o coração de qualquer equipe. Oferece suporte consistente, cria harmonia e garante que ninguém seja deixado para trás.",
+    strengths: ["Paciência e escuta ativa excepcional","Lealdade e confiabilidade","Habilidade de mediar conflitos","Consistência e estabilidade","Trabalho em equipe superior","Empatia profunda"],
+    challenges: ["Resistência a mudanças","Dificuldade em dizer não","Pode ser indeciso sob pressão","Evita conflitos necessários","Tende a acumular ressentimentos","Dificuldade em se autoafirmar"],
+    comm: ["Comunicação gentil e cautelosa","Prefere ouvir a falar","Tom suave e acolhedor","Evita linguagem direta em conflitos","Escolhe palavras com cuidado"],
+    motivators: ["Ambientes estáveis e harmoniosos","Ajudar e servir pessoas","Reconhecimento pela lealdade","Trabalho com propósito humano","Relações profissionais duradouras"],
+    leadership: ["Liderança servidora e participativa","Muito forte em retenção de talentos","Cria equipes coesas e leais","Pode ter dificuldade em dar feedback duro","Excelente em situações de mediação"],
+    environment: ["Ambientes previsíveis e estáveis","Equipes de longo prazo","Cultura de respeito e cuidado","Clareza de papéis e expectativas","Baixo nível de conflito"],
+    fears: ["Conflitos e desentendimentos","Mudanças repentinas sem aviso","Perda de relacionamentos importantes","Ambientes hostis e competitivos","Instabilidade emocional ao redor"],
+    develop: ["Aprender a lidar com mudanças","Desenvolver assertividade","Praticar dar feedback difícil","Definir limites mais claros","Aceitar conflito saudável como parte do crescimento"],
+    areas: [
+      {icon:"❤️",name:"Recursos Humanos",desc:"Gestão de pessoas, cultura organizacional, benefícios",match:95},
+      {icon:"🏥",name:"Saúde & Cuidado",desc:"Enfermagem, psicologia, assistência social, terapia",match:93},
+      {icon:"📚",name:"Educação",desc:"Docência, suporte pedagógico, coordenação escolar",match:91},
+      {icon:"🧑‍🤝‍🧑",name:"Atendimento ao Cliente",desc:"Customer success, suporte, relacionamento",match:89},
+      {icon:"🏛️",name:"Terceiro Setor & ONGs",desc:"Gestão de projetos sociais, voluntariado, mobilização",match:87},
+      {icon:"🌱",name:"Desenvolvimento Organizacional",desc:"Cultura, engajamento, programas de liderança",match:85}
+    ],
+    do: ["Seja paciente e gentil","Dê tempo para processar mudanças","Mostre lealdade e cuidado","Cumpra o que prometeu","Valorize sua contribuição silenciosa"],
+    dont: ["Force decisões rápidas","Imponha mudanças abruptamente","Ignore suas emoções","Crie ambientes hostis","Trate-o como invisível"],
+    combo: "SC"
+  },
+  C: {
+    name: "Conformidade",
+    title: "O Analista Criterioso",
+    color: "var(--C)",
+    tagline: "Preciso, analítico e orientado à qualidade, o perfil C garante que as coisas sejam feitas do jeito certo. É o guardião dos padrões, da lógica e da excelência técnica.",
+    strengths: ["Análise crítica e pensamento sistêmico","Atenção a detalhes incomparável","Rigor técnico e precisão","Planejamento metódico","Checagem e controle de qualidade","Raciocínio lógico superior"],
+    challenges: ["Análise excessiva (paralisia)","Perfeccionismo que trava entregas","Dificuldade com ambiguidade","Pode ser percebido como frio","Resistência a mudanças sem justificativa","Dificuldade em delegar por falta de confiança"],
+    comm: ["Comunicação formal e estruturada","Usa dados e evidências","Prefere escrita a conversas informais","Tom preciso e cuidadoso","Pode soar distante emocionalmente"],
+    motivators: ["Fazer as coisas com excelência","Clareza e precisão nas regras","Reconhecimento técnico","Ambiente organizado e lógico","Aprendizado contínuo e profundo"],
+    leadership: ["Liderança baseada em especialização","Define processos rigorosos","Exige padrão elevado da equipe","Pode microgerenciar por perfeccionismo","Excelente em ambientes regulatórios"],
+    environment: ["Ambientes bem estruturados","Expectativas claras e precisas","Alto padrão de qualidade","Acesso a dados e informações","Pouco espaço para improviso"],
+    fears: ["Cometer erros em público","Ser criticado por trabalho abaixo do padrão","Ambiguidade e falta de informações","Perda de controle sobre a qualidade","Ser responsabilizado por algo que não fez"],
+    develop: ["Aprender a tomar decisões com dados incompletos","Desenvolver flexibilidade","Praticar comunicação mais calorosa","Confiar mais nas pessoas","Equilibrar perfeição com praticidade"],
+    areas: [
+      {icon:"🔬",name:"Ciência & Pesquisa",desc:"P&D, laboratório, análise de dados, pesquisa acadêmica",match:97},
+      {icon:"💻",name:"Tecnologia & TI",desc:"Desenvolvimento, arquitetura de sistemas, segurança",match:95},
+      {icon:"📊",name:"Finanças & Contabilidade",desc:"Controladoria, auditoria, análise financeira",match:93},
+      {icon:"⚙️",name:"Engenharia",desc:"Engenharia de qualidade, processos, civil, mecânica",match:91},
+      {icon:"⚖️",name:"Compliance & Jurídico",desc:"Regulatório, conformidade, assessoria jurídica",match:89},
+      {icon:"🏥",name:"Medicina & Farmácia",desc:"Diagnóstico, pesquisa clínica, farmacologia",match:88}
+    ],
+    do: ["Forneça dados e evidências","Seja lógico e estruturado","Respeite sua necessidade de tempo","Mostre como as coisas se conectam","Valorize sua precisão"],
+    dont: ["Seja impreciso ou vago","Imponha decisões sem justificativa","Interrompa seu raciocínio","Ignore erros ou qualidade","Pressione por respostas imediatas"],
+    combo: "CD"
+  }
+};
+
+const COMBO_DESCRIPTIONS = {
+  D: "Perfil de Dominância puro: indivíduo extremamente orientado a resultados, decisivo e competitivo. Maximiza quando tem autonomia total e metas desafiadoras.",
+  I: "Perfil de Influência puro: comunicador nato, construtor de redes e motivador de pessoas. Seu maior ativo é a capacidade de inspirar e conectar.",
+  S: "Perfil de Estabilidade puro: âncora emocional de qualquer equipe, consistente e leal. Brilha em ambientes que valorizam colaboração e cuidado humano.",
+  C: "Perfil de Conformidade puro: analista meticuloso e guardião da qualidade. Seu diferencial é a precisão e profundidade de análise.",
+  DI:"Perfil DC/ID – Realizador Influente: combina orientação a resultados com habilidade social. Líderes naturais que sabem como motivar e cobrar ao mesmo tempo.",
+  DC:"Perfil DC – Estrategista Assertivo: foca em resultados com análise calculista. Altamente eficaz em ambientes competitivos que exigem decisão e planejamento.",
+  ID:"Perfil ID – Visionário Carismático: energia empreendedora com enorme poder de influência. Motiva massas e cria movimentos.",
+  IS:"Perfil IS – Comunicador Empático: combina entusiasmo com sensibilidade. Excelente em treinamentos, RH e áreas de cuidado com pessoas.",
+  IC:"Perfil IC – Criativo Criterioso: une criatividade com rigor. Perfil raro que combina inovação com qualidade.",
+  SI:"Perfil SI – Colaborador Animado: une estabilidade com entusiasmo. Cria ambientes positivos e duradouros.",
+  SC:"Perfil SC – Suporte Organizado: paciência e método lado a lado. Confiável, consistente e de alta qualidade.",
+  CS:"Perfil CS – Analista Colaborativo: combina análise técnica com sensibilidade humana. Ótimo para ciências humanas e de saúde.",
+  CD:"Perfil CD – Especialista Assertivo: precisão técnica com orientação a resultados. Excelente em áreas de engenharia e finanças.",
+  DS:"Perfil DS – Executor Empático: orientação a resultados com cuidado pelas pessoas. Líderes que cobram sem deshumanizar.",
+  SD:"Perfil SD – Apoiador Decisivo: estabilidade com foco em resultados. Brilha em coordenação de equipes.",
+};
+
+// ═══════════════════════════════════════════════════════
+//  RENDER TEST
+// ═══════════════════════════════════════════════════════
+const answers = {}; // {qIdx: {most: optIdx, least: optIdx}}
+
+function renderTest() {
+  const container = document.getElementById('test-section');
+  let html = '';
+  QUESTIONS.forEach((q, qi) => {
+    html += '<div class="question-block" id="qblock-' + qi + '">';
+    html += '<div class="q-header">Questão ' + (qi+1) + ' de ' + QUESTIONS.length + '<span class="q-status pending" id="status-' + qi + '">0/2 marcações</span></div>';
+    html += '<div class="q-scenario">' + q.scenario + '</div>';
+    html += '<div class="progress-wrap"><div class="progress-bar" id="prog-' + qi + '" style="width:0%"></div></div>';
+    html += '<div class="options-header"><div></div><div class="col-mais">&#9650; Mais <span style="font-size:9px;background:#C0392B;color:white;padding:1px 5px;border-radius:2px;letter-spacing:0.5px">obrig.</span></div><div class="col-menos">&#9660; Menos <span style="font-size:9px;background:#888;color:white;padding:1px 5px;border-radius:2px;letter-spacing:0.5px">opc.</span></div></div>';
+    html += '<div class="options-list">';
+    const letters = ['A','B','C','D'];
+    q.opts.forEach((opt, oi) => {
+      html += '<div class="option-row" id="row-' + qi + '-' + oi + '">';
+      html += '<div class="option-text"><span class="opt-letter" id="ltr-' + qi + '-' + oi + '">' + letters[oi] + '</span>' + opt.text + '</div>';
+      html += '<button class="opt-action" id="mais-' + qi + '-' + oi + '" onclick="clickMais(' + qi + ',' + oi + ')" title="Mais parecido comigo">&#9650;</button>';
+      html += '<button class="opt-action" id="menos-' + qi + '-' + oi + '" onclick="clickMenos(' + qi + ',' + oi + ')" title="Menos parecido comigo">&#9660;</button>';
+      html += '</div>';
+    });
+    html += '</div></div>';
+  });
+  container.innerHTML = html;
+  updateProgress();
+}
+
+function clearRowStyles(qi) {
+  for (var oi = 0; oi < 4; oi++) {
+    var row = document.getElementById('row-' + qi + '-' + oi);
+    var mais = document.getElementById('mais-' + qi + '-' + oi);
+    var menos = document.getElementById('menos-' + qi + '-' + oi);
+    if (row) { row.classList.remove('row-most', 'row-least'); }
+    if (mais) mais.classList.remove('active-mais');
+    if (menos) menos.classList.remove('active-menos');
+  }
+}
+
+function applyRowStyles(qi) {
+  var ans = answers[qi];
+  if (ans.most !== null) {
+    document.getElementById('row-' + qi + '-' + ans.most).classList.add('row-most');
+    document.getElementById('mais-' + qi + '-' + ans.most).classList.add('active-mais');
+  }
+  if (ans.least !== null) {
+    document.getElementById('row-' + qi + '-' + ans.least).classList.add('row-least');
+    document.getElementById('menos-' + qi + '-' + ans.least).classList.add('active-menos');
+  }
+}
+
+function clickMais(qi, oi) {
+  if (!answers[qi]) answers[qi] = { most: null, least: null };
+  var ans = answers[qi];
+  if (ans.most === oi) { ans.most = null; }
+  else {
+    if (ans.least === oi) ans.least = null;
+    ans.most = oi;
+  }
+  clearRowStyles(qi);
+  applyRowStyles(qi);
+  updateRowProgress(qi);
+}
+
+function clickMenos(qi, oi) {
+  if (!answers[qi]) answers[qi] = { most: null, least: null };
+  var ans = answers[qi];
+  if (ans.least === oi) { ans.least = null; }
+  else {
+    if (ans.most === oi) ans.most = null;
+    ans.least = oi;
+  }
+  clearRowStyles(qi);
+  applyRowStyles(qi);
+  updateRowProgress(qi);
+}
+
+function updateRowProgress(qi) {
+  var ans = answers[qi];
+  var hasMais  = ans && ans.most  !== null;
+  var hasMenos = ans && ans.least !== null;
+  // Progress: Mais = 100% (complete), Menos adds visual bonus only
+  var prog = hasMais ? (hasMenos ? 100 : 75) : (hasMenos ? 25 : 0);
+  document.getElementById('prog-' + qi).style.width = prog + '%';
+  var block  = document.getElementById('qblock-' + qi);
+  var status = document.getElementById('status-' + qi);
+  block.classList.remove('q-unanswered');
+  if (hasMais && hasMenos) {
+    block.style.borderColor = 'var(--S)';
+    if (status) { status.className = 'q-status complete'; status.textContent = '✓ Completo'; }
+  } else if (hasMais) {
+    block.style.borderColor = 'var(--S)';
+    if (status) { status.className = 'q-status complete'; status.textContent = '✓ Mais marcado'; }
+  } else if (hasMenos) {
+    block.style.borderColor = 'var(--I)';
+    if (status) { status.className = 'q-status partial'; status.textContent = '⚠ Falta Mais ▲'; }
+  } else {
+    block.style.borderColor = '';
+    if (status) { status.className = 'q-status pending'; status.textContent = 'Assinale o Mais ▲'; }
+  }
+  updateProgress();
+}
+
+
+function updateProgress() {
+  let doneMais = 0, doneBoth = 0;
+  QUESTIONS.forEach((_, qi) => {
+    if (answers[qi] && answers[qi].most !== null) {
+      doneMais++;
+      if (answers[qi].least !== null) doneBoth++;
+    }
+  });
+  const pct = Math.round(doneMais / QUESTIONS.length * 100);
+  const extra = doneBoth > 0 ? ' (' + doneBoth + ' com Menos também)' : '';
+  document.getElementById('answer-progress').textContent = doneMais + ' de ' + QUESTIONS.length + ' questões com Mais marcado' + extra;
+  document.getElementById('btn-submit').disabled = doneMais < QUESTIONS.length;
+}
+
+// ═══════════════════════════════════════════════════════
+//  SCORING
+// ═══════════════════════════════════════════════════════
+function calcScores() {
+  const raw = { D:0, I:0, S:0, C:0 };
+  let usedLeast = 0;
+  QUESTIONS.forEach((q, qi) => {
+    const ans = answers[qi];
+    if (!ans) return;
+    if (ans.most !== null) raw[q.opts[ans.most].dim] += 2;
+    if (ans.least !== null) { raw[q.opts[ans.least].dim] -= 1; usedLeast++; }
+  });
+  window._discUsedLeast = usedLeast;
+  // Normalize to 0-100
+  const vals = Object.values(raw);
+  const min = Math.min(...vals);
+  const max = Math.max(...vals);
+  const range = max - min || 1;
+  const pct = {};
+  ['D','I','S','C'].forEach(d => {
+    pct[d] = Math.round(((raw[d] - min) / range) * 80 + 10);
+  });
+  return { raw, pct };
+}
+
+function getDominant(pct) {
+  return Object.entries(pct).sort((a,b)=>b[1]-a[1])[0][0];
+}
+function getSecondary(pct) {
+  return Object.entries(pct).sort((a,b)=>b[1]-a[1])[1][0];
+}
+
+// ═══════════════════════════════════════════════════════
+//  SUBMIT & RENDER RESULTS
+// ═══════════════════════════════════════════════════════
+function submitTest() {
+  // Validate
+  let missing = false;
+  QUESTIONS.forEach((_, qi) => {
+    if (!answers[qi] || answers[qi].most === null) {
+      document.getElementById('qblock-' + qi).classList.add('q-unanswered');
+      missing = true;
+    }
+  });
+  if (missing) {
+    alert('Por favor, marque o "Mais" em todas as questões antes de calcular.');
+    return;
+  }
+  if (!document.getElementById('f-name').value.trim()) {
+    alert('Por favor, preencha seu nome no campo de identificação.');
+    return;
+  }
+
+  const { pct } = calcScores();
+  const dominant = getDominant(pct);
+  const secondary = getSecondary(pct);
+  const profile = PROFILES[dominant];
+
+  // Fill identification
+  document.getElementById('res-name-display').textContent = document.getElementById('f-name').value.trim();
+  document.getElementById('res-profile-name').textContent = `Perfil ${dominant} – ${profile.name}`;
+  document.getElementById('res-profile-title').textContent = profile.title;
+  document.getElementById('res-tagline').textContent = profile.tagline;
+
+  // Data quality badge
+  const leastCount = window._discUsedLeast || 0;
+  const qualityPct = Math.round(leastCount / QUESTIONS.length * 100);
+  const qualityEl = document.getElementById('res-data-quality');
+  if (qualityEl) {
+    if (leastCount === QUESTIONS.length) {
+      qualityEl.innerHTML = '<span style="background:rgba(39,174,96,0.3);color:#a8f0c6;padding:4px 12px;border-radius:2px;font-size:11px;letter-spacing:1px;font-weight:700">✦ ANÁLISE COMPLETA — Mais + Menos respondidos</span>';
+    } else if (leastCount > 0) {
+      qualityEl.innerHTML = '<span style="background:rgba(230,126,34,0.3);color:#ffd59e;padding:4px 12px;border-radius:2px;font-size:11px;letter-spacing:1px;font-weight:700">◑ ANÁLISE PARCIAL — ' + qualityPct + '% com dados complementares</span>';
+    } else {
+      qualityEl.innerHTML = '<span style="background:rgba(255,255,255,0.1);color:#aaa;padding:4px 12px;border-radius:2px;font-size:11px;letter-spacing:1px;font-weight:700">○ ANÁLISE BÁSICA — somente Mais respondido</span>';
+    }
+  }
+  document.getElementById('hero-block').setAttribute('data-letter', dominant);
+  document.getElementById('hero-block').style.borderTop = `4px solid ${profile.color}`;
+
+  // Bars
+  const barsEl = document.getElementById('disc-bars');
+  const labels = {D:['D','Dominância'],I:['I','Influência'],S:['S','Estabilidade'],C:['C','Conformidade']};
+  const colors = {D:'var(--D)',I:'var(--I)',S:'var(--S)',C:'var(--C)'};
+  barsEl.innerHTML = ['D','I','S','C'].map(d => `
+    <div class="disc-bar-row">
+      <div class="disc-bar-label"><span style="color:${colors[d]};font-size:18px;font-family:'Playfair Display',serif">${labels[d][0]}</span><small>${labels[d][1]}</small></div>
+      <div class="disc-bar-track"><div class="disc-bar-fill" style="width:0%;background:${colors[d]}" id="bar-${d}"></div></div>
+      <div class="disc-bar-pct" id="barpct-${d}">0%</div>
+    </div>
+  `).join('');
+  setTimeout(() => {
+    ['D','I','S','C'].forEach(d => {
+      document.getElementById(`bar-${d}`).style.width = pct[d]+'%';
+      document.getElementById(`barpct-${d}`).textContent = pct[d]+'%';
+    });
+  }, 100);
+
+  // Combo
+  const comboKey = dominant + secondary;
+  const comboDesc = COMBO_DESCRIPTIONS[comboKey] || COMBO_DESCRIPTIONS[dominant];
+  document.getElementById('combo-tags').innerHTML =
+    `<span class="combo-tag">${dominant} Dominante</span><span class="combo-tag">${secondary} Secundário</span><span class="combo-tag">${comboKey}</span>`;
+  document.getElementById('combo-description').textContent = comboDesc;
+
+  // Lists
+  const fillList = (id, arr) => {
+    document.getElementById(id).innerHTML = arr.map(s=>`<li>${s}</li>`).join('');
+  };
+  fillList('strengths-list', profile.strengths);
+  fillList('challenges-list', profile.challenges);
+  fillList('comm-list', profile.comm);
+  fillList('motiv-list', profile.motivators);
+  fillList('leadership-list', profile.leadership);
+  fillList('env-list', profile.environment);
+  fillList('fears-list', profile.fears);
+  fillList('develop-list', profile.develop);
+  fillList('do-list', profile.do);
+  fillList('dont-list', profile.dont);
+
+  // Areas
+  const areasEl = document.getElementById('areas-grid');
+  areasEl.innerHTML = profile.areas.map(a => `
+    <div class="area-card">
+      <div class="area-icon">${a.icon}</div>
+      <h4>${a.name}</h4>
+      <p>${a.desc}</p>
+      <div class="match-bar"><div class="match-fill" style="width:${a.match}%;background:${profile.color}"></div></div>
+      <small style="font-size:10px;color:var(--muted)">${a.match}% de compatibilidade</small>
+    </div>
+  `).join('');
+
+  // Draw chart
+  drawChart(pct, colors);
+
+  // Compatibility analysis
+  renderCompatibility(pct, profile.color);
+
+  // Show results
+  document.getElementById('test-section').style.display = 'none';
+  document.getElementById('identification-card').style.display = 'none';
+  document.querySelector('.instructions').style.display = 'none';
+  document.querySelector('.submit-area').style.display = 'none';
+  document.getElementById('results-section').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+function drawChart(pct, colors) {
+  const canvas = document.getElementById('discChart');
+  const ctx = canvas.getContext('2d');
+  const cx = 150, cy = 150, r = 110;
+  const dims = ['D','I','S','C'];
+  const angles = [-Math.PI/2, 0, Math.PI/2, Math.PI];
+
+  ctx.clearRect(0,0,300,300);
+
+  // Grid
+  for (let i=1;i<=4;i++) {
+    ctx.beginPath();
+    ctx.strokeStyle = '#e0ddd6';
+    ctx.lineWidth = 1;
+    for (let j=0;j<4;j++) {
+      const frac = (i/4)*(r*(pct[dims[0]]/100));
+      const x = cx + Math.cos(angles[j]) * (r*i/4);
+      const y = cy + Math.sin(angles[j]) * (r*i/4);
+      j===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+    }
+    ctx.closePath();
+    ctx.stroke();
+  }
+  // Axes
+  dims.forEach((_,j) => {
+    ctx.beginPath();
+    ctx.strokeStyle = '#ccc';
+    ctx.moveTo(cx,cy);
+    ctx.lineTo(cx+Math.cos(angles[j])*r, cy+Math.sin(angles[j])*r);
+    ctx.stroke();
+  });
+  // Fill
+  ctx.beginPath();
+  dims.forEach((d,j) => {
+    const dist = r*(pct[d]/100);
+    const x = cx + Math.cos(angles[j])*dist;
+    const y = cy + Math.sin(angles[j])*dist;
+    j===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+  });
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(184,134,11,0.15)';
+  ctx.strokeStyle = 'rgba(184,134,11,0.7)';
+  ctx.lineWidth = 2;
+  ctx.fill();
+  ctx.stroke();
+  // Points
+  dims.forEach((d,j) => {
+    const dist = r*(pct[d]/100);
+    const x = cx + Math.cos(angles[j])*dist;
+    const y = cy + Math.sin(angles[j])*dist;
+    ctx.beginPath();
+    ctx.arc(x,y,5,0,Math.PI*2);
+    ctx.fillStyle = colors[d];
+    ctx.fill();
+  });
+  // Labels
+  ctx.font = 'bold 14px "DM Sans", sans-serif';
+  const labelOffset = r + 22;
+  dims.forEach((d,j) => {
+    const x = cx + Math.cos(angles[j])*labelOffset;
+    const y = cy + Math.sin(angles[j])*labelOffset;
+    ctx.fillStyle = colors[d];
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(d, x, y);
+  });
+}
+
+// ═══════════════════════════════════════════════════════
+//  AREA → DISC IDEAL PROFILE MAP
+//  Each area maps to ideal DISC weights (sum=100 indicative)
+// ═══════════════════════════════════════════════════════
+const AREA_MAP = [
+  // [keywords[], {D,I,S,C}, label, desc]
+  { keys:['tecnologia','ti','software','desenvolvimento','programação','sistemas','dados','data','devops','infra','segurança','cyber','cloud','ia','inteligência artificial','machine learning'],
+    disc:{D:25,I:15,S:20,C:40}, label:'Tecnologia & TI',
+    ideal:'Perfil C elevado para análise e qualidade; S para trabalho em equipe; D moderado para entregas.'},
+  { keys:['saúde','saude','medicina','médico','medico','enfermagem','farmácia','farmacia','fisioterapia','nutrição','nutricao','hospitalar','clínica','clinica','psicologia'],
+    disc:{D:15,I:20,S:40,C:25}, label:'Saúde & Medicina',
+    ideal:'Perfil S dominante para cuidado humano e empatia; C para precisão técnica e protocolos.'},
+  { keys:['educação','educacao','ensino','professor','docência','docencia','pedagogia','treinamento','t&d','rh educação'],
+    disc:{D:15,I:35,S:35,C:15}, label:'Educação & Ensino',
+    ideal:'Equilíbrio I (comunicação inspiradora) e S (paciência, cuidado com o aluno).'},
+  { keys:['vendas','comercial','negociação','negociacao','representante','account','closer','inside sales','b2b','b2c'],
+    disc:{D:35,I:40,S:15,C:10}, label:'Vendas & Comercial',
+    ideal:'D alto para proatividade e fechamento; I elevado para relacionamento e persuasão.'},
+  { keys:['marketing','publicidade','comunicação','comunicacao','conteúdo','conteudo','branding','mídia','midia','social media','rp','relações públicas','relacoes publicas'],
+    disc:{D:20,I:45,S:20,C:15}, label:'Marketing & Comunicação',
+    ideal:'I dominante para criatividade, comunicação e engajamento; C para análise de métricas.'},
+  { keys:['finanças','financas','financeiro','contabilidade','controladoria','auditoria','contábil','contabil','investimento','banco','crédito','credito','tesouraria'],
+    disc:{D:20,I:10,S:20,C:50}, label:'Finanças & Contabilidade',
+    ideal:'C dominante para precisão e análise; D para tomada de decisão sob pressão.'},
+  { keys:['rh','recursos humanos','gestão de pessoas','gente','cultura','people','talent','recrutamento','seleção','selecao','dp','departamento pessoal'],
+    disc:{D:15,I:30,S:40,C:15}, label:'Recursos Humanos',
+    ideal:'S dominante para empatia e mediação; I para engajamento e comunicação interna.'},
+  { keys:['engenharia','engineer','mecânica','mecanica','civil','elétrica','eletrica','industrial','produção','producao','qualidade','processos'],
+    disc:{D:25,I:10,S:20,C:45}, label:'Engenharia & Processos',
+    ideal:'C elevado para análise técnica e qualidade; D para gestão de projetos e entregas.'},
+  { keys:['direito','jurídico','juridico','advocacia','advogado','compliance','legal','contratos','regulatório','regulatorio','lgpd'],
+    disc:{D:30,I:20,S:15,C:35}, label:'Direito & Compliance',
+    ideal:'C para análise e argumentação técnica; D para negociação e defesa de interesses.'},
+  { keys:['gestão','gestao','gerência','gerencia','liderança','lideranca','diretoria','ceo','coo','presidente','executivo','administração','administracao'],
+    disc:{D:45,I:25,S:15,C:15}, label:'Gestão & Liderança',
+    ideal:'D dominante para tomada de decisão e resultados; I para inspirar equipes.'},
+  { keys:['empreendedorismo','empreendedor','startup','negócio','negocio','empresário','empresario','founder','sócio','socio'],
+    disc:{D:45,I:30,S:10,C:15}, label:'Empreendedorismo',
+    ideal:'D e I elevados: orientação a resultado com capacidade de inspirar e vender a visão.'},
+  { keys:['logística','logistica','supply chain','operações','operacoes','transporte','estoque','distribuição','distribuicao'],
+    disc:{D:30,I:10,S:25,C:35}, label:'Logística & Operações',
+    ideal:'C para controle e processos; D para gestão de crises e eficiência operacional.'},
+  { keys:['social','ong','terceiro setor','voluntário','voluntario','assistência social','assistencia social','desenvolvimento social'],
+    disc:{D:15,I:25,S:45,C:15}, label:'Terceiro Setor & Social',
+    ideal:'S dominante para empatia, escuta e missão humana; I para mobilização de pessoas.'},
+  { keys:['design','ux','ui','criação','criacao','arte','arquitetura','moda','produto','criativo','criativa'],
+    disc:{D:20,I:40,S:15,C:25}, label:'Design & Criação',
+    ideal:'I para criatividade e expressão; C para qualidade técnica e atenção ao detalhe.'},
+  { keys:['projeto','projetos','pmo','scrum','ágil','agil','metodologia','coordenação','coordenacao'],
+    disc:{D:30,I:20,S:20,C:30}, label:'Gestão de Projetos',
+    ideal:'Equilíbrio D (resultados/prazos) e C (processos/qualidade); S para integração do time.'},
+];
+
+function matchArea(areaText) {
+  if (!areaText) return null;
+  const lower = areaText.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  let best = null, bestScore = 0;
+  AREA_MAP.forEach(am => {
+    am.keys.forEach(k => {
+      const kn = k.normalize('NFD').replace(/[̀-ͯ]/g,'');
+      if (lower.includes(kn)) {
+        const score = kn.length;
+        if (score > bestScore) { bestScore = score; best = am; }
+      }
+    });
+  });
+  return best;
+}
+
+function calcCompatibility(userPct, areaDisc) {
+  // Normalize areaDisc to 0-100 scale relative to max
+  const aMax = Math.max(...Object.values(areaDisc));
+  const aMin = Math.min(...Object.values(areaDisc));
+  const aRange = aMax - aMin || 1;
+  const aNorm = {};
+  ['D','I','S','C'].forEach(d => {
+    aNorm[d] = Math.round(((areaDisc[d] - aMin) / aRange) * 80 + 10);
+  });
+
+  // Weighted difference per dimension
+  const weights = {D:1, I:1, S:1, C:1};
+  let totalDiff = 0, totalWeight = 0;
+  ['D','I','S','C'].forEach(d => {
+    totalDiff += Math.abs(userPct[d] - aNorm[d]) * weights[d];
+    totalWeight += 100 * weights[d];
+  });
+  const compat = Math.round(100 - (totalDiff / totalWeight) * 100);
+  return { compat: Math.max(0, Math.min(100, compat)), aNorm };
+}
+
+function drawGauge(canvasId, pct, color) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const cx = 55, cy = 55, r = 45;
+  ctx.clearRect(0, 0, 110, 110);
+  // BG arc
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, Math.PI * 0.75, Math.PI * 2.25);
+  ctx.strokeStyle = '#E0DDD6';
+  ctx.lineWidth = 10;
+  ctx.lineCap = 'round';
+  ctx.stroke();
+  // Value arc
+  const startA = Math.PI * 0.75;
+  const endA = startA + (Math.PI * 1.5) * (pct / 100);
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, startA, endA);
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 10;
+  ctx.lineCap = 'round';
+  ctx.stroke();
+}
+
+function renderCompatibility(userPct, dominantColor) {
+  const areaText = document.getElementById('f-area').value.trim();
+  const card = document.getElementById('compat-card');
+  const heroBlock = document.getElementById('compat-hero-block');
+  const dimsBlock = document.getElementById('compat-dims-block');
+  const tableEl = document.getElementById('compat-table');
+
+  const areaMatch = matchArea(areaText);
+
+  if (!areaText || !areaMatch) {
+    // No area informed or not matched — show generic message
+    const area = areaText || '(não informada)';
+    heroBlock.innerHTML = '<div style="padding:16px 0;color:var(--muted);font-size:14px;">Área de atuação <strong>"' + area + '"</strong> não identificada em nossa base. Para uma análise de compatibilidade detalhada, informe sua área no formulário de identificação usando termos como: Tecnologia, Saúde, Vendas, RH, Engenharia, Finanças, etc.</div>';
+    dimsBlock.innerHTML = '';
+    tableEl.innerHTML = '';
+    return;
+  }
+
+  const { compat, aNorm } = calcCompatibility(userPct, areaMatch.disc);
+
+  // Verdict
+  let verdict, verdictClass, verdictText;
+  if (compat >= 75) {
+    verdict = 'Alta Compatibilidade'; verdictClass = 'tag-alto';
+    verdictText = 'Seu perfil comportamental tem forte alinhamento com as exigências da sua área de atuação. Você tende a performar de forma natural e consistente neste ambiente.';
+  } else if (compat >= 50) {
+    verdict = 'Compatibilidade Moderada'; verdictClass = 'tag-medio';
+    verdictText = 'Há alinhamento parcial entre seu perfil e a área. Pontos de convergência trazem facilidade; os de divergência exigem adaptação consciente ou desenvolvimento.';
+  } else {
+    verdict = 'Baixa Compatibilidade'; verdictClass = 'tag-baixo';
+    verdictText = 'Seu perfil natural difere das exigências predominantes da área. Isso não impede o sucesso, mas exige maior esforço adaptativo e investimento em desenvolvimento.';
+  }
+
+  const colors = {D:'#C0392B',I:'#E67E22',S:'#27AE60',C:'#2980B9'};
+  const dimNames = {D:'Dominância',I:'Influência',S:'Estabilidade',C:'Conformidade'};
+
+  // Hero
+  heroBlock.innerHTML =
+    '<div class="compat-gauge"><canvas id="gaugeCanvas" width="110" height="110"></canvas>' +
+    '<div class="gauge-label"><div class="gauge-pct" id="gaugePct">0%</div><div class="gauge-sub">compat.</div></div></div>' +
+    '<div class="compat-info">' +
+    '<div style="font-size:11px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px">Área identificada</div>' +
+    '<h3>' + areaMatch.label + '</h3>' +
+    '<span class="compat-verdict ' + verdictClass + '">' + verdict + '</span>' +
+    '<p>' + verdictText + '</p>' +
+    '<p style="margin-top:8px;font-size:12px;font-style:italic;">' + areaMatch.ideal + '</p>' +
+    '</div>';
+
+  // Animate gauge
+  let gPct = 0;
+  const gInterval = setInterval(() => {
+    gPct = Math.min(gPct + 2, compat);
+    drawGauge('gaugeCanvas', gPct, compat >= 75 ? '#27AE60' : compat >= 50 ? '#E67E22' : '#C0392B');
+    const el = document.getElementById('gaugePct');
+    if (el) el.textContent = gPct + '%';
+    if (gPct >= compat) clearInterval(gInterval);
+  }, 20);
+
+  // Dim cards
+  const dimOrder = ['D','I','S','C'];
+  dimsBlock.innerHTML = dimOrder.map(d => {
+    const uVal = userPct[d];
+    const aVal = aNorm[d];
+    const diff = uVal - aVal;
+    const diffStr = diff > 0 ? '+' + diff + ' acima' : diff < 0 ? Math.abs(diff) + ' abaixo' : 'alinhado';
+    const diffColor = Math.abs(diff) <= 15 ? '#27AE60' : Math.abs(diff) <= 30 ? '#E67E22' : '#C0392B';
+    return '<div class="compat-dim-card">' +
+      '<div class="dim-letter" style="color:' + colors[d] + '">' + d + '</div>' +
+      '<div class="dim-name">' + dimNames[d] + '</div>' +
+      '<div style="font-size:9px;color:var(--muted);margin-bottom:3px">Seu perfil</div>' +
+      '<div class="dim-user-bar-wrap"><div class="dim-user-bar" style="width:' + uVal + '%;background:' + colors[d] + '"></div></div>' +
+      '<div style="font-size:9px;color:var(--muted);margin-bottom:3px">Ideal da área</div>' +
+      '<div class="dim-area-bar-wrap"><div class="dim-area-bar" style="width:' + aVal + '%;background:' + colors[d] + '"></div></div>' +
+      '<div class="dim-diff" style="color:' + diffColor + '">' + diffStr + '</div>' +
+      '<div class="dim-legend">Você: ' + uVal + '% | Área: ' + aVal + '%</div>' +
+      '</div>';
+  }).join('');
+
+  // Detailed table
+  const rows = dimOrder.map(d => {
+    const uVal = userPct[d];
+    const aVal = aNorm[d];
+    const gap = Math.abs(uVal - aVal);
+    const tagClass = gap <= 15 ? 'tag-alto' : gap <= 30 ? 'tag-medio' : 'tag-baixo';
+    const tagLabel = gap <= 15 ? 'Alinhado' : gap <= 30 ? 'Atenção' : 'Gap';
+    const impact = uVal > aVal
+      ? 'Tendência a ter comportamento mais ' + dimNames[d].toLowerCase() + ' do que o perfil ideal da área exige.'
+      : uVal < aVal
+      ? 'A área exige mais ' + dimNames[d].toLowerCase() + ' do que seu perfil natural apresenta. Ponto de desenvolvimento.'
+      : 'Alinhamento preciso com a demanda da área nesta dimensão.';
+    return '<tr><td><strong style="color:' + colors[d] + '">' + d + '</strong> – ' + dimNames[d] + '</td>' +
+      '<td style="text-align:center"><strong>' + uVal + '%</strong></td>' +
+      '<td style="text-align:center">' + aVal + '%</td>' +
+      '<td style="text-align:center"><span class="tag ' + tagClass + '">' + tagLabel + '</span></td>' +
+      '<td style="font-size:12px;color:var(--muted)">' + impact + '</td></tr>';
+  }).join('');
+
+  tableEl.innerHTML =
+    '<thead><tr><th>Dimensão</th><th style="text-align:center">Seu Perfil</th><th style="text-align:center">Ideal da Área</th><th style="text-align:center">Status</th><th>Impacto</th></tr></thead>' +
+    '<tbody>' + rows + '</tbody>';
+}
+
+// ═══════════════════════════════════════════════════════
+//  RESET
+// ═══════════════════════════════════════════════════════
+function resetTest() {
+  if (!confirm('Deseja reiniciar o teste? Todas as respostas serão apagadas.')) return;
+  // Clear answers
+  for (var k in answers) delete answers[k];
+  // Reset form
+  document.getElementById('f-name').value = '';
+  document.getElementById('f-role').value = '';
+  document.getElementById('f-org').value = '';
+  document.getElementById('f-area').value = '';
+  document.getElementById('f-age').value = '';
+  document.getElementById('f-date').valueAsDate = new Date();
+  // Re-render test
+  renderTest();
+  updateProgress();
+  // Show test, hide results
+  document.getElementById('identification-card').style.display = 'block';
+  document.querySelector('.instructions').style.display = 'block';
+  document.getElementById('test-section').style.display = 'block';
+  document.querySelector('.submit-area').style.display = 'block';
+  document.getElementById('results-section').style.display = 'none';
+  window.scrollTo(0, 0);
+}
+
+// ═══════════════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════════════
+document.getElementById('f-date').valueAsDate = new Date();
+renderTest();
+updateProgress();
+</script>
+</body>
+</html>
