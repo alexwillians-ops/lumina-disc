@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head><script defer src="/_vercel/insights/script.js"></script>
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Avaliação de Perfil DISC</title>
@@ -511,6 +511,111 @@
 
   /* ── VALIDATION ── */
   .q-unanswered { border-color: #e74c3c !important; }
+
+  /* ═══════════════ MELHORIAS v2 ═══════════════ */
+  .q-header { display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; }
+  .q-status { float:none; margin-top:0; }
+
+  .notice {
+    background:#FFF8E1; border:1px solid #F0D98A; color:#6B5300;
+    border-radius:4px; padding:12px 18px; margin-bottom:20px; font-size:13px;
+    display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;
+  }
+  .notice[hidden] { display:none; }
+  .notice.info { background:var(--bg); border-color:var(--border); color:var(--muted); line-height:1.65; display:block; }
+  .notice.info strong { color:var(--text); }
+  .btn-link { background:none; border:none; color:inherit; text-decoration:underline; cursor:pointer; font:inherit; font-weight:600; }
+
+  .sticky-progress {
+    position:sticky; top:0; z-index:20; background:var(--bg);
+    padding:10px 0 12px; margin-bottom:12px; border-bottom:1px solid var(--border);
+  }
+  .sp-text { font-size:12px; color:var(--muted); margin-bottom:6px; display:flex; justify-content:space-between; font-weight:500; }
+  .sp-track { height:6px; background:var(--border); border-radius:3px; overflow:hidden; }
+  .sp-fill { height:100%; width:0; background:var(--S); transition:width .3s; }
+
+  .toast {
+    position:fixed; left:50%; bottom:24px; transform:translate(-50%,20px);
+    background:#1A1A1A; color:#fff; padding:12px 20px; border-radius:4px; font-size:14px;
+    opacity:0; pointer-events:none; transition:opacity .25s, transform .25s; z-index:50; max-width:90vw; text-align:center;
+  }
+  .toast.show { opacity:1; transform:translate(-50%,0); }
+  .submit-error { color:#C0392B; font-size:13px; margin-top:10px; min-height:18px; font-weight:500; }
+
+  .opt-action:focus-visible, .btn-primary:focus-visible, .print-btn:focus-visible, .btn-reset:focus-visible, .btn-link:focus-visible {
+    outline:3px solid #1A1A1A; outline-offset:-3px;
+  }
+  .btn-primary:focus-visible, .print-btn:focus-visible, .btn-reset:focus-visible { outline-offset:2px; }
+
+  .hint { font-size:11px; color:var(--muted); text-transform:none; letter-spacing:0; font-weight:400; }
+
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:24px; }
+  .two-col .card { margin:0; }
+  canvas#discChart { width:100%; max-width:420px; height:auto; }
+
+  .disc-bar-row { display:grid; grid-template-columns:120px 1fr 44px; column-gap:14px; row-gap:3px; align-items:center; }
+  .disc-bar-label { width:auto; }
+  .disc-bar-track { position:relative; }
+  .mid-mark { position:absolute; left:50%; top:0; bottom:0; width:2px; background:rgba(0,0,0,.35); }
+  .disc-bar-meta { grid-column:2 / 4; font-size:11px; color:var(--muted); }
+  .how-to-read { font-size:12px; color:var(--muted); line-height:1.6; margin-top:18px; }
+
+  .profile-hero .meta { font-size:12px; color:#9a9a9a; margin:-2px 0 14px; line-height:1.5; }
+  .pill { display:inline-block; padding:3px 12px; border-radius:2px; font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; }
+  .flag-list { list-style:none; padding:0; margin:0 0 4px; }
+  .flag-list li { font-size:13px; padding:8px 0 8px 22px; border-bottom:1px solid var(--border); position:relative; line-height:1.5; }
+  .flag-list li:last-child { border:none; }
+  .flag-list li::before { content:'⚠'; position:absolute; left:0; color:#B26A00; }
+
+  .info-box ul li.sec::before { content:'◆ '; color:var(--sc, var(--gold)); }
+  .table-scroll { overflow-x:auto; margin-top:20px; }
+  .results-actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .results-actions .btn-reset { margin-left:0; }
+
+  .site-footer {
+    background:#1A1A1A; color:#aaa; text-align:center; font-size:12px;
+    letter-spacing:1px; line-height:1.9; padding:26px 20px; margin-top:20px;
+  }
+  .site-footer strong { color:var(--gold); letter-spacing:2px; }
+
+  @media (prefers-reduced-motion: reduce) { * { transition:none !important; scroll-behavior:auto !important; } }
+
+  /* ── MOBILE ── */
+  @media screen and (max-width:720px) {
+    header { padding:28px 20px 22px; }
+    header h1 { font-size:32px; }
+    header::before { font-size:130px; }
+    .container { padding:24px 14px 48px; }
+    .card { padding:22px 18px; }
+    .form-grid, .info-grid, .two-col { grid-template-columns:1fr; }
+    .areas-grid { grid-template-columns:1fr 1fr; }
+    .compat-dims { grid-template-columns:1fr 1fr; }
+    .compat-hero { flex-direction:column; align-items:flex-start; padding:20px; }
+    .options-header, .option-row { grid-template-columns:1fr 54px 54px; }
+    .options-header { padding-left:16px; padding-right:16px; }
+    .question-block .q-scenario, .options-list { padding-left:16px; padding-right:16px; }
+    .progress-wrap { margin-left:16px; margin-right:16px; }
+    .disc-bar-row { grid-template-columns:96px 1fr 40px; column-gap:10px; }
+    .profile-hero { padding:28px 22px; }
+    .profile-hero h2 { font-size:28px; }
+    .btn-primary { padding:16px 32px; }
+  }
+  @media screen and (max-width:480px) { .areas-grid { grid-template-columns:1fr; } }
+
+  /* ── IMPRESSÃO ── */
+  @media print {
+    .sticky-progress, .toast, .notice.no-print, .results-actions { display:none !important; }
+    * { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    .two-col { grid-template-columns:1fr 1fr; }
+    .info-grid { grid-template-columns:1fr 1fr; }
+    .info-box, .area-card, .compat-dim-card { break-inside:avoid; }
+    .compat-dims { grid-template-columns:repeat(4,1fr); }
+    .table-scroll { overflow:visible; }
+  }
+
+  .site-footer { background:#1A1A1A; color:#aaa; text-align:center; padding:26px 20px; font-size:12px; line-height:1.8; letter-spacing:.5px; }
+  .site-footer strong { color:var(--gold); letter-spacing:2px; }
+  @media print { .site-footer { background:none !important; color:#666 !important; padding:12px 0 0; border-top:1px solid #ccc; } .site-footer strong { color:#444 !important; } }
 </style>
 </head>
 <body>
@@ -529,28 +634,39 @@
 
 <div class="container">
 
+  <!-- RETOMADA DE PROGRESSO -->
+  <div class="notice no-print" id="restore-banner" hidden>
+    <span id="restore-text"></span>
+    <button type="button" class="btn-link" onclick="resetTest()">Recomeçar do zero</button>
+  </div>
+
   <!-- IDENTIFICATION -->
   <div class="card" id="identification-card">
     <h2><span class="dot"></span> Identificação</h2>
     <div class="form-grid">
       <div class="form-group full">
-        <label>Nome Completo *</label>
-        <input type="text" id="f-name" placeholder="Seu nome completo">
+        <label for="f-name">Nome Completo *</label>
+        <input type="text" id="f-name" placeholder="Seu nome completo" autocomplete="off">
       </div>
       <div class="form-group">
-        <label>Cargo / Função</label>
-        <input type="text" id="f-role" placeholder="Ex.: Gerente de Projetos">
+        <label for="f-reg">Matrícula <span class="hint">(opcional)</span></label>
+        <input type="text" id="f-reg" placeholder="Ex.: 12345" autocomplete="off">
       </div>
       <div class="form-group">
-        <label>Empresa / Organização</label>
-        <input type="text" id="f-org" placeholder="Nome da empresa">
+        <label for="f-role">Cargo / Função</label>
+        <input type="text" id="f-role" placeholder="Ex.: Analista de DP" autocomplete="off">
       </div>
       <div class="form-group">
-        <label>Área de Atuação</label>
-        <input type="text" id="f-area" placeholder="Ex.: Tecnologia, Saúde, Educação">
+        <label for="f-org">Empresa / Organização</label>
+        <input type="text" id="f-org" placeholder="Nome da empresa" autocomplete="off">
       </div>
       <div class="form-group">
-        <label>Faixa Etária</label>
+        <label for="f-area">Área de Atuação</label>
+        <input type="text" id="f-area" list="areas-list" placeholder="Escolha ou digite (ex.: RH, Finanças)" autocomplete="off">
+        <datalist id="areas-list"></datalist>
+      </div>
+      <div class="form-group">
+        <label for="f-age">Faixa Etária</label>
         <select id="f-age">
           <option value="">Selecione</option>
           <option>18 – 24 anos</option>
@@ -561,27 +677,40 @@
         </select>
       </div>
       <div class="form-group">
-        <label>Data da Avaliação</label>
+        <label for="f-date">Data da Avaliação</label>
         <input type="date" id="f-date">
+      </div>
+      <div class="form-group full">
+        <label for="f-purpose">Finalidade da Avaliação</label>
+        <select id="f-purpose">
+          <option value="">Selecione</option>
+          <option>Autoconhecimento</option>
+          <option>Desenvolvimento individual</option>
+          <option>Desenvolvimento de equipe</option>
+          <option>Processo seletivo</option>
+          <option>Feedback / avaliação de desempenho</option>
+        </select>
       </div>
     </div>
   </div>
 
   <!-- INSTRUCTIONS -->
-  <div class="instructions">
-    <strong>Como responder:</strong> Em cada questão há 4 opções. Para cada uma:<br><br>
-    &nbsp;&nbsp;▲ <strong style="color:#f4a;">MAIS</strong> — clique na opção que <strong>mais</strong> descreve você <span style="background:#C0392B;color:white;padding:1px 7px;border-radius:2px;font-size:11px;font-weight:700;letter-spacing:1px">OBRIGATÓRIO</span><br>
-    &nbsp;&nbsp;▼ <strong style="color:#8cf;">MENOS</strong> — clique na opção que <strong>menos</strong> descreve você <span style="background:#555;color:white;padding:1px 7px;border-radius:2px;font-size:11px;font-weight:700;letter-spacing:1px">OPCIONAL</span><br><br>
-    O "Menos" é opcional mas enriquece a análise do perfil. Responda com base em como você realmente é. Leva em média <strong>8–12 minutos</strong>.
+  <div class="instructions" id="instructions">
+    <strong>Como responder:</strong> Em cada questão há 4 opções, mostradas em ordem aleatória. Marque duas delas:<br><br>
+    &nbsp;&nbsp;▲ <strong style="color:#f4a;">MAIS</strong> — a opção que <strong>mais</strong> descreve você<br>
+    &nbsp;&nbsp;▼ <strong style="color:#8cf;">MENOS</strong> — a opção que <strong>menos</strong> descreve você<br><br>
+    As duas marcações são obrigatórias: é a combinação delas que dá precisão ao resultado. Responda pensando em como você <strong>realmente é</strong> no trabalho, não em como gostaria de ser. Não há resposta certa. Leva em média <strong>8–12 minutos</strong>.
+    Seu progresso é salvo automaticamente neste navegador, e você pode continuar depois.
   </div>
 
   <!-- TEST -->
   <div id="test-section"></div>
 
   <!-- SUBMIT -->
-  <div class="submit-area no-print">
-    <button class="btn-primary" id="btn-submit" onclick="submitTest()">Calcular Meu Perfil DISC</button>
+  <div class="submit-area no-print" id="submit-area">
+    <button class="btn-primary" id="btn-submit" type="button" onclick="submitTest()">Calcular Meu Perfil DISC</button>
     <p id="answer-progress"></p>
+    <p class="submit-error" id="submit-error" role="alert"></p>
   </div>
 
   <!-- RESULTS -->
@@ -590,6 +719,7 @@
     <!-- HERO -->
     <div class="profile-hero" id="hero-block" data-letter="D">
       <div class="name-display" id="res-name-display">—</div>
+      <div class="meta" id="res-meta"></div>
       <h2 id="res-profile-name">—</h2>
       <div class="profile-title" id="res-profile-title">—</div>
       <div class="tagline" id="res-tagline">—</div>
@@ -600,26 +730,39 @@
     <div class="card">
       <h2><span class="dot"></span> Pontuação por Dimensão</h2>
       <div class="disc-bars" id="disc-bars"></div>
+      <p class="how-to-read">
+        <strong>Como ler:</strong> a linha vertical marca 50%, o ponto neutro. Acima de 60% a característica é <em>alta</em>; abaixo de 40%, <em>baixa</em>.
+        Como o teste é de escolha forçada, as quatro dimensões se compensam: subir em uma significa descer em outra.
+        "Mais" e "Menos" mostram quantas vezes a dimensão foi marcada em cada sentido (de 28 questões).
+      </p>
+    </div>
+
+    <!-- RELIABILITY -->
+    <div class="card" id="reliability-card">
+      <h2><span class="dot"></span> Qualidade das Respostas</h2>
+      <div id="reliability-block"></div>
     </div>
 
     <!-- CHART + COMBO -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;">
-      <div class="card" style="margin:0">
+    <div class="two-col">
+      <div class="card">
         <h2><span class="dot"></span> Gráfico de Perfil</h2>
         <div class="quadrant-wrap">
-          <canvas id="discChart" width="300" height="300"></canvas>
+          <canvas id="discChart" width="400" height="300" role="img" aria-label="Gráfico de linha com as pontuações D, I, S e C"></canvas>
         </div>
       </div>
-      <div class="card" style="margin:0">
+      <div class="card">
         <h2><span class="dot"></span> Perfil Combinado</h2>
         <div id="combo-tags"></div>
         <p id="combo-description" style="font-size:13px;line-height:1.7;color:var(--muted);margin-top:12px;"></p>
+        <p id="combo-nuance" style="font-size:13px;line-height:1.7;color:var(--muted);margin-top:10px;"></p>
       </div>
     </div>
 
     <!-- STRENGTHS & CHALLENGES -->
     <div class="card">
       <h2><span class="dot"></span> Forças & Pontos de Atenção</h2>
+      <p id="blend-note" class="how-to-read" style="margin:-8px 0 16px"></p>
       <div class="info-grid">
         <div class="info-box">
           <h4>✦ Pontos Fortes</h4>
@@ -665,7 +808,8 @@
 
     <!-- AREAS -->
     <div class="card">
-      <h2><span class="dot"></span> Áreas de Atuação Recomendadas</h2>
+      <h2><span class="dot"></span> Áreas de Atuação com Maior Afinidade</h2>
+      <p class="how-to-read" style="margin:-8px 0 16px">Calculado a partir das quatro pontuações, não apenas do estilo dominante.</p>
       <div class="areas-grid" id="areas-grid"></div>
     </div>
 
@@ -674,7 +818,7 @@
       <h2><span class="dot"></span> Compatibilidade com Sua Área de Atuação</h2>
       <div id="compat-hero-block" class="compat-hero"></div>
       <div class="compat-dims" id="compat-dims-block"></div>
-      <div style="margin-top:20px">
+      <div class="table-scroll">
         <table class="compat-table" id="compat-table"></table>
       </div>
     </div>
@@ -694,14 +838,38 @@
       </div>
     </div>
 
-    <!-- PRINT BUTTON -->
+    <!-- RESPONSIBLE USE -->
+    <div class="notice info">
+      <strong>Uso responsável deste resultado.</strong> O DISC descreve preferências de comportamento <em>autodeclaradas</em>.
+      Ele não mede competência, inteligência nem aptidão técnica, e não deve ser o único critério em seleção, promoção ou desligamento.
+      Use-o como apoio para conversas de desenvolvimento, junto com entrevista, histórico profissional e avaliação de desempenho.
+      Este relatório contém dados pessoais (LGPD): compartilhe apenas com quem precisa e com o conhecimento do avaliado.
+    </div>
+
+    <!-- ACTIONS -->
     <div class="submit-area no-print">
-      <button class="print-btn" onclick="window.print()">⬡ Imprimir / Salvar PDF</button>
-      <button class="btn-reset" onclick="resetTest()">↺ Refazer Teste</button>
+      <div class="results-actions">
+        <button class="print-btn" type="button" onclick="window.print()">⬡ Imprimir / Salvar PDF</button>
+        <button class="btn-reset" type="button" onclick="exportCSV()">⇩ Baixar dados (CSV)</button>
+        <button class="btn-reset" type="button" onclick="backToTest()">✎ Revisar respostas</button>
+        <button class="btn-reset" type="button" onclick="resetTest()">↺ Refazer Teste</button>
+      </div>
     </div>
 
   </div><!-- /results -->
 </div><!-- /container -->
+
+<footer class="site-footer">
+  <div>© <span id="footer-year">2026</span> Todos os direitos reservados.</div>
+  <div>Desenvolvido por <strong>A.WILLIANS</strong></div>
+</footer>
+
+<footer class="site-footer">
+  <div>© 2026 · Todos os direitos reservados.</div>
+  <div>Desenvolvido por <strong>A.WILLIANS</strong></div>
+</footer>
+
+<div class="toast" id="toast" role="alert"></div>
 
 <script>
 // ═══════════════════════════════════════════════════════
@@ -931,7 +1099,7 @@ const QUESTIONS = [
       {text:"Fica impaciente e toma a decisão por conta própria",dim:"D"},
       {text:"Tenta animar e dar energia para a pessoa decidir",dim:"I"},
       {text:"Oferece suporte e paciência, entendendo que cada um tem seu ritmo",dim:"S"},
-      {text:"Apresenta um análise racional para facilitar a escolha",dim:"C"}
+      {text:"Apresenta uma análise racional para facilitar a escolha",dim:"C"}
     ]
   },
   {
@@ -980,14 +1148,6 @@ const PROFILES = {
     environment: ["Ambientes dinâmicos e desafiadores","Autonomia para tomar decisões","Pouca burocracia","Oportunidades de progresso rápido","Projetos de alto impacto"],
     fears: ["Perda de controle ou autoridade","Ser visto como fraco","Estagnação e falta de progresso","Dependência excessiva de outros","Ambiguidade prolongada"],
     develop: ["Praticar escuta ativa","Desenvolver empatia e inteligência emocional","Aprender a valorizar processos","Treinar paciência com diferentes ritmos","Solicitar feedback de sua equipe"],
-    areas: [
-      {icon:"🏆",name:"Gestão Executiva",desc:"CEO, Diretor, Gerente Geral — liderança de alto nível com autonomia",match:95},
-      {icon:"💼",name:"Empreendedorismo",desc:"Fundação e escala de negócios; tolerância natural ao risco",match:93},
-      {icon:"📊",name:"Vendas Estratégicas",desc:"Vendas B2B complexas, negociação e fechamento de grandes contas",match:88},
-      {icon:"⚖️",name:"Direito Empresarial",desc:"Advocacia de resultado, contencioso e arbitragem",match:82},
-      {icon:"🏗️",name:"Gestão de Projetos",desc:"PMO, liderança de grandes projetos com múltiplas entregas",match:85},
-      {icon:"🚀",name:"Desenvolvimento de Negócios",desc:"Expansão de mercado, parcerias estratégicas e M&A",match:87}
-    ],
     do: ["Seja direto e objetivo","Apresente fatos e resultados","Respeite sua autonomia","Mostre eficiência e competência","Proponha desafios instigantes"],
     dont: ["Seja indireto ou enrole","Controle excessivamente","Tome muito tempo com detalhes","Mostre fraqueza ou hesitação","Questione sua autoridade sem base sólida"],
     combo: "DC"
@@ -1005,14 +1165,6 @@ const PROFILES = {
     environment: ["Ambientes colaborativos e sociais","Liberdade criativa","Reconhecimento frequente","Variedade de tarefas","Pouca burocracia e controle"],
     fears: ["Rejeição e desaprovação social","Perder o foco da atenção","Ambientes frios e impessoais","Isolamento social","Rotinas muito rígidas"],
     develop: ["Melhorar foco e disciplina","Desenvolver análise crítica","Aprender a ouvir antes de falar","Cumprir compromissos com rigor","Organizar melhor seu tempo"],
-    areas: [
-      {icon:"📣",name:"Marketing & Comunicação",desc:"Branding, campanhas, relações públicas e conteúdo",match:96},
-      {icon:"🎤",name:"Treinamento & Palestras",desc:"T&D corporativo, facilitação, coaching e keynote speaking",match:94},
-      {icon:"🤝",name:"Vendas Consultivas",desc:"Venda relacional, inside sales e gestão de contas-chave",match:91},
-      {icon:"🎨",name:"Design & Criação",desc:"UX, criação de produtos, direção de arte",match:83},
-      {icon:"🌐",name:"Relações Institucionais",desc:"Lobbying, parcerias, representação e diplomacia corporativa",match:87},
-      {icon:"🏫",name:"Educação & Coaching",desc:"Docência, mentoria, desenvolvimento humano",match:89}
-    ],
     do: ["Seja caloroso e amigável","Valorize suas ideias e entusiasmo","Dê espaço para se expressar","Reconheça publicamente","Crie um ambiente animado"],
     dont: ["Seja frio ou distante","Ignore sua necessidade de reconhecimento","Force rotinas rígidas sem sentido","Corte sua comunicação","Isole-o de interações sociais"],
     combo: "ID"
@@ -1030,14 +1182,6 @@ const PROFILES = {
     environment: ["Ambientes previsíveis e estáveis","Equipes de longo prazo","Cultura de respeito e cuidado","Clareza de papéis e expectativas","Baixo nível de conflito"],
     fears: ["Conflitos e desentendimentos","Mudanças repentinas sem aviso","Perda de relacionamentos importantes","Ambientes hostis e competitivos","Instabilidade emocional ao redor"],
     develop: ["Aprender a lidar com mudanças","Desenvolver assertividade","Praticar dar feedback difícil","Definir limites mais claros","Aceitar conflito saudável como parte do crescimento"],
-    areas: [
-      {icon:"❤️",name:"Recursos Humanos",desc:"Gestão de pessoas, cultura organizacional, benefícios",match:95},
-      {icon:"🏥",name:"Saúde & Cuidado",desc:"Enfermagem, psicologia, assistência social, terapia",match:93},
-      {icon:"📚",name:"Educação",desc:"Docência, suporte pedagógico, coordenação escolar",match:91},
-      {icon:"🧑‍🤝‍🧑",name:"Atendimento ao Cliente",desc:"Customer success, suporte, relacionamento",match:89},
-      {icon:"🏛️",name:"Terceiro Setor & ONGs",desc:"Gestão de projetos sociais, voluntariado, mobilização",match:87},
-      {icon:"🌱",name:"Desenvolvimento Organizacional",desc:"Cultura, engajamento, programas de liderança",match:85}
-    ],
     do: ["Seja paciente e gentil","Dê tempo para processar mudanças","Mostre lealdade e cuidado","Cumpra o que prometeu","Valorize sua contribuição silenciosa"],
     dont: ["Force decisões rápidas","Imponha mudanças abruptamente","Ignore suas emoções","Crie ambientes hostis","Trate-o como invisível"],
     combo: "SC"
@@ -1055,14 +1199,6 @@ const PROFILES = {
     environment: ["Ambientes bem estruturados","Expectativas claras e precisas","Alto padrão de qualidade","Acesso a dados e informações","Pouco espaço para improviso"],
     fears: ["Cometer erros em público","Ser criticado por trabalho abaixo do padrão","Ambiguidade e falta de informações","Perda de controle sobre a qualidade","Ser responsabilizado por algo que não fez"],
     develop: ["Aprender a tomar decisões com dados incompletos","Desenvolver flexibilidade","Praticar comunicação mais calorosa","Confiar mais nas pessoas","Equilibrar perfeição com praticidade"],
-    areas: [
-      {icon:"🔬",name:"Ciência & Pesquisa",desc:"P&D, laboratório, análise de dados, pesquisa acadêmica",match:97},
-      {icon:"💻",name:"Tecnologia & TI",desc:"Desenvolvimento, arquitetura de sistemas, segurança",match:95},
-      {icon:"📊",name:"Finanças & Contabilidade",desc:"Controladoria, auditoria, análise financeira",match:93},
-      {icon:"⚙️",name:"Engenharia",desc:"Engenharia de qualidade, processos, civil, mecânica",match:91},
-      {icon:"⚖️",name:"Compliance & Jurídico",desc:"Regulatório, conformidade, assessoria jurídica",match:89},
-      {icon:"🏥",name:"Medicina & Farmácia",desc:"Diagnóstico, pesquisa clínica, farmacologia",match:88}
-    ],
     do: ["Forneça dados e evidências","Seja lógico e estruturado","Respeite sua necessidade de tempo","Mostre como as coisas se conectam","Valorize sua precisão"],
     dont: ["Seja impreciso ou vago","Imponha decisões sem justificativa","Interrompa seu raciocínio","Ignore erros ou qualidade","Pressione por respostas imediatas"],
     combo: "CD"
@@ -1074,7 +1210,7 @@ const COMBO_DESCRIPTIONS = {
   I: "Perfil de Influência puro: comunicador nato, construtor de redes e motivador de pessoas. Seu maior ativo é a capacidade de inspirar e conectar.",
   S: "Perfil de Estabilidade puro: âncora emocional de qualquer equipe, consistente e leal. Brilha em ambientes que valorizam colaboração e cuidado humano.",
   C: "Perfil de Conformidade puro: analista meticuloso e guardião da qualidade. Seu diferencial é a precisão e profundidade de análise.",
-  DI:"Perfil DC/ID – Realizador Influente: combina orientação a resultados com habilidade social. Líderes naturais que sabem como motivar e cobrar ao mesmo tempo.",
+  DI:"Perfil DI – Realizador Influente: combina orientação a resultados com habilidade social. Líderes naturais que sabem como motivar e cobrar ao mesmo tempo.",
   DC:"Perfil DC – Estrategista Assertivo: foca em resultados com análise calculista. Altamente eficaz em ambientes competitivos que exigem decisão e planejamento.",
   ID:"Perfil ID – Visionário Carismático: energia empreendedora com enorme poder de influência. Motiva massas e cria movimentos.",
   IS:"Perfil IS – Comunicador Empático: combina entusiasmo com sensibilidade. Excelente em treinamentos, RH e áreas de cuidado com pessoas.",
@@ -1082,593 +1218,749 @@ const COMBO_DESCRIPTIONS = {
   SI:"Perfil SI – Colaborador Animado: une estabilidade com entusiasmo. Cria ambientes positivos e duradouros.",
   SC:"Perfil SC – Suporte Organizado: paciência e método lado a lado. Confiável, consistente e de alta qualidade.",
   CS:"Perfil CS – Analista Colaborativo: combina análise técnica com sensibilidade humana. Ótimo para ciências humanas e de saúde.",
+  CI:"Perfil CI – Analista Comunicativo: une rigor técnico com boa expressão. Explica o complexo com clareza e cuida da qualidade ao mesmo tempo.",
   CD:"Perfil CD – Especialista Assertivo: precisão técnica com orientação a resultados. Excelente em áreas de engenharia e finanças.",
-  DS:"Perfil DS – Executor Empático: orientação a resultados com cuidado pelas pessoas. Líderes que cobram sem deshumanizar.",
+  DS:"Perfil DS – Executor Empático: orientação a resultados com cuidado pelas pessoas. Líderes que cobram sem desumanizar.",
   SD:"Perfil SD – Apoiador Decisivo: estabilidade com foco em resultados. Brilha em coordenação de equipes.",
 };
 
-// ═══════════════════════════════════════════════════════
-//  RENDER TEST
-// ═══════════════════════════════════════════════════════
-const answers = {}; // {qIdx: {most: optIdx, least: optIdx}}
 
+// ═══════════════════════════════════════════════════════
+//  CONFIGURAÇÃO
+// ═══════════════════════════════════════════════════════
+const DIMS = ['D','I','S','C'];
+const DIM_NAMES  = {D:'Dominância', I:'Influência', S:'Estabilidade', C:'Conformidade'};
+const DIM_COLORS = {D:'#C0392B', I:'#E67E22', S:'#27AE60', C:'#2980B9'};
+const LEVEL_HIGH = 60;      // >= 60% = alto
+const LEVEL_LOW  = 40;      // <  40% = baixo
+const MIN_SECONDS = 180;    // abaixo disso, alerta de resposta muito rápida
+const STORAGE_KEY = 'disc_teste_v2';
+const FORM_FIELDS = ['f-name','f-reg','f-role','f-org','f-area','f-age','f-purpose','f-date'];
+
+const LOW_NOTES = {
+  D: 'No outro extremo, a Dominância é baixa: tende a evitar confrontos e a ceder o espaço de decisão. Pode precisar de apoio para se posicionar com firmeza.',
+  I: 'No outro extremo, a Influência é baixa: mais reservado nas relações, evita holofotes e prefere comunicação pontual a interações sociais intensas.',
+  S: 'No outro extremo, a Estabilidade é baixa: gosta de ritmo acelerado e de mudança, e pode se incomodar com rotinas repetitivas e processos muito lentos.',
+  C: 'No outro extremo, a Conformidade é baixa: flexível com regras e detalhes. Pode pular verificações e precisa de apoio para sustentar padrões e documentação.'
+};
+
+const $ = id => document.getElementById(id);
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+// ═══════════════════════════════════════════════════════
+//  ESTADO + SALVAMENTO AUTOMÁTICO
+// ═══════════════════════════════════════════════════════
+let answers = {};   // {qi: {most: idxOriginal|null, least: idxOriginal|null}}
+let order = [];     // order[qi] = ordem de exibição das opções (embaralhada)
+let activeMs = 0;   // tempo ativo de resposta
+let lastTs = Date.now();
+let lastResult = null;
+let gaugeTimer = null;
+
+function shuffle(arr) {
+  const r = arr.slice();
+  for (let i = r.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [r[i], r[j]] = [r[j], r[i]];
+  }
+  return r;
+}
+function newOrder() { return QUESTIONS.map(() => shuffle([0,1,2,3])); }
+
+function tick() {
+  const now = Date.now();
+  activeMs += Math.min(now - lastTs, 120000);   // pausas longas não contam
+  lastTs = now;
+}
+
+function store() {
+  try {
+    const form = {};
+    FORM_FIELDS.forEach(id => { const el = $(id); if (el) form[id] = el.value; });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ v: 2, answers, order, activeMs, form }));
+  } catch (e) { /* sem armazenamento: o teste segue funcionando */ }
+}
+function clearStored() { try { localStorage.removeItem(STORAGE_KEY); } catch (e) {} }
+
+function loadStored() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return false;
+    const s = JSON.parse(raw);
+    if (!s || s.v !== 2 || !Array.isArray(s.order) || s.order.length !== QUESTIONS.length) return false;
+    const okOrder = s.order.every(o => Array.isArray(o) && o.length === 4 && [0,1,2,3].every(x => o.includes(x)));
+    if (!okOrder) return false;
+    const valid = v => Number.isInteger(v) && v >= 0 && v < 4 ? v : null;
+    const loaded = {};
+    Object.keys(s.answers || {}).forEach(k => {
+      const qi = +k, a = s.answers[k];
+      if (qi >= 0 && qi < QUESTIONS.length && a) {
+        const m = valid(a.most), l = valid(a.least);
+        loaded[qi] = { most: m, least: l === m ? null : l };
+      }
+    });
+    order = s.order;
+    answers = loaded;
+    activeMs = Number(s.activeMs) || 0;
+    FORM_FIELDS.forEach(id => {
+      if (id !== 'f-date' && s.form && typeof s.form[id] === 'string') { const el = $(id); if (el) el.value = s.form[id]; }
+    });
+    return true;
+  } catch (e) { return false; }
+}
+
+function todayLocal() {
+  const d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+function fmtDate(iso) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || '');
+  return m ? m[3] + '/' + m[2] + '/' + m[1] : '';
+}
+function fmtTime(secs) { return Math.floor(secs / 60) + ' min ' + String(secs % 60).padStart(2,'0') + ' s'; }
+
+let toastTimer;
+function toast(msg) {
+  const t = $('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 4500);
+}
+function smoothScroll(el, block) {
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: block || 'center' });
+}
+
+// ═══════════════════════════════════════════════════════
+//  RENDERIZAÇÃO DO TESTE
+// ═══════════════════════════════════════════════════════
 function renderTest() {
-  const container = document.getElementById('test-section');
-  let html = '';
+  const letters = ['A','B','C','D'];
+  let html = '<div class="sticky-progress no-print" role="status" aria-live="polite">' +
+    '<div class="sp-text"><span id="sp-text"></span><span id="sp-pct"></span></div>' +
+    '<div class="sp-track"><div class="sp-fill" id="sp-fill"></div></div></div>';
   QUESTIONS.forEach((q, qi) => {
     html += '<div class="question-block" id="qblock-' + qi + '">';
-    html += '<div class="q-header">Questão ' + (qi+1) + ' de ' + QUESTIONS.length + '<span class="q-status pending" id="status-' + qi + '">0/2 marcações</span></div>';
+    html += '<div class="q-header"><span>Questão ' + (qi+1) + ' de ' + QUESTIONS.length + '</span><span class="q-status pending" id="status-' + qi + '">Faltam 2 marcações</span></div>';
     html += '<div class="q-scenario">' + q.scenario + '</div>';
     html += '<div class="progress-wrap"><div class="progress-bar" id="prog-' + qi + '" style="width:0%"></div></div>';
-    html += '<div class="options-header"><div></div><div class="col-mais">&#9650; Mais <span style="font-size:9px;background:#C0392B;color:white;padding:1px 5px;border-radius:2px;letter-spacing:0.5px">obrig.</span></div><div class="col-menos">&#9660; Menos <span style="font-size:9px;background:#888;color:white;padding:1px 5px;border-radius:2px;letter-spacing:0.5px">opc.</span></div></div>';
+    html += '<div class="options-header"><div></div><div class="col-mais">&#9650; Mais</div><div class="col-menos">&#9660; Menos</div></div>';
     html += '<div class="options-list">';
-    const letters = ['A','B','C','D'];
-    q.opts.forEach((opt, oi) => {
+    order[qi].forEach((oi, p) => {
+      const opt = q.opts[oi];
       html += '<div class="option-row" id="row-' + qi + '-' + oi + '">';
-      html += '<div class="option-text"><span class="opt-letter" id="ltr-' + qi + '-' + oi + '">' + letters[oi] + '</span>' + opt.text + '</div>';
-      html += '<button class="opt-action" id="mais-' + qi + '-' + oi + '" onclick="clickMais(' + qi + ',' + oi + ')" title="Mais parecido comigo">&#9650;</button>';
-      html += '<button class="opt-action" id="menos-' + qi + '-' + oi + '" onclick="clickMenos(' + qi + ',' + oi + ')" title="Menos parecido comigo">&#9660;</button>';
+      html += '<div class="option-text"><span class="opt-letter">' + letters[p] + '</span>' + opt.text + '</div>';
+      html += '<button type="button" class="opt-action" id="mais-' + qi + '-' + oi + '" aria-pressed="false" aria-label="Mais parecido comigo: ' + esc(opt.text) + '" onclick="clickMais(' + qi + ',' + oi + ')" title="Mais parecido comigo">&#9650;</button>';
+      html += '<button type="button" class="opt-action" id="menos-' + qi + '-' + oi + '" aria-pressed="false" aria-label="Menos parecido comigo: ' + esc(opt.text) + '" onclick="clickMenos(' + qi + ',' + oi + ')" title="Menos parecido comigo">&#9660;</button>';
       html += '</div>';
     });
     html += '</div></div>';
   });
-  container.innerHTML = html;
+  $('test-section').innerHTML = html;
+  QUESTIONS.forEach((_, qi) => refreshQuestion(qi));
   updateProgress();
+}
+
+function isComplete(qi) {
+  const a = answers[qi];
+  return !!a && a.most !== null && a.least !== null;
 }
 
 function clearRowStyles(qi) {
-  for (var oi = 0; oi < 4; oi++) {
-    var row = document.getElementById('row-' + qi + '-' + oi);
-    var mais = document.getElementById('mais-' + qi + '-' + oi);
-    var menos = document.getElementById('menos-' + qi + '-' + oi);
-    if (row) { row.classList.remove('row-most', 'row-least'); }
-    if (mais) mais.classList.remove('active-mais');
-    if (menos) menos.classList.remove('active-menos');
+  for (let oi = 0; oi < 4; oi++) {
+    const row = $('row-' + qi + '-' + oi), m = $('mais-' + qi + '-' + oi), l = $('menos-' + qi + '-' + oi);
+    if (row) row.classList.remove('row-most', 'row-least');
+    if (m) { m.classList.remove('active-mais');  m.setAttribute('aria-pressed', 'false'); }
+    if (l) { l.classList.remove('active-menos'); l.setAttribute('aria-pressed', 'false'); }
   }
 }
-
 function applyRowStyles(qi) {
-  var ans = answers[qi];
-  if (ans.most !== null) {
-    document.getElementById('row-' + qi + '-' + ans.most).classList.add('row-most');
-    document.getElementById('mais-' + qi + '-' + ans.most).classList.add('active-mais');
+  const a = answers[qi];
+  if (!a) return;
+  if (a.most !== null) {
+    $('row-' + qi + '-' + a.most).classList.add('row-most');
+    $('mais-' + qi + '-' + a.most).classList.add('active-mais');
+    $('mais-' + qi + '-' + a.most).setAttribute('aria-pressed', 'true');
   }
-  if (ans.least !== null) {
-    document.getElementById('row-' + qi + '-' + ans.least).classList.add('row-least');
-    document.getElementById('menos-' + qi + '-' + ans.least).classList.add('active-menos');
+  if (a.least !== null) {
+    $('row-' + qi + '-' + a.least).classList.add('row-least');
+    $('menos-' + qi + '-' + a.least).classList.add('active-menos');
+    $('menos-' + qi + '-' + a.least).setAttribute('aria-pressed', 'true');
   }
 }
 
-function clickMais(qi, oi) {
-  if (!answers[qi]) answers[qi] = { most: null, least: null };
-  var ans = answers[qi];
-  if (ans.most === oi) { ans.most = null; }
-  else {
-    if (ans.least === oi) ans.least = null;
-    ans.most = oi;
-  }
+function refreshQuestion(qi) {
   clearRowStyles(qi);
   applyRowStyles(qi);
-  updateRowProgress(qi);
-}
-
-function clickMenos(qi, oi) {
-  if (!answers[qi]) answers[qi] = { most: null, least: null };
-  var ans = answers[qi];
-  if (ans.least === oi) { ans.least = null; }
-  else {
-    if (ans.most === oi) ans.most = null;
-    ans.least = oi;
-  }
-  clearRowStyles(qi);
-  applyRowStyles(qi);
-  updateRowProgress(qi);
-}
-
-function updateRowProgress(qi) {
-  var ans = answers[qi];
-  var hasMais  = ans && ans.most  !== null;
-  var hasMenos = ans && ans.least !== null;
-  // Progress: Mais = 100% (complete), Menos adds visual bonus only
-  var prog = hasMais ? (hasMenos ? 100 : 75) : (hasMenos ? 25 : 0);
-  document.getElementById('prog-' + qi).style.width = prog + '%';
-  var block  = document.getElementById('qblock-' + qi);
-  var status = document.getElementById('status-' + qi);
+  const a = answers[qi] || { most: null, least: null };
+  const hasM = a.most !== null, hasL = a.least !== null;
+  $('prog-' + qi).style.width = ((hasM ? 50 : 0) + (hasL ? 50 : 0)) + '%';
+  const block = $('qblock-' + qi), status = $('status-' + qi);
   block.classList.remove('q-unanswered');
-  if (hasMais && hasMenos) {
+  if (hasM && hasL) {
     block.style.borderColor = 'var(--S)';
-    if (status) { status.className = 'q-status complete'; status.textContent = '✓ Completo'; }
-  } else if (hasMais) {
-    block.style.borderColor = 'var(--S)';
-    if (status) { status.className = 'q-status complete'; status.textContent = '✓ Mais marcado'; }
-  } else if (hasMenos) {
-    block.style.borderColor = 'var(--I)';
-    if (status) { status.className = 'q-status partial'; status.textContent = '⚠ Falta Mais ▲'; }
+    status.className = 'q-status complete'; status.textContent = '✓ Completo';
+  } else if (hasM) {
+    block.style.borderColor = '';
+    status.className = 'q-status partial'; status.textContent = 'Falta o Menos ▼';
+  } else if (hasL) {
+    block.style.borderColor = '';
+    status.className = 'q-status partial'; status.textContent = 'Falta o Mais ▲';
   } else {
     block.style.borderColor = '';
-    if (status) { status.className = 'q-status pending'; status.textContent = 'Assinale o Mais ▲'; }
+    status.className = 'q-status pending'; status.textContent = 'Faltam 2 marcações';
   }
-  updateProgress();
 }
 
+function mark(qi, oi, kind) {
+  tick();
+  const other = kind === 'most' ? 'least' : 'most';
+  if (!answers[qi]) answers[qi] = { most: null, least: null };
+  const a = answers[qi];
+  const was = isComplete(qi);
+  if (a[kind] === oi) a[kind] = null;
+  else { if (a[other] === oi) a[other] = null; a[kind] = oi; }
+  refreshQuestion(qi);
+  updateProgress();
+  store();
+  if (!was && isComplete(qi)) goNext(qi);
+}
+function clickMais(qi, oi)  { mark(qi, oi, 'most'); }
+function clickMenos(qi, oi) { mark(qi, oi, 'least'); }
+
+function goNext(qi) {
+  let next = -1;
+  for (let i = qi + 1; i < QUESTIONS.length; i++) if (!isComplete(i)) { next = i; break; }
+  if (next < 0) for (let i = 0; i < qi; i++) if (!isComplete(i)) { next = i; break; }
+  const target = next >= 0 ? $('qblock-' + next) : $('btn-submit');
+  setTimeout(() => smoothScroll(target, 'center'), 280);
+}
 
 function updateProgress() {
-  let doneMais = 0, doneBoth = 0;
-  QUESTIONS.forEach((_, qi) => {
-    if (answers[qi] && answers[qi].most !== null) {
-      doneMais++;
-      if (answers[qi].least !== null) doneBoth++;
-    }
-  });
-  const pct = Math.round(doneMais / QUESTIONS.length * 100);
-  const extra = doneBoth > 0 ? ' (' + doneBoth + ' com Menos também)' : '';
-  document.getElementById('answer-progress').textContent = doneMais + ' de ' + QUESTIONS.length + ' questões com Mais marcado' + extra;
-  document.getElementById('btn-submit').disabled = doneMais < QUESTIONS.length;
+  const N = QUESTIONS.length;
+  let done = 0;
+  QUESTIONS.forEach((_, qi) => { if (isComplete(qi)) done++; });
+  const pct = Math.round(done / N * 100);
+  $('answer-progress').textContent = done + ' de ' + N + ' questões completas';
+  const sp = $('sp-text'); if (sp) sp.textContent = done + ' de ' + N + ' questões completas';
+  const pp = $('sp-pct');  if (pp) pp.textContent = pct + '%';
+  const sf = $('sp-fill'); if (sf) sf.style.width = pct + '%';
 }
 
 // ═══════════════════════════════════════════════════════
-//  SCORING
+//  CÁLCULO
+//  Mais = +1 na dimensão; Menos = −1. Escala absoluta 0–100,
+//  onde 50% é neutro. Não há esticamento artificial 10%–90%.
 // ═══════════════════════════════════════════════════════
 function calcScores() {
-  const raw = { D:0, I:0, S:0, C:0 };
-  let usedLeast = 0;
+  const N = QUESTIONS.length;
+  const mais = {D:0,I:0,S:0,C:0}, menos = {D:0,I:0,S:0,C:0}, raw = {}, pct = {};
   QUESTIONS.forEach((q, qi) => {
-    const ans = answers[qi];
-    if (!ans) return;
-    if (ans.most !== null) raw[q.opts[ans.most].dim] += 2;
-    if (ans.least !== null) { raw[q.opts[ans.least].dim] -= 1; usedLeast++; }
+    const a = answers[qi];
+    if (!a) return;
+    if (a.most  !== null) mais[q.opts[a.most].dim]++;
+    if (a.least !== null) menos[q.opts[a.least].dim]++;
   });
-  window._discUsedLeast = usedLeast;
-  // Normalize to 0-100
-  const vals = Object.values(raw);
-  const min = Math.min(...vals);
-  const max = Math.max(...vals);
-  const range = max - min || 1;
-  const pct = {};
-  ['D','I','S','C'].forEach(d => {
-    pct[d] = Math.round(((raw[d] - min) / range) * 80 + 10);
+  DIMS.forEach(d => {
+    raw[d] = mais[d] - menos[d];
+    pct[d] = Math.round((raw[d] + N) / (2 * N) * 100);
   });
-  return { raw, pct };
+  return { mais, menos, raw, pct };
+}
+function level(p) { return p >= LEVEL_HIGH ? 'Alto' : p < LEVEL_LOW ? 'Baixo' : 'Médio'; }
+function rankDims(pct) {
+  return DIMS.slice().sort((a, b) => pct[b] - pct[a] || DIMS.indexOf(a) - DIMS.indexOf(b));
 }
 
-function getDominant(pct) {
-  return Object.entries(pct).sort((a,b)=>b[1]-a[1])[0][0];
+// Heurísticas de qualidade das respostas (indicativas)
+function calcReliability(sc) {
+  const N = QUESTIONS.length, flags = [];
+  const secs = Math.round(activeMs / 1000);
+  if (secs < MIN_SECONDS) flags.push('Tempo de resposta muito curto (' + fmtTime(secs) + '). Uma leitura atenta costuma levar mais de ' + Math.round(MIN_SECONDS / 60) + ' minutos.');
+  const posM = [0,0,0,0], posL = [0,0,0,0];
+  QUESTIONS.forEach((_, qi) => {
+    const a = answers[qi];
+    posM[order[qi].indexOf(a.most)]++;
+    posL[order[qi].indexOf(a.least)]++;
+  });
+  const pn = ['A','B','C','D'];
+  const mM = Math.max(...posM), mL = Math.max(...posL);
+  if (mM >= N * 0.5) flags.push('Padrão de posição: a opção ' + pn[posM.indexOf(mM)] + ' (sempre na mesma posição da tela) foi marcada como "Mais" em ' + mM + ' de ' + N + ' questões.');
+  if (mL >= N * 0.5) flags.push('Padrão de posição: a opção ' + pn[posL.indexOf(mL)] + ' foi marcada como "Menos" em ' + mL + ' de ' + N + ' questões.');
+  DIMS.forEach(d => {
+    if (sc.mais[d] >= 10 && sc.menos[d] >= 10) {
+      flags.push('Respostas polarizadas em ' + d + ' (' + DIM_NAMES[d] + '): marcada como "Mais" ' + sc.mais[d] + 'x e como "Menos" ' + sc.menos[d] + 'x. Vale confirmar em conversa.');
+    }
+  });
+  const status = flags.length === 0 ? 'ok' : flags.length === 1 ? 'atencao' : 'revisar';
+  return { flags, status, secs };
 }
-function getSecondary(pct) {
-  return Object.entries(pct).sort((a,b)=>b[1]-a[1])[1][0];
-}
+const REL_LABELS = {
+  ok:      ['Respostas consistentes', 'tag-alto'],
+  atencao: ['Atenção',               'tag-medio'],
+  revisar: ['Revisar respostas',     'tag-baixo']
+};
 
 // ═══════════════════════════════════════════════════════
-//  SUBMIT & RENDER RESULTS
+//  VISUAL: ALTERNAR TELAS
+// ═══════════════════════════════════════════════════════
+function setView(v) {
+  const test = v === 'test';
+  ['identification-card', 'instructions', 'test-section', 'submit-area'].forEach(id => { $(id).style.display = test ? '' : 'none'; });
+  $('results-section').style.display = test ? 'none' : 'block';
+  if (!test) $('restore-banner').hidden = true;
+  window.scrollTo(0, 0);
+}
+function backToTest() { setView('test'); }
+
+// ═══════════════════════════════════════════════════════
+//  ENVIO E RESULTADOS
 // ═══════════════════════════════════════════════════════
 function submitTest() {
-  // Validate
-  let missing = false;
+  const err = $('submit-error');
+  err.textContent = '';
+  const nameEl = $('f-name');
+  if (!nameEl.value.trim()) {
+    err.textContent = 'Preencha seu nome completo na identificação.';
+    toast('Preencha seu nome completo na identificação.');
+    smoothScroll($('identification-card'), 'start');
+    nameEl.focus({ preventScroll: true });
+    return;
+  }
+  let first = -1, count = 0;
   QUESTIONS.forEach((_, qi) => {
-    if (!answers[qi] || answers[qi].most === null) {
-      document.getElementById('qblock-' + qi).classList.add('q-unanswered');
-      missing = true;
+    if (!isComplete(qi)) {
+      $('qblock-' + qi).classList.add('q-unanswered');
+      count++;
+      if (first < 0) first = qi;
     }
   });
-  if (missing) {
-    alert('Por favor, marque o "Mais" em todas as questões antes de calcular.');
-    return;
-  }
-  if (!document.getElementById('f-name').value.trim()) {
-    alert('Por favor, preencha seu nome no campo de identificação.');
+  if (first >= 0) {
+    const msg = 'Faltam marcações em ' + count + (count === 1 ? ' questão' : ' questões') + '. Marque "Mais" e "Menos" em cada uma (destacadas em vermelho).';
+    err.textContent = msg;
+    toast(msg);
+    smoothScroll($('qblock-' + first), 'center');
     return;
   }
 
-  const { pct } = calcScores();
-  const dominant = getDominant(pct);
-  const secondary = getSecondary(pct);
+  tick();
+  const sc = calcScores();
+  const rel = calcReliability(sc);
+  const pct = sc.pct;
+  const rank = rankDims(pct);
+  const dominant = rank[0];
+  const second = rank[1];
+  const secondary = pct[second] >= 50 ? second : null;
+  const spread = pct[rank[0]] - pct[rank[3]];
+  const balanced = spread < 20;
+  const tie = (pct[rank[0]] - pct[rank[1]]) <= 3;
   const profile = PROFILES[dominant];
+  lastResult = { sc, rel, rank, dominant, secondary };
 
-  // Fill identification
-  document.getElementById('res-name-display').textContent = document.getElementById('f-name').value.trim();
-  document.getElementById('res-profile-name').textContent = `Perfil ${dominant} – ${profile.name}`;
-  document.getElementById('res-profile-title').textContent = profile.title;
-  document.getElementById('res-tagline').textContent = profile.tagline;
+  // Identificação
+  const g = id => $(id).value.trim();
+  $('res-name-display').textContent = g('f-name');
+  const meta = [g('f-role'), g('f-org'), g('f-area'), g('f-reg') ? 'Matrícula ' + g('f-reg') : '', g('f-age'), g('f-purpose'), $('f-date').value ? 'Avaliação em ' + fmtDate($('f-date').value) : '']
+    .filter(Boolean);
+  $('res-meta').textContent = meta.join(' · ');
+  $('res-profile-name').textContent = 'Perfil ' + dominant + ' – ' + profile.name;
+  $('res-profile-title').textContent = profile.title;
+  $('res-tagline').textContent = profile.tagline;
+  $('hero-block').setAttribute('data-letter', dominant);
+  $('hero-block').style.borderTop = '4px solid ' + profile.color;
 
-  // Data quality badge
-  const leastCount = window._discUsedLeast || 0;
-  const qualityPct = Math.round(leastCount / QUESTIONS.length * 100);
-  const qualityEl = document.getElementById('res-data-quality');
-  if (qualityEl) {
-    if (leastCount === QUESTIONS.length) {
-      qualityEl.innerHTML = '<span style="background:rgba(39,174,96,0.3);color:#a8f0c6;padding:4px 12px;border-radius:2px;font-size:11px;letter-spacing:1px;font-weight:700">✦ ANÁLISE COMPLETA — Mais + Menos respondidos</span>';
-    } else if (leastCount > 0) {
-      qualityEl.innerHTML = '<span style="background:rgba(230,126,34,0.3);color:#ffd59e;padding:4px 12px;border-radius:2px;font-size:11px;letter-spacing:1px;font-weight:700">◑ ANÁLISE PARCIAL — ' + qualityPct + '% com dados complementares</span>';
-    } else {
-      qualityEl.innerHTML = '<span style="background:rgba(255,255,255,0.1);color:#aaa;padding:4px 12px;border-radius:2px;font-size:11px;letter-spacing:1px;font-weight:700">○ ANÁLISE BÁSICA — somente Mais respondido</span>';
-    }
-  }
-  document.getElementById('hero-block').setAttribute('data-letter', dominant);
-  document.getElementById('hero-block').style.borderTop = `4px solid ${profile.color}`;
+  const relColors = { ok: 'background:rgba(39,174,96,0.3);color:#a8f0c6', atencao: 'background:rgba(230,126,34,0.3);color:#ffd59e', revisar: 'background:rgba(231,76,60,0.3);color:#ffb3aa' };
+  $('res-data-quality').innerHTML = '<span class="pill" style="' + relColors[rel.status] + '">' + (rel.status === 'ok' ? '✦ ' : '⚠ ') + REL_LABELS[rel.status][0] + '</span>';
 
-  // Bars
-  const barsEl = document.getElementById('disc-bars');
-  const labels = {D:['D','Dominância'],I:['I','Influência'],S:['S','Estabilidade'],C:['C','Conformidade']};
-  const colors = {D:'var(--D)',I:'var(--I)',S:'var(--S)',C:'var(--C)'};
-  barsEl.innerHTML = ['D','I','S','C'].map(d => `
-    <div class="disc-bar-row">
-      <div class="disc-bar-label"><span style="color:${colors[d]};font-size:18px;font-family:'Playfair Display',serif">${labels[d][0]}</span><small>${labels[d][1]}</small></div>
-      <div class="disc-bar-track"><div class="disc-bar-fill" style="width:0%;background:${colors[d]}" id="bar-${d}"></div></div>
-      <div class="disc-bar-pct" id="barpct-${d}">0%</div>
-    </div>
-  `).join('');
+  // Barras
+  $('disc-bars').innerHTML = DIMS.map(d =>
+    '<div class="disc-bar-row">' +
+      '<div class="disc-bar-label"><span style="color:' + DIM_COLORS[d] + ';font-size:18px;font-family:\'Playfair Display\',serif">' + d + '</span><small>' + DIM_NAMES[d] + '</small></div>' +
+      '<div class="disc-bar-track"><div class="disc-bar-fill" style="width:0%;background:' + DIM_COLORS[d] + '" id="bar-' + d + '"></div><span class="mid-mark"></span></div>' +
+      '<div class="disc-bar-pct" id="barpct-' + d + '">0%</div>' +
+      '<div class="disc-bar-meta"><strong>' + level(pct[d]) + '</strong> · Mais: ' + sc.mais[d] + ' · Menos: ' + sc.menos[d] + '</div>' +
+    '</div>').join('');
   setTimeout(() => {
-    ['D','I','S','C'].forEach(d => {
-      document.getElementById(`bar-${d}`).style.width = pct[d]+'%';
-      document.getElementById(`barpct-${d}`).textContent = pct[d]+'%';
+    DIMS.forEach(d => {
+      $('bar-' + d).style.width = pct[d] + '%';
+      $('barpct-' + d).textContent = pct[d] + '%';
     });
   }, 100);
 
-  // Combo
-  const comboKey = dominant + secondary;
-  const comboDesc = COMBO_DESCRIPTIONS[comboKey] || COMBO_DESCRIPTIONS[dominant];
-  document.getElementById('combo-tags').innerHTML =
-    `<span class="combo-tag">${dominant} Dominante</span><span class="combo-tag">${secondary} Secundário</span><span class="combo-tag">${comboKey}</span>`;
-  document.getElementById('combo-description').textContent = comboDesc;
+  // Qualidade das respostas
+  const rc = REL_LABELS[rel.status];
+  $('reliability-block').innerHTML =
+    '<div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:12px">' +
+      '<span class="pill ' + rc[1] + '">' + rc[0] + '</span>' +
+      '<span style="font-size:13px;color:var(--muted)">Tempo de resposta: ' + fmtTime(rel.secs) + '</span></div>' +
+    (rel.flags.length
+      ? '<ul class="flag-list">' + rel.flags.map(f => '<li>' + esc(f) + '</li>').join('') + '</ul>'
+      : '<p style="font-size:13px;color:var(--muted)">Nenhum alerta: tempo de resposta adequado e sem padrões repetitivos de marcação.</p>') +
+    '<p class="how-to-read">Verificação automática e indicativa. Ela detecta respostas apressadas ou mecânicas, mas não mede honestidade nem substitui uma conversa de devolutiva.</p>';
 
-  // Lists
-  const fillList = (id, arr) => {
-    document.getElementById(id).innerHTML = arr.map(s=>`<li>${s}</li>`).join('');
-  };
-  fillList('strengths-list', profile.strengths);
-  fillList('challenges-list', profile.challenges);
-  fillList('comm-list', profile.comm);
-  fillList('motiv-list', profile.motivators);
-  fillList('leadership-list', profile.leadership);
-  fillList('env-list', profile.environment);
-  fillList('fears-list', profile.fears);
-  fillList('develop-list', profile.develop);
-  fillList('do-list', profile.do);
-  fillList('dont-list', profile.dont);
+  // Perfil combinado
+  const comboKey = secondary ? dominant + secondary : dominant;
+  let tags = '<span class="combo-tag">' + dominant + ' Dominante</span>';
+  if (secondary) tags += '<span class="combo-tag">' + secondary + ' Secundário</span><span class="combo-tag">' + comboKey + '</span>';
+  if (balanced) tags += '<span class="combo-tag" style="background:var(--gold)">Perfil adaptável</span>';
+  $('combo-tags').innerHTML = tags;
+  $('combo-description').textContent = COMBO_DESCRIPTIONS[comboKey] || COMBO_DESCRIPTIONS[dominant];
 
-  // Areas
-  const areasEl = document.getElementById('areas-grid');
-  areasEl.innerHTML = profile.areas.map(a => `
-    <div class="area-card">
-      <div class="area-icon">${a.icon}</div>
-      <h4>${a.name}</h4>
-      <p>${a.desc}</p>
-      <div class="match-bar"><div class="match-fill" style="width:${a.match}%;background:${profile.color}"></div></div>
-      <small style="font-size:10px;color:var(--muted)">${a.match}% de compatibilidade</small>
-    </div>
-  `).join('');
+  const lowest = rank[3];
+  let nuance = '';
+  if (balanced) nuance += 'Suas quatro pontuações estão próximas (amplitude de ' + spread + ' pontos): você tende a adaptar o estilo ao contexto, sem um traço que se imponha. O mais forte é ' + DIM_NAMES[dominant] + '. ';
+  if (tie && !balanced) nuance += 'Atenção: ' + DIM_NAMES[dominant] + ' (' + pct[dominant] + '%) e ' + DIM_NAMES[second] + ' (' + pct[second] + '%) estão praticamente empatadas. Leia os dois estilos como igualmente presentes. ';
+  if (pct[lowest] < LEVEL_LOW) nuance += LOW_NOTES[lowest];
+  $('combo-nuance').textContent = nuance.trim();
 
-  // Draw chart
-  drawChart(pct, colors);
+  // Listas (estilo dominante + itens do secundário)
+  const LISTS = [['strengths','strengths-list'],['challenges','challenges-list'],['comm','comm-list'],['motivators','motiv-list'],
+                 ['leadership','leadership-list'],['environment','env-list'],['fears','fears-list'],['develop','develop-list'],['do','do-list'],['dont','dont-list']];
+  LISTS.forEach(([key, id]) => {
+    const base = profile[key].slice(0, secondary ? 4 : 5);
+    const extra = secondary ? PROFILES[secondary][key].filter(x => !base.includes(x)).slice(0, 2) : [];
+    $(id).innerHTML =
+      base.map(t => '<li>' + esc(t) + '</li>').join('') +
+      extra.map(t => '<li class="sec" style="--sc:' + DIM_COLORS[secondary] + '" title="Vem do estilo secundário (' + secondary + ')">' + esc(t) + '</li>').join('');
+  });
+  $('blend-note').textContent = secondary
+    ? 'Itens com ◆ vêm do seu estilo secundário (' + secondary + ' – ' + DIM_NAMES[secondary] + '); os demais, do estilo dominante.'
+    : 'Seu estilo secundário não é marcante (abaixo de 50%), por isso o texto segue o estilo dominante.';
 
-  // Compatibility analysis
-  renderCompatibility(pct, profile.color);
+  // Áreas com maior afinidade (ranking sobre todas as áreas, usando as 4 pontuações)
+  const ranked = AREA_MAP.map(am => ({ am, compat: calcCompatibility(pct, am.disc).compat }))
+    .sort((a, b) => b.compat - a.compat).slice(0, 6);
+  $('areas-grid').innerHTML = ranked.map(r =>
+    '<div class="area-card"><div class="area-icon">' + r.am.icon + '</div><h4>' + esc(r.am.label) + '</h4><p>' + esc(r.am.ideal) + '</p>' +
+    '<div class="match-bar"><div class="match-fill" style="width:' + r.compat + '%;background:' + profile.color + '"></div></div>' +
+    '<small style="font-size:10px;color:var(--muted)">' + r.compat + '% de afinidade</small></div>').join('');
 
-  // Show results
-  document.getElementById('test-section').style.display = 'none';
-  document.getElementById('identification-card').style.display = 'none';
-  document.querySelector('.instructions').style.display = 'none';
-  document.querySelector('.submit-area').style.display = 'none';
-  document.getElementById('results-section').style.display = 'block';
-  window.scrollTo(0, 0);
+  setView('results');
+  drawChart(pct);
+  renderCompatibility(pct);
 }
 
-function drawChart(pct, colors) {
-  const canvas = document.getElementById('discChart');
+// ═══════════════════════════════════════════════════════
+//  GRÁFICO DE PERFIL (linha, escala 0–100)
+// ═══════════════════════════════════════════════════════
+function drawChart(pct) {
+  const canvas = $('discChart');
+  const dpr = window.devicePixelRatio || 1;
+  const W = 400, H = 300;
+  canvas.width = W * dpr; canvas.height = H * dpr;
   const ctx = canvas.getContext('2d');
-  const cx = 150, cy = 150, r = 110;
-  const dims = ['D','I','S','C'];
-  const angles = [-Math.PI/2, 0, Math.PI/2, Math.PI];
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, W, H);
+  const L = 40, R = 14, T = 20, B = 52, pw = W - L - R, ph = H - T - B;
+  const y = v => T + ph * (1 - v / 100);
+  const font = '"DM Sans", sans-serif';
 
-  ctx.clearRect(0,0,300,300);
+  // Faixas
+  [[LEVEL_HIGH, 100, 'rgba(184,134,11,0.12)', 'ALTO'], [LEVEL_LOW, LEVEL_HIGH, 'rgba(0,0,0,0.025)', 'MÉDIO'], [0, LEVEL_LOW, 'rgba(0,0,0,0.07)', 'BAIXO']]
+    .forEach(([a, b, fill, lab]) => {
+      ctx.fillStyle = fill; ctx.fillRect(L, y(b), pw, y(a) - y(b));
+      ctx.fillStyle = '#9a968c'; ctx.font = '600 9px ' + font; ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+      ctx.fillText(lab, W - R - 6, y(a) - 9);
+    });
+  // Grade e eixo Y
+  ctx.font = '10px ' + font; ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+  [0, 20, 40, 60, 80, 100].forEach(v => {
+    ctx.beginPath(); ctx.strokeStyle = '#e0ddd6'; ctx.lineWidth = 1;
+    ctx.moveTo(L, y(v)); ctx.lineTo(L + pw, y(v)); ctx.stroke();
+    ctx.fillStyle = '#6B6B6B'; ctx.fillText(v + '%', L - 6, y(v));
+  });
+  // Linha neutra (50%)
+  ctx.beginPath(); ctx.setLineDash([5, 4]); ctx.strokeStyle = '#6B6B6B'; ctx.lineWidth = 1;
+  ctx.moveTo(L, y(50)); ctx.lineTo(L + pw, y(50)); ctx.stroke(); ctx.setLineDash([]);
 
-  // Grid
-  for (let i=1;i<=4;i++) {
-    ctx.beginPath();
-    ctx.strokeStyle = '#e0ddd6';
-    ctx.lineWidth = 1;
-    for (let j=0;j<4;j++) {
-      const frac = (i/4)*(r*(pct[dims[0]]/100));
-      const x = cx + Math.cos(angles[j]) * (r*i/4);
-      const y = cy + Math.sin(angles[j]) * (r*i/4);
-      j===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
-    }
-    ctx.closePath();
-    ctx.stroke();
-  }
-  // Axes
-  dims.forEach((_,j) => {
-    ctx.beginPath();
-    ctx.strokeStyle = '#ccc';
-    ctx.moveTo(cx,cy);
-    ctx.lineTo(cx+Math.cos(angles[j])*r, cy+Math.sin(angles[j])*r);
-    ctx.stroke();
-  });
-  // Fill
-  ctx.beginPath();
-  dims.forEach((d,j) => {
-    const dist = r*(pct[d]/100);
-    const x = cx + Math.cos(angles[j])*dist;
-    const y = cy + Math.sin(angles[j])*dist;
-    j===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
-  });
-  ctx.closePath();
-  ctx.fillStyle = 'rgba(184,134,11,0.15)';
-  ctx.strokeStyle = 'rgba(184,134,11,0.7)';
-  ctx.lineWidth = 2;
-  ctx.fill();
+  const xs = DIMS.map((_, i) => L + pw * (i + 0.5) / 4);
+  // Linha do perfil
+  ctx.beginPath(); ctx.strokeStyle = '#1A1A1A'; ctx.lineWidth = 2.5; ctx.lineJoin = 'round';
+  DIMS.forEach((d, i) => { i === 0 ? ctx.moveTo(xs[i], y(pct[d])) : ctx.lineTo(xs[i], y(pct[d])); });
   ctx.stroke();
-  // Points
-  dims.forEach((d,j) => {
-    const dist = r*(pct[d]/100);
-    const x = cx + Math.cos(angles[j])*dist;
-    const y = cy + Math.sin(angles[j])*dist;
-    ctx.beginPath();
-    ctx.arc(x,y,5,0,Math.PI*2);
-    ctx.fillStyle = colors[d];
-    ctx.fill();
-  });
-  // Labels
-  ctx.font = 'bold 14px "DM Sans", sans-serif';
-  const labelOffset = r + 22;
-  dims.forEach((d,j) => {
-    const x = cx + Math.cos(angles[j])*labelOffset;
-    const y = cy + Math.sin(angles[j])*labelOffset;
-    ctx.fillStyle = colors[d];
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(d, x, y);
+  // Pontos, valores e rótulos
+  DIMS.forEach((d, i) => {
+    const py = y(pct[d]);
+    ctx.beginPath(); ctx.arc(xs[i], py, 8, 0, Math.PI * 2);
+    ctx.fillStyle = DIM_COLORS[d]; ctx.fill();
+    ctx.lineWidth = 2.5; ctx.strokeStyle = '#fff'; ctx.stroke();
+    ctx.fillStyle = '#1A1A1A'; ctx.font = '700 12px ' + font; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(pct[d] + '%', xs[i], py < T + 18 ? py + 20 : py - 18);
+    ctx.fillStyle = DIM_COLORS[d]; ctx.font = '700 17px ' + font; ctx.textBaseline = 'alphabetic';
+    ctx.fillText(d, xs[i], H - B + 24);
+    ctx.fillStyle = '#6B6B6B'; ctx.font = '10px ' + font;
+    ctx.fillText(DIM_NAMES[d], xs[i], H - B + 40);
   });
 }
 
 // ═══════════════════════════════════════════════════════
-//  AREA → DISC IDEAL PROFILE MAP
-//  Each area maps to ideal DISC weights (sum=100 indicative)
+//  ÁREA → PERFIL DISC IDEAL
+//  disc = peso relativo de cada dimensão (soma 100)
 // ═══════════════════════════════════════════════════════
 const AREA_MAP = [
-  // [keywords[], {D,I,S,C}, label, desc]
-  { keys:['tecnologia','ti','software','desenvolvimento','programação','sistemas','dados','data','devops','infra','segurança','cyber','cloud','ia','inteligência artificial','machine learning'],
+  { icon:'💻', keys:['tecnologia','ti','software','desenvolvimento','programação','sistemas','dados','data','devops','infra','segurança da informação','cyber','cloud','ia','inteligência artificial','machine learning'],
     disc:{D:25,I:15,S:20,C:40}, label:'Tecnologia & TI',
     ideal:'Perfil C elevado para análise e qualidade; S para trabalho em equipe; D moderado para entregas.'},
-  { keys:['saúde','saude','medicina','médico','medico','enfermagem','farmácia','farmacia','fisioterapia','nutrição','nutricao','hospitalar','clínica','clinica','psicologia'],
+  { icon:'🏥', keys:['saúde','saude','medicina','médico','medico','enfermagem','farmácia','farmacia','fisioterapia','nutrição','nutricao','hospitalar','clínica','clinica','psicologia'],
     disc:{D:15,I:20,S:40,C:25}, label:'Saúde & Medicina',
     ideal:'Perfil S dominante para cuidado humano e empatia; C para precisão técnica e protocolos.'},
-  { keys:['educação','educacao','ensino','professor','docência','docencia','pedagogia','treinamento','t&d','rh educação'],
+  { icon:'📚', keys:['educação','educacao','ensino','professor','docência','docencia','pedagogia','treinamento','t&d'],
     disc:{D:15,I:35,S:35,C:15}, label:'Educação & Ensino',
-    ideal:'Equilíbrio I (comunicação inspiradora) e S (paciência, cuidado com o aluno).'},
-  { keys:['vendas','comercial','negociação','negociacao','representante','account','closer','inside sales','b2b','b2c'],
+    ideal:'Equilíbrio entre I (comunicação inspiradora) e S (paciência, cuidado com o aluno).'},
+  { icon:'📊', keys:['vendas','comercial','negociação','negociacao','representante','account','closer','inside sales','b2b','b2c'],
     disc:{D:35,I:40,S:15,C:10}, label:'Vendas & Comercial',
     ideal:'D alto para proatividade e fechamento; I elevado para relacionamento e persuasão.'},
-  { keys:['marketing','publicidade','comunicação','comunicacao','conteúdo','conteudo','branding','mídia','midia','social media','rp','relações públicas','relacoes publicas'],
+  { icon:'📣', keys:['marketing','publicidade','comunicação','comunicacao','conteúdo','conteudo','branding','mídia','midia','social media','rp','relações públicas','relacoes publicas'],
     disc:{D:20,I:45,S:20,C:15}, label:'Marketing & Comunicação',
     ideal:'I dominante para criatividade, comunicação e engajamento; C para análise de métricas.'},
-  { keys:['finanças','financas','financeiro','contabilidade','controladoria','auditoria','contábil','contabil','investimento','banco','crédito','credito','tesouraria'],
+  { icon:'💰', keys:['finanças','financas','financeiro','contabilidade','controladoria','auditoria','contábil','contabil','investimento','banco','crédito','credito','tesouraria'],
     disc:{D:20,I:10,S:20,C:50}, label:'Finanças & Contabilidade',
     ideal:'C dominante para precisão e análise; D para tomada de decisão sob pressão.'},
-  { keys:['rh','recursos humanos','gestão de pessoas','gente','cultura','people','talent','recrutamento','seleção','selecao','dp','departamento pessoal'],
+  { icon:'❤️', keys:['rh','recursos humanos','gestão de pessoas','gestao de pessoas','gente','cultura','people','talent','recrutamento','seleção','selecao','dp','departamento pessoal','setor pessoal','folha de pagamento','folha'],
     disc:{D:15,I:30,S:40,C:15}, label:'Recursos Humanos',
     ideal:'S dominante para empatia e mediação; I para engajamento e comunicação interna.'},
-  { keys:['engenharia','engineer','mecânica','mecanica','civil','elétrica','eletrica','industrial','produção','producao','qualidade','processos'],
+  { icon:'⚙️', keys:['engenharia','engineer','mecânica','mecanica','civil','elétrica','eletrica','industrial','produção','producao','qualidade','processos'],
     disc:{D:25,I:10,S:20,C:45}, label:'Engenharia & Processos',
     ideal:'C elevado para análise técnica e qualidade; D para gestão de projetos e entregas.'},
-  { keys:['direito','jurídico','juridico','advocacia','advogado','compliance','legal','contratos','regulatório','regulatorio','lgpd'],
+  { icon:'⚖️', keys:['direito','jurídico','juridico','advocacia','advogado','compliance','legal','contratos','regulatório','regulatorio','lgpd'],
     disc:{D:30,I:20,S:15,C:35}, label:'Direito & Compliance',
     ideal:'C para análise e argumentação técnica; D para negociação e defesa de interesses.'},
-  { keys:['gestão','gestao','gerência','gerencia','liderança','lideranca','diretoria','ceo','coo','presidente','executivo','administração','administracao'],
+  { icon:'🏆', keys:['gestão','gestao','gerência','gerencia','liderança','lideranca','diretoria','ceo','coo','presidente','executivo','administração','administracao'],
     disc:{D:45,I:25,S:15,C:15}, label:'Gestão & Liderança',
     ideal:'D dominante para tomada de decisão e resultados; I para inspirar equipes.'},
-  { keys:['empreendedorismo','empreendedor','startup','negócio','negocio','empresário','empresario','founder','sócio','socio'],
+  { icon:'🚀', keys:['empreendedorismo','empreendedor','startup','negócio','negocio','empresário','empresario','founder','sócio','socio'],
     disc:{D:45,I:30,S:10,C:15}, label:'Empreendedorismo',
     ideal:'D e I elevados: orientação a resultado com capacidade de inspirar e vender a visão.'},
-  { keys:['logística','logistica','supply chain','operações','operacoes','transporte','estoque','distribuição','distribuicao'],
+  { icon:'🚚', keys:['logística','logistica','supply chain','operações','operacoes','transporte','estoque','distribuição','distribuicao'],
     disc:{D:30,I:10,S:25,C:35}, label:'Logística & Operações',
     ideal:'C para controle e processos; D para gestão de crises e eficiência operacional.'},
-  { keys:['social','ong','terceiro setor','voluntário','voluntario','assistência social','assistencia social','desenvolvimento social'],
+  { icon:'🌱', keys:['social','ong','terceiro setor','voluntário','voluntario','assistência social','assistencia social','desenvolvimento social'],
     disc:{D:15,I:25,S:45,C:15}, label:'Terceiro Setor & Social',
     ideal:'S dominante para empatia, escuta e missão humana; I para mobilização de pessoas.'},
-  { keys:['design','ux','ui','criação','criacao','arte','arquitetura','moda','produto','criativo','criativa'],
+  { icon:'🎨', keys:['design','ux','ui','criação','criacao','arte','arquitetura','moda','produto','criativo','criativa'],
     disc:{D:20,I:40,S:15,C:25}, label:'Design & Criação',
     ideal:'I para criatividade e expressão; C para qualidade técnica e atenção ao detalhe.'},
-  { keys:['projeto','projetos','pmo','scrum','ágil','agil','metodologia','coordenação','coordenacao'],
+  { icon:'🏗️', keys:['projeto','projetos','pmo','scrum','ágil','agil','metodologia','coordenação','coordenacao'],
     disc:{D:30,I:20,S:20,C:30}, label:'Gestão de Projetos',
-    ideal:'Equilíbrio D (resultados/prazos) e C (processos/qualidade); S para integração do time.'},
+    ideal:'Equilíbrio entre D (resultados e prazos) e C (processos e qualidade); S para integração do time.'},
+  { icon:'🗂️', keys:['administrativo','backoffice','back office','secretaria','secretariado','expediente','arquivo'],
+    disc:{D:10,I:15,S:35,C:40}, label:'Administrativo & Backoffice',
+    ideal:'C e S em destaque: organização, precisão e constância nas rotinas; I para o contato interno.'},
+  { icon:'🎧', keys:['atendimento','sac','call center','callcenter','customer success','pós-venda','pos-venda','relacionamento com cliente'],
+    disc:{D:10,I:30,S:40,C:20}, label:'Atendimento ao Cliente',
+    ideal:'S para paciência e escuta; I para empatia e comunicação; C para seguir procedimentos.'},
+  { icon:'🔬', keys:['pesquisa','ciência','ciencia','laboratório','laboratorio','p&d','pesquisador','cientista','acadêmico','academico'],
+    disc:{D:15,I:10,S:25,C:50}, label:'Pesquisa & Ciência',
+    ideal:'C dominante para rigor e análise; S para persistência e trabalho metódico.'}
 ];
 
-function matchArea(areaText) {
-  if (!areaText) return null;
-  const lower = areaText.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
-  let best = null, bestScore = 0;
-  AREA_MAP.forEach(am => {
-    am.keys.forEach(k => {
-      const kn = k.normalize('NFD').replace(/[̀-ͯ]/g,'');
-      if (lower.includes(kn)) {
-        const score = kn.length;
-        if (score > bestScore) { bestScore = score; best = am; }
-      }
-    });
-  });
+function norm(s) { return String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
+
+// Palavras curtas exigem correspondência exata, para evitar falsos positivos ("ti" em "atividades").
+function matchArea(text) {
+  if (!text) return null;
+  const t = norm(text);
+  const tokens = t.split(/[^a-z0-9&]+/).filter(Boolean);
+  let best = null, bestLen = 0;
+  AREA_MAP.forEach(am => am.keys.forEach(k => {
+    const kn = norm(k);
+    let hit;
+    if (kn.length <= 3)      hit = tokens.includes(kn);
+    else if (kn.length <= 5) hit = tokens.some(tok => tok === kn || tok.startsWith(kn));
+    else                     hit = t.includes(kn);
+    if (hit && kn.length > bestLen) { bestLen = kn.length; best = am; }
+  }));
   return best;
 }
 
+// Converte o peso relativo da área (soma 100, neutro = 25) para a mesma escala do usuário (neutro = 50).
+function areaScores(areaDisc) {
+  const o = {};
+  DIMS.forEach(d => { o[d] = Math.max(5, Math.min(95, Math.round(50 + (areaDisc[d] - 25) * 1.6))); });
+  return o;
+}
 function calcCompatibility(userPct, areaDisc) {
-  // Normalize areaDisc to 0-100 scale relative to max
-  const aMax = Math.max(...Object.values(areaDisc));
-  const aMin = Math.min(...Object.values(areaDisc));
-  const aRange = aMax - aMin || 1;
-  const aNorm = {};
-  ['D','I','S','C'].forEach(d => {
-    aNorm[d] = Math.round(((areaDisc[d] - aMin) / aRange) * 80 + 10);
-  });
-
-  // Weighted difference per dimension
-  const weights = {D:1, I:1, S:1, C:1};
-  let totalDiff = 0, totalWeight = 0;
-  ['D','I','S','C'].forEach(d => {
-    totalDiff += Math.abs(userPct[d] - aNorm[d]) * weights[d];
-    totalWeight += 100 * weights[d];
-  });
-  const compat = Math.round(100 - (totalDiff / totalWeight) * 100);
-  return { compat: Math.max(0, Math.min(100, compat)), aNorm };
+  const aScore = areaScores(areaDisc);
+  const avgDiff = DIMS.reduce((s, d) => s + Math.abs(userPct[d] - aScore[d]), 0) / 4;
+  const compat = Math.max(0, Math.min(100, Math.round(100 - avgDiff * 2)));
+  return { compat, aScore };
 }
 
 function drawGauge(canvasId, pct, color) {
-  const canvas = document.getElementById(canvasId);
+  const canvas = $(canvasId);
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   const cx = 55, cy = 55, r = 45;
   ctx.clearRect(0, 0, 110, 110);
-  // BG arc
-  ctx.beginPath();
-  ctx.arc(cx, cy, r, Math.PI * 0.75, Math.PI * 2.25);
-  ctx.strokeStyle = '#E0DDD6';
-  ctx.lineWidth = 10;
-  ctx.lineCap = 'round';
-  ctx.stroke();
-  // Value arc
-  const startA = Math.PI * 0.75;
-  const endA = startA + (Math.PI * 1.5) * (pct / 100);
-  ctx.beginPath();
-  ctx.arc(cx, cy, r, startA, endA);
-  ctx.strokeStyle = color;
-  ctx.lineWidth = 10;
-  ctx.lineCap = 'round';
-  ctx.stroke();
+  ctx.lineCap = 'round'; ctx.lineWidth = 10;
+  ctx.beginPath(); ctx.arc(cx, cy, r, Math.PI * 0.75, Math.PI * 2.25);
+  ctx.strokeStyle = '#E0DDD6'; ctx.stroke();
+  if (pct > 0) {
+    ctx.beginPath(); ctx.arc(cx, cy, r, Math.PI * 0.75, Math.PI * 0.75 + (Math.PI * 1.5) * (pct / 100));
+    ctx.strokeStyle = color; ctx.stroke();
+  }
 }
 
-function renderCompatibility(userPct, dominantColor) {
-  const areaText = document.getElementById('f-area').value.trim();
-  const card = document.getElementById('compat-card');
-  const heroBlock = document.getElementById('compat-hero-block');
-  const dimsBlock = document.getElementById('compat-dims-block');
-  const tableEl = document.getElementById('compat-table');
-
+function renderCompatibility(userPct) {
+  const areaText = $('f-area').value.trim();
+  const heroBlock = $('compat-hero-block'), dimsBlock = $('compat-dims-block'), tableEl = $('compat-table');
+  if (gaugeTimer) { clearInterval(gaugeTimer); gaugeTimer = null; }
   const areaMatch = matchArea(areaText);
 
   if (!areaText || !areaMatch) {
-    // No area informed or not matched — show generic message
-    const area = areaText || '(não informada)';
-    heroBlock.innerHTML = '<div style="padding:16px 0;color:var(--muted);font-size:14px;">Área de atuação <strong>"' + area + '"</strong> não identificada em nossa base. Para uma análise de compatibilidade detalhada, informe sua área no formulário de identificação usando termos como: Tecnologia, Saúde, Vendas, RH, Engenharia, Finanças, etc.</div>';
+    heroBlock.innerHTML = '<div style="padding:16px 0;color:var(--muted);font-size:14px;line-height:1.6">Área de atuação <strong>"' + esc(areaText || '(não informada)') + '"</strong> não identificada na base. ' +
+      'Para ver a compatibilidade, volte em "Revisar respostas" e escolha uma área da lista (Tecnologia, Saúde, Vendas, RH, Engenharia, Finanças, Administrativo, Atendimento etc.). ' +
+      'A seção "Áreas com Maior Afinidade" acima continua válida.</div>';
     dimsBlock.innerHTML = '';
     tableEl.innerHTML = '';
     return;
   }
 
-  const { compat, aNorm } = calcCompatibility(userPct, areaMatch.disc);
-
-  // Verdict
+  const { compat, aScore } = calcCompatibility(userPct, areaMatch.disc);
   let verdict, verdictClass, verdictText;
   if (compat >= 75) {
     verdict = 'Alta Compatibilidade'; verdictClass = 'tag-alto';
-    verdictText = 'Seu perfil comportamental tem forte alinhamento com as exigências da sua área de atuação. Você tende a performar de forma natural e consistente neste ambiente.';
+    verdictText = 'Seu perfil comportamental tem forte alinhamento com as exigências da sua área de atuação. Você tende a atuar de forma natural e consistente neste ambiente.';
   } else if (compat >= 50) {
     verdict = 'Compatibilidade Moderada'; verdictClass = 'tag-medio';
-    verdictText = 'Há alinhamento parcial entre seu perfil e a área. Pontos de convergência trazem facilidade; os de divergência exigem adaptação consciente ou desenvolvimento.';
+    verdictText = 'Há alinhamento parcial entre seu perfil e a área. Os pontos de convergência trazem facilidade; os de divergência pedem adaptação consciente ou desenvolvimento.';
   } else {
     verdict = 'Baixa Compatibilidade'; verdictClass = 'tag-baixo';
-    verdictText = 'Seu perfil natural difere das exigências predominantes da área. Isso não impede o sucesso, mas exige maior esforço adaptativo e investimento em desenvolvimento.';
+    verdictText = 'Seu perfil natural difere das exigências predominantes da área. Isso não impede o sucesso, mas exige maior esforço de adaptação e investimento em desenvolvimento.';
   }
 
-  const colors = {D:'#C0392B',I:'#E67E22',S:'#27AE60',C:'#2980B9'};
-  const dimNames = {D:'Dominância',I:'Influência',S:'Estabilidade',C:'Conformidade'};
-
-  // Hero
   heroBlock.innerHTML =
-    '<div class="compat-gauge"><canvas id="gaugeCanvas" width="110" height="110"></canvas>' +
+    '<div class="compat-gauge"><canvas id="gaugeCanvas"></canvas>' +
     '<div class="gauge-label"><div class="gauge-pct" id="gaugePct">0%</div><div class="gauge-sub">compat.</div></div></div>' +
     '<div class="compat-info">' +
     '<div style="font-size:11px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px">Área identificada</div>' +
-    '<h3>' + areaMatch.label + '</h3>' +
+    '<h3>' + esc(areaMatch.label) + '</h3>' +
     '<span class="compat-verdict ' + verdictClass + '">' + verdict + '</span>' +
     '<p>' + verdictText + '</p>' +
-    '<p style="margin-top:8px;font-size:12px;font-style:italic;">' + areaMatch.ideal + '</p>' +
+    '<p style="margin-top:8px;font-size:12px;font-style:italic;">' + esc(areaMatch.ideal) + '</p>' +
+    '<p style="margin-top:8px;font-size:11px;">Resultado indicativo: o desempenho real depende de muito além do perfil comportamental.</p>' +
     '</div>';
 
-  // Animate gauge
+  const gc = $('gaugeCanvas'), dpr = window.devicePixelRatio || 1;
+  gc.width = 110 * dpr; gc.height = 110 * dpr;
+  gc.getContext('2d').setTransform(dpr, 0, 0, dpr, 0, 0);
+  const gColor = compat >= 75 ? '#27AE60' : compat >= 50 ? '#E67E22' : '#C0392B';
   let gPct = 0;
-  const gInterval = setInterval(() => {
+  drawGauge('gaugeCanvas', 0, gColor);
+  gaugeTimer = setInterval(() => {
     gPct = Math.min(gPct + 2, compat);
-    drawGauge('gaugeCanvas', gPct, compat >= 75 ? '#27AE60' : compat >= 50 ? '#E67E22' : '#C0392B');
-    const el = document.getElementById('gaugePct');
-    if (el) el.textContent = gPct + '%';
-    if (gPct >= compat) clearInterval(gInterval);
+    drawGauge('gaugeCanvas', gPct, gColor);
+    const el = $('gaugePct'); if (el) el.textContent = gPct + '%';
+    if (gPct >= compat) { clearInterval(gaugeTimer); gaugeTimer = null; }
   }, 20);
 
-  // Dim cards
-  const dimOrder = ['D','I','S','C'];
-  dimsBlock.innerHTML = dimOrder.map(d => {
-    const uVal = userPct[d];
-    const aVal = aNorm[d];
-    const diff = uVal - aVal;
+  dimsBlock.innerHTML = DIMS.map(d => {
+    const uVal = userPct[d], aVal = aScore[d], diff = uVal - aVal;
     const diffStr = diff > 0 ? '+' + diff + ' acima' : diff < 0 ? Math.abs(diff) + ' abaixo' : 'alinhado';
     const diffColor = Math.abs(diff) <= 15 ? '#27AE60' : Math.abs(diff) <= 30 ? '#E67E22' : '#C0392B';
     return '<div class="compat-dim-card">' +
-      '<div class="dim-letter" style="color:' + colors[d] + '">' + d + '</div>' +
-      '<div class="dim-name">' + dimNames[d] + '</div>' +
+      '<div class="dim-letter" style="color:' + DIM_COLORS[d] + '">' + d + '</div>' +
+      '<div class="dim-name">' + DIM_NAMES[d] + '</div>' +
       '<div style="font-size:9px;color:var(--muted);margin-bottom:3px">Seu perfil</div>' +
-      '<div class="dim-user-bar-wrap"><div class="dim-user-bar" style="width:' + uVal + '%;background:' + colors[d] + '"></div></div>' +
+      '<div class="dim-user-bar-wrap"><div class="dim-user-bar" style="width:' + uVal + '%;background:' + DIM_COLORS[d] + '"></div></div>' +
       '<div style="font-size:9px;color:var(--muted);margin-bottom:3px">Ideal da área</div>' +
-      '<div class="dim-area-bar-wrap"><div class="dim-area-bar" style="width:' + aVal + '%;background:' + colors[d] + '"></div></div>' +
+      '<div class="dim-area-bar-wrap"><div class="dim-area-bar" style="width:' + aVal + '%;background:' + DIM_COLORS[d] + '"></div></div>' +
       '<div class="dim-diff" style="color:' + diffColor + '">' + diffStr + '</div>' +
-      '<div class="dim-legend">Você: ' + uVal + '% | Área: ' + aVal + '%</div>' +
-      '</div>';
+      '<div class="dim-legend">Você: ' + uVal + '% | Área: ' + aVal + '%</div></div>';
   }).join('');
 
-  // Detailed table
-  const rows = dimOrder.map(d => {
-    const uVal = userPct[d];
-    const aVal = aNorm[d];
-    const gap = Math.abs(uVal - aVal);
+  const rows = DIMS.map(d => {
+    const uVal = userPct[d], aVal = aScore[d], gap = Math.abs(uVal - aVal);
     const tagClass = gap <= 15 ? 'tag-alto' : gap <= 30 ? 'tag-medio' : 'tag-baixo';
     const tagLabel = gap <= 15 ? 'Alinhado' : gap <= 30 ? 'Atenção' : 'Gap';
-    const impact = uVal > aVal
-      ? 'Tendência a ter comportamento mais ' + dimNames[d].toLowerCase() + ' do que o perfil ideal da área exige.'
-      : uVal < aVal
-      ? 'A área exige mais ' + dimNames[d].toLowerCase() + ' do que seu perfil natural apresenta. Ponto de desenvolvimento.'
-      : 'Alinhamento preciso com a demanda da área nesta dimensão.';
-    return '<tr><td><strong style="color:' + colors[d] + '">' + d + '</strong> – ' + dimNames[d] + '</td>' +
+    const nm = DIM_NAMES[d].toLowerCase();
+    const impact = gap <= 15
+      ? 'Alinhamento próximo com o que a área costuma pedir em ' + nm + '.'
+      : uVal > aVal
+        ? 'Seu nível de ' + nm + ' é maior que o típico da área: pode ser força ou excesso, conforme o contexto.'
+        : 'A área pede mais ' + nm + ' do que seu perfil natural apresenta. Ponto de desenvolvimento.';
+    return '<tr><td><strong style="color:' + DIM_COLORS[d] + '">' + d + '</strong> – ' + DIM_NAMES[d] + '</td>' +
       '<td style="text-align:center"><strong>' + uVal + '%</strong></td>' +
       '<td style="text-align:center">' + aVal + '%</td>' +
       '<td style="text-align:center"><span class="tag ' + tagClass + '">' + tagLabel + '</span></td>' +
       '<td style="font-size:12px;color:var(--muted)">' + impact + '</td></tr>';
   }).join('');
-
   tableEl.innerHTML =
     '<thead><tr><th>Dimensão</th><th style="text-align:center">Seu Perfil</th><th style="text-align:center">Ideal da Área</th><th style="text-align:center">Status</th><th>Impacto</th></tr></thead>' +
     '<tbody>' + rows + '</tbody>';
 }
 
 // ═══════════════════════════════════════════════════════
-//  RESET
+//  EXPORTAR CSV (abre direto no Excel; separador ";")
 // ═══════════════════════════════════════════════════════
-function resetTest() {
-  if (!confirm('Deseja reiniciar o teste? Todas as respostas serão apagadas.')) return;
-  // Clear answers
-  for (var k in answers) delete answers[k];
-  // Reset form
-  document.getElementById('f-name').value = '';
-  document.getElementById('f-role').value = '';
-  document.getElementById('f-org').value = '';
-  document.getElementById('f-area').value = '';
-  document.getElementById('f-age').value = '';
-  document.getElementById('f-date').valueAsDate = new Date();
-  // Re-render test
-  renderTest();
-  updateProgress();
-  // Show test, hide results
-  document.getElementById('identification-card').style.display = 'block';
-  document.querySelector('.instructions').style.display = 'block';
-  document.getElementById('test-section').style.display = 'block';
-  document.querySelector('.submit-area').style.display = 'block';
-  document.getElementById('results-section').style.display = 'none';
-  window.scrollTo(0, 0);
+function csvCell(v) {
+  let s = String(v == null ? '' : v);
+  if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;   // evita execução de fórmula no Excel
+  return '"' + s.replace(/"/g, '""') + '"';
+}
+function exportCSV() {
+  if (!lastResult) return;
+  const { sc, rel, dominant, secondary } = lastResult;
+  const g = id => $(id).value.trim();
+  const head = ['Nome','Matrícula','Cargo','Empresa','Área','Faixa etária','Finalidade','Data da avaliação',
+    'D (%)','I (%)','S (%)','C (%)','Dominante','Secundário',
+    'Mais D','Mais I','Mais S','Mais C','Menos D','Menos I','Menos S','Menos C',
+    'Tempo (min)','Qualidade das respostas','Alertas'];
+  const row = [g('f-name'), g('f-reg'), g('f-role'), g('f-org'), g('f-area'), g('f-age'), g('f-purpose'), fmtDate($('f-date').value),
+    sc.pct.D, sc.pct.I, sc.pct.S, sc.pct.C, dominant, secondary || '',
+    sc.mais.D, sc.mais.I, sc.mais.S, sc.mais.C, sc.menos.D, sc.menos.I, sc.menos.S, sc.menos.C,
+    (rel.secs / 60).toFixed(1).replace('.', ','), REL_LABELS[rel.status][0], rel.flags.join(' | ')];
+  const csv = '﻿' + [head, row].map(r => r.map(csvCell).join(';')).join('\r\n');
+  const slug = norm(g('f-name')).replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '') || 'avaliado';
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'DISC_' + slug + '_' + ($('f-date').value || todayLocal()) + '.csv';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
 // ═══════════════════════════════════════════════════════
-//  INIT
+//  REINICIAR
 // ═══════════════════════════════════════════════════════
-document.getElementById('f-date').valueAsDate = new Date();
-renderTest();
-updateProgress();
+function resetTest() {
+  if (!confirm('Deseja reiniciar o teste? Todas as respostas serão apagadas.')) return;
+  answers = {}; order = newOrder(); activeMs = 0; lastTs = Date.now(); lastResult = null;
+  if (gaugeTimer) { clearInterval(gaugeTimer); gaugeTimer = null; }
+  clearStored();
+  FORM_FIELDS.forEach(id => { const el = $(id); if (el && id !== 'f-date') el.value = ''; });
+  $('f-date').value = todayLocal();
+  $('submit-error').textContent = '';
+  $('restore-banner').hidden = true;
+  renderTest();
+  setView('test');
+}
+
+// ═══════════════════════════════════════════════════════
+//  INICIALIZAÇÃO
+// ═══════════════════════════════════════════════════════
+(function init() {
+  $('areas-list').innerHTML = AREA_MAP.map(a => '<option value="' + esc(a.label) + '"></option>').join('');
+  $('footer-year').textContent = new Date().getFullYear();
+  order = newOrder();
+  const restored = loadStored();
+  if (!$('f-date').value) $('f-date').value = todayLocal();
+  renderTest();
+  FORM_FIELDS.forEach(id => {
+    const el = $(id);
+    el.addEventListener('input', store);
+    el.addEventListener('change', store);
+  });
+  const done = QUESTIONS.filter((_, qi) => isComplete(qi)).length;
+  if (restored && (done > 0 || $('f-name').value)) {
+    $('restore-text').textContent = 'Retomamos de onde você parou: ' + done + ' de ' + QUESTIONS.length + ' questões completas.';
+    $('restore-banner').hidden = false;
+  }
+})();
+
 </script>
 </body>
 </html>
