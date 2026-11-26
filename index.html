@@ -634,10 +634,32 @@
 
 <div class="container">
 
+  <!-- MODO ONLINE (só aparece quando o link tem ?c=...) -->
+  <div class="card" id="online-blocked" hidden role="status" aria-live="polite">
+    <h2><span class="dot"></span> <span id="online-blocked-title">Verificando o link…</span></h2>
+    <p id="online-blocked-text" style="font-size:14px;color:var(--muted);line-height:1.7"></p>
+  </div>
+  <div class="card" id="sent-screen" hidden role="status" aria-live="polite">
+    <h2><span class="dot"></span> Resultado enviado</h2>
+    <p style="font-size:15px;line-height:1.7">Obrigado! Suas respostas foram enviadas ao Setor Pessoal.</p>
+    <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-top:10px">Por privacidade, seus dados e o resultado foram apagados desta tela e deste navegador. Você pode fechar esta página.</p>
+  </div>
+  <div class="notice info no-print" id="online-banner" hidden></div>
+
   <!-- RETOMADA DE PROGRESSO -->
   <div class="notice no-print" id="restore-banner" hidden>
     <span id="restore-text"></span>
     <button type="button" class="btn-link" onclick="resetTest()">Recomeçar do zero</button>
+  </div>
+
+  <!-- CONSENTIMENTO (modo online) -->
+  <div class="card" id="online-consent" hidden>
+    <h2><span class="dot"></span> Antes de começar</h2>
+    <p style="font-size:13.5px;line-height:1.7;color:var(--muted)">Este teste descreve seu <strong style="color:var(--text)">estilo de comportamento declarado</strong>. Não mede competência nem inteligência. Ao final, você verá seu resultado e poderá imprimir ou salvar. Se clicar em <strong style="color:var(--text)">Enviar</strong>, suas respostas e dados de identificação irão ao Setor Pessoal, que os usará para análise de perfil, com acesso restrito. Depois do envio, seus dados são apagados desta tela. Para pedir exclusão ou correção, fale com o RH.</p>
+    <label style="display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:14px;cursor:pointer">
+      <input type="checkbox" id="f-consent" style="width:18px;height:18px;margin-top:2px;flex:none">
+      <span>Li e concordo com o uso dos meus dados para esta finalidade.</span>
+    </label>
   </div>
 
   <!-- IDENTIFICATION -->
@@ -853,6 +875,15 @@
         <button class="btn-reset" type="button" onclick="exportCSV()">⇩ Baixar dados (CSV)</button>
         <button class="btn-reset" type="button" onclick="backToTest()">✎ Revisar respostas</button>
         <button class="btn-reset" type="button" onclick="resetTest()">↺ Refazer Teste</button>
+      </div>
+    </div>
+
+    <!-- ENVIO (modo online) -->
+    <div class="notice no-print" id="send-box" hidden style="margin-top:20px;flex-direction:column;align-items:stretch;gap:10px">
+      <div><strong>Pronto para enviar?</strong> Imprima ou salve seu resultado <u>antes</u>: depois do envio, seus dados e este resultado são apagados e não podem ser vistos de novo.</div>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        <button class="btn-primary" id="btn-send" type="button" onclick="sendOnline()" style="margin:0">✉ Enviar ao Setor Pessoal</button>
+        <span id="send-error" style="color:#C0392B;font-size:13px" role="alert"></span>
       </div>
     </div>
 
@@ -1276,6 +1307,7 @@ function tick() {
 }
 
 function store() {
+  if (typeof ONLINE !== 'undefined' && ONLINE.sent) return;
   try {
     const form = {};
     FORM_FIELDS.forEach(id => { const el = $(id); if (el) form[id] = el.value; });
@@ -1509,7 +1541,8 @@ const REL_LABELS = {
 // ═══════════════════════════════════════════════════════
 function setView(v) {
   const test = v === 'test';
-  ['identification-card', 'instructions', 'test-section', 'submit-area'].forEach(id => { $(id).style.display = test ? '' : 'none'; });
+  ['identification-card', 'instructions', 'test-section', 'submit-area', 'online-consent'].forEach(id => { $(id).style.display = test ? '' : 'none'; });
+  if (typeof ONLINE !== 'undefined' && ONLINE.sent) return;
   $('results-section').style.display = test ? 'none' : 'block';
   if (!test) $('restore-banner').hidden = true;
   window.scrollTo(0, 0);
@@ -1522,6 +1555,10 @@ function backToTest() { setView('test'); }
 function submitTest() {
   const err = $('submit-error');
   err.textContent = '';
+  if (ONLINE.slug && !$('f-consent').checked) {
+    err.textContent = 'Marque a caixa de concordância no início da página para continuar.';
+    toast(err.textContent); smoothScroll($('online-consent'), 'start'); return;
+  }
   const nameEl = $('f-name');
   if (!nameEl.value.trim()) {
     err.textContent = 'Preencha seu nome completo na identificação.';
@@ -1901,8 +1938,7 @@ function csvCell(v) {
   if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;   // evita execução de fórmula no Excel
   return '"' + s.replace(/"/g, '""') + '"';
 }
-function exportCSV() {
-  if (!lastResult) return;
+function buildRecord() {
   const { sc, rel, dominant, secondary } = lastResult;
   const g = id => $(id).value.trim();
   const head = ['Nome','Matrícula','Cargo','Empresa','Área','Faixa etária','Finalidade','Data da avaliação',
@@ -1913,6 +1949,12 @@ function exportCSV() {
     sc.pct.D, sc.pct.I, sc.pct.S, sc.pct.C, dominant, secondary || '',
     sc.mais.D, sc.mais.I, sc.mais.S, sc.mais.C, sc.menos.D, sc.menos.I, sc.menos.S, sc.menos.C,
     (rel.secs / 60).toFixed(1).replace('.', ','), REL_LABELS[rel.status][0], rel.flags.join(' | ')];
+  return { head, row };
+}
+function exportCSV() {
+  if (!lastResult) return;
+  const g = id => $(id).value.trim();
+  const { head, row } = buildRecord();
   const csv = '﻿' + [head, row].map(r => r.map(csvCell).join(';')).join('\r\n');
   const slug = norm(g('f-name')).replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '') || 'avaliado';
   const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
@@ -1940,6 +1982,74 @@ function resetTest() {
 }
 
 // ═══════════════════════════════════════════════════════
+//  MODO ONLINE (Supabase) — ativo só com ?c=<código da campanha>
+// ═══════════════════════════════════════════════════════
+const SB_URL = 'https://qlcqyjkqmmoojcuxdrjs.supabase.co';
+const SB_KEY = 'sb_publishable_2lY3qohsl9H0CwdfzibVEA_eBV8W1Oy';   // chave pública: só permite as 2 funções do teste
+const ONLINE = { slug: null, name: '', sent: false, busy: false };
+
+function sbRpc(fn, body) {
+  return fetch(SB_URL + '/rest/v1/rpc/' + fn, {
+    method: 'POST', headers: { 'apikey': SB_KEY, 'Content-Type': 'application/json' }, body: JSON.stringify(body)
+  });
+}
+function onlineBlock(title, text) {
+  ['identification-card', 'instructions', 'test-section', 'submit-area', 'online-consent', 'restore-banner', 'results-section', 'online-banner'].forEach(id => { const e = $(id); if (e) e.style.display = 'none'; });
+  $('online-blocked-title').textContent = title; $('online-blocked-text').textContent = text;
+  $('online-blocked').hidden = false;
+}
+async function onlineInit() {
+  let slug = null;
+  try { slug = new URLSearchParams(location.search).get('c'); } catch (e) {}
+  if (slug === null) return;                       // modo normal (sem envio)
+  if (!/^[a-z0-9]{6,40}$/i.test(slug)) { onlineBlock('Link inválido', 'Este endereço não está completo. Peça um novo link ao Setor Pessoal.'); return; }
+  ONLINE.slug = slug;
+  onlineBlock('Verificando o link…', 'Aguarde um instante.');
+  try {
+    const r = await sbRpc('get_campaign', { p_slug: slug });
+    const rows = r.ok ? await r.json() : null;
+    if (!rows || !rows.length) { onlineBlock('Link inválido', 'Não encontramos esta avaliação. Confira o endereço ou peça um novo link ao Setor Pessoal.'); ONLINE.slug = null; ONLINE.dead = true; return; }
+    if (!rows[0].active) { onlineBlock('Avaliação encerrada', 'Esta avaliação não está mais recebendo respostas. Fale com o Setor Pessoal.'); ONLINE.dead = true; return; }
+    ONLINE.name = String(rows[0].name || '');
+  } catch (e) { onlineBlock('Sem conexão', 'Não foi possível verificar o link agora. Confira sua internet e recarregue a página.'); ONLINE.dead = true; return; }
+  $('online-blocked').hidden = true;
+  ['identification-card', 'instructions', 'test-section', 'submit-area', 'online-consent', 'online-banner', 'restore-banner'].forEach(id => { $(id).style.display = ''; });
+  $('online-consent').hidden = false; $('send-box').hidden = false;
+  $('online-banner').textContent = ''; $('online-banner').append('Avaliação: ', Object.assign(document.createElement('strong'), { textContent: ONLINE.name }));
+  $('online-banner').hidden = false;
+}
+async function sendOnline() {
+  if (!ONLINE.slug || ONLINE.busy || ONLINE.sent || !lastResult) return;
+  const err = $('send-error'); err.textContent = '';
+  if (!confirm('Enviar agora? Depois do envio, seus dados e o resultado serão apagados desta tela e você não poderá vê-los de novo.')) return;
+  ONLINE.busy = true; const btn = $('btn-send'); btn.disabled = true; btn.textContent = 'Enviando…';
+  try {
+    const { head, row } = buildRecord();
+    const data = {}; head.forEach((h, i) => { data[h] = row[i]; });
+    const r = await sbRpc('submit_disc', { p_slug: ONLINE.slug, p_data: data });
+    if (!r.ok) {
+      const t = await r.text();
+      throw new Error(/campanha_indisponivel/.test(t) ? 'Esta avaliação foi encerrada e não aceita mais respostas.' : 'O servidor recusou o envio. Tente de novo ou fale com o Setor Pessoal.');
+    }
+    wipeAfterSend();
+  } catch (e) {
+    err.textContent = (e && e.message && !/fetch|network/i.test(e.message)) ? e.message : 'Sem conexão. Seus dados continuam aqui: tente enviar de novo.';
+    btn.disabled = false; btn.textContent = '✉ Enviar ao Setor Pessoal';
+  } finally { ONLINE.busy = false; }
+}
+function wipeAfterSend() {
+  ONLINE.sent = true; lastResult = null; answers = {}; activeMs = 0;
+  if (gaugeTimer) { clearInterval(gaugeTimer); gaugeTimer = null; }
+  clearStored();
+  FORM_FIELDS.forEach(id => { const el = $(id); if (el) el.value = ''; });
+  $('f-consent').checked = false;
+  ['results-section', 'test-section'].forEach(id => { $(id).innerHTML = ''; });
+  ['identification-card', 'instructions', 'test-section', 'submit-area', 'online-consent', 'online-banner', 'restore-banner', 'results-section', 'online-blocked'].forEach(id => { const e = $(id); if (e) { e.style.display = 'none'; } });
+  $('sent-screen').hidden = false; $('sent-screen').style.display = '';
+  window.scrollTo(0, 0);
+}
+
+// ═══════════════════════════════════════════════════════
 //  INICIALIZAÇÃO
 // ═══════════════════════════════════════════════════════
 (function init() {
@@ -1959,6 +2069,7 @@ function resetTest() {
     $('restore-text').textContent = 'Retomamos de onde você parou: ' + done + ' de ' + QUESTIONS.length + ' questões completas.';
     $('restore-banner').hidden = false;
   }
+  onlineInit();
 })();
 
 </script>
