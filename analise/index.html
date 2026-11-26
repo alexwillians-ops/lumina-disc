@@ -230,6 +230,93 @@
   .chip.off { background:#F3DADA; color:#8B2A2A; }
   .onl-sep { margin:26px 0 18px; border-top:1px solid var(--border); padding-top:18px; }
   @media screen and (max-width:820px) { .onl-create { grid-template-columns:1fr; } }
+  #ind-body .profile-hero {background: #1A1A1A; color: white; border-radius: 4px; padding: 40px; margin-bottom: 24px; position: relative; overflow: hidden;}
+  #ind-body .profile-hero::after {content: attr(data-letter); position: absolute; right: 30px; bottom: -20px; font-family: 'Playfair Display', serif; font-size: 180px; font-weight: 900; opacity: 0.07; line-height: 1;}
+  #ind-body .profile-hero .name-display {font-size: 13px; color: #888; margin-bottom: 6px; letter-spacing: 2px; text-transform: uppercase;}
+  #ind-body .profile-hero h2 {font-family: 'Playfair Display', serif; font-size: 36px; margin-bottom: 4px;}
+  #ind-body .profile-hero .profile-title {font-size: 16px; color: var(--gold); font-weight: 600; margin-bottom: 14px;}
+  #ind-body .profile-hero .tagline {color: #ccc; font-size: 14px; line-height: 1.6; max-width: 520px;}
+  #ind-body .disc-bars {display: flex; flex-direction: column; gap: 16px;}
+  #ind-body .disc-bar-row {display: flex; align-items: center; gap: 14px;}
+  #ind-body .disc-bar-label {width: 120px; font-weight: 600; font-size: 14px;}
+  #ind-body .disc-bar-label small {display: block; font-size: 11px; font-weight: 400; color: var(--muted);}
+  #ind-body .disc-bar-track {flex: 1; background: var(--border); border-radius: 2px; height: 14px; overflow: hidden;}
+  #ind-body .disc-bar-fill {height: 100%; border-radius: 2px; transition: width 1s ease;}
+  #ind-body .disc-bar-pct {width: 38px; text-align: right; font-size: 14px; font-weight: 600;}
+  #ind-body .quadrant-wrap {text-align: center; margin: 10px 0;}
+  #ind-body .info-grid {display: grid; grid-template-columns: 1fr 1fr; gap: 16px;}
+  #ind-body .info-box {background: var(--bg); border: 1px solid var(--border); border-radius: 4px; padding: 20px;}
+  #ind-body .info-box h4 {font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px;}
+  #ind-body .info-box ul {list-style: none; padding: 0;}
+  #ind-body .info-box ul li {font-size: 13px; padding: 4px 0; border-bottom: 1px solid var(--border);}
+  #ind-body .info-box ul li:last-child {border: none;}
+  #ind-body .info-box ul li::before {content: '→ '; color: var(--gold); font-weight: 700;}
+  #ind-body .areas-grid {display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;}
+  #ind-body .area-card {border: 1px solid var(--border); border-radius: 4px; padding: 16px 14px; position: relative;}
+  #ind-body .area-card .area-icon {font-size: 22px; margin-bottom: 8px;}
+  #ind-body .area-card h4 {font-size: 13px; font-weight: 700; margin-bottom: 4px;}
+  #ind-body .area-card p {font-size: 12px; color: var(--muted); line-height: 1.4;}
+  #ind-body .area-card .match-bar {height: 3px; background: var(--border); margin-top: 10px; border-radius: 2px;}
+  #ind-body .area-card .match-fill {height: 3px; border-radius: 2px;}
+  #ind-body .combo-tag {display: inline-block; background: #1A1A1A; color: white; padding: 4px 14px; border-radius: 2px; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; margin-right: 8px; margin-bottom: 8px;}
+  #ind-body .compat-hero {border-radius: 4px; padding: 28px 32px; margin-bottom: 18px; display: flex; align-items: center; gap: 28px; border: 2px solid var(--border);}
+  #ind-body .compat-gauge {flex-shrink: 0; width: 110px; height: 110px; position: relative;}
+  #ind-body .compat-gauge canvas {width: 110px; height: 110px;}
+  #ind-body .compat-gauge .gauge-label {position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;}
+  #ind-body .compat-gauge .gauge-pct {font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; line-height: 1;}
+  #ind-body .compat-gauge .gauge-sub {font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted);}
+  #ind-body .compat-info h3 {font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 6px;}
+  #ind-body .compat-info .compat-verdict {display: inline-block; padding: 3px 12px; border-radius: 2px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px;}
+  #ind-body .compat-info p {font-size: 13px; line-height: 1.65; color: var(--muted);}
+  #ind-body .compat-dims {display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 4px;}
+  #ind-body .compat-dim-card {border: 1px solid var(--border); border-radius: 4px; padding: 14px 12px; text-align: center; background: var(--bg);}
+  #ind-body .compat-dim-card .dim-letter {font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; line-height: 1;}
+  #ind-body .compat-dim-card .dim-name {font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; margin-top: 2px;}
+  #ind-body .compat-dim-card .dim-user-bar-wrap {background: var(--border); height: 6px; border-radius: 3px; margin-bottom: 3px;}
+  #ind-body .compat-dim-card .dim-user-bar {height: 6px; border-radius: 3px;}
+  #ind-body .compat-dim-card .dim-area-bar-wrap {background: var(--border); height: 6px; border-radius: 3px; margin-bottom: 3px;}
+  #ind-body .compat-dim-card .dim-area-bar {height: 6px; border-radius: 3px; opacity: 0.45;}
+  #ind-body .compat-dim-card .dim-legend {font-size: 9px; color: var(--muted); margin-top: 6px; line-height: 1.5;}
+  #ind-body .compat-dim-card .dim-diff {font-size: 12px; font-weight: 700; margin-top: 4px;}
+  #ind-body .compat-table {width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px;}
+  #ind-body .compat-table th {background: #1A1A1A; color: white; padding: 10px 14px; text-align: left; font-size: 11px; letter-spacing: 1px; text-transform: uppercase;}
+  #ind-body .compat-table td {padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: middle;}
+  #ind-body .compat-table tr:last-child td {border: none;}
+  #ind-body .compat-table tr:nth-child(even) td {background: var(--bg);}
+  #ind-body .compat-table .tag {display: inline-block; padding: 2px 8px; border-radius: 2px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;}
+  #ind-body .disc-bar-row {display:grid; grid-template-columns:120px 1fr 44px; column-gap:14px; row-gap:3px; align-items:center;}
+  #ind-body .disc-bar-label {width:auto;}
+  #ind-body .disc-bar-track {position:relative;}
+  #ind-body .mid-mark {position:absolute; left:50%; top:0; bottom:0; width:2px; background:rgba(0,0,0,.35);}
+  #ind-body .disc-bar-meta {grid-column:2 / 4; font-size:11px; color:var(--muted);}
+  #ind-body .how-to-read {font-size:12px; color:var(--muted); line-height:1.6; margin-top:18px;}
+  #ind-body .profile-hero .meta {font-size:12px; color:#9a9a9a; margin:-2px 0 14px; line-height:1.5;}
+  #ind-body .pill {display:inline-block; padding:3px 12px; border-radius:2px; font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase;}
+  #ind-body .flag-list {list-style:none; padding:0; margin:0 0 4px;}
+  #ind-body .flag-list li {font-size:13px; padding:8px 0 8px 22px; border-bottom:1px solid var(--border); position:relative; line-height:1.5;}
+  #ind-body .flag-list li:last-child {border:none;}
+  #ind-body .flag-list li::before {content:'⚠'; position:absolute; left:0; color:#B26A00;}
+  #ind-body .info-box ul li.sec::before {content:'◆ '; color:var(--sc, var(--gold));}
+
+  /* ═════ relatório individual ═════ */
+  #ind-view { max-width:920px; margin:0 auto; padding:32px 20px 60px; width:100%; flex:1; }
+  body.ind-mode header, body.ind-mode .container { display:none; }
+  #ind-body { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  #ind-body .card h2 { display:flex; align-items:center; flex-wrap:wrap; gap:10px; }
+  #ind-body .ind-notes { margin:16px 0 0 18px; font-size:13px; line-height:1.7; }
+  #ind-body .disc-bar-track .mid-mark { z-index:2; }
+  .linkbtn { background:none; border:none; border-bottom:1px dashed var(--gold); padding:0; font:inherit; font-weight:700; color:var(--text); text-align:left; cursor:pointer; }
+  .linkbtn:hover { color:var(--gold); }
+  #ind-body canvas { max-width:100%; height:auto; }
+  #ind-body .two-col > * { min-width:0; }
+  @media screen and (max-width:820px) { #ind-body .two-col { grid-template-columns:1fr; } }
+  @media screen and (max-width:700px) { #ind-body .info-grid, #ind-body .areas-grid { grid-template-columns:1fr; } #ind-body .compat-dims { grid-template-columns:1fr 1fr; } #ind-body .compat-hero { flex-direction:column; text-align:center; } #ind-body .profile-hero { padding:28px 22px; } }
+  @media print {
+    #ind-view { padding:0; max-width:100%; }
+    body.ind-mode header, body.ind-mode .container { display:none !important; }
+    #ind-body .card, #ind-body .profile-hero, #ind-body .notice { break-inside:avoid; }
+    #ind-body .disc-bar-fill { transition:none; }
+  }
 </style>
 </head>
 <body>
@@ -410,7 +497,7 @@
         </div>
         <div class="table-scroll"><table class="tbl" id="people-table"></table></div>
         <div id="people-pager"></div>
-        <p class="note">Clique no título de uma coluna para ordenar. "Aderência à área" compara a pessoa com o perfil típico da própria área informada. Quando a pessoa tem mais de uma avaliação, a tabela mostra a mais recente.</p>
+        <p class="note">Clique no nome para abrir o relatório individual completo (indisponível no modo anônimo). Clique no título de uma coluna para ordenar. "Aderência à área" compara a pessoa com o perfil típico da própria área informada. Quando a pessoa tem mais de uma avaliação, a tabela mostra a mais recente.</p>
       </div>
 
       <div class="row no-print" style="justify-content:center">
@@ -500,6 +587,14 @@
     </section>
 
   </div><!-- /workspace -->
+</div>
+
+<div id="ind-view" hidden>
+  <div class="rp-actions no-print">
+    <button type="button" class="btn btn-gold" onclick="window.print()">⬡ Imprimir / Salvar PDF</button>
+    <button type="button" class="btn-ghost" id="btn-ind-close">← Voltar à análise</button>
+  </div>
+  <div id="ind-body"></div>
 </div>
 
 <div id="report-view" hidden>
@@ -727,13 +822,15 @@ function ingestText(text, src) {
     if (!name && !reg) { log.ignored.push('Linha ' + line + ': sem nome nem matrícula.'); return; }
     if (DIMS.some(d => !(pct[d] >= 0 && pct[d] <= 100))) { log.ignored.push('Linha ' + line + ': pontuações inválidas.'); return; }
     DIMS.forEach(d => { pct[d] = Math.round(pct[d]); });
+    const mm = {}, nn = {}; let okm = true;
+    DIMS.forEach(d => { const a = num(g(r, 'mais' + d.toLowerCase())), b = num(g(r, 'menos' + d.toLowerCase())); if (!(a >= 0 && a <= 28 && b >= 0 && b <= 28)) okm = false; mm[d] = Math.round(a); nn[d] = Math.round(b); });
     const q = normKey(g(r, 'qualidadedasrespostas'));
     const rk = rankDims(pct);
     const p = {
       id: 0, name, reg, role: g(r, 'cargo'), org: g(r, 'empresa'), area: g(r, 'area'), age: g(r, 'faixaetaria'), purpose: g(r, 'finalidade'),
       date: g(r, 'datadaavaliacao'), dkey: dateKey(g(r, 'datadaavaliacao')), pct,
       quality: q.includes('consistente') ? 'ok' : q.includes('atencao') ? 'atencao' : q.includes('revisar') ? 'revisar' : 'na',
-      alerts: g(r, 'alertas'), secs: Math.round((num(g(r, 'tempomin')) || 0) * 60), src,
+      mais: okm ? mm : null, menos: okm ? nn : null, alerts: g(r, 'alertas'), secs: Math.round((num(g(r, 'tempomin')) || 0) * 60), src,
       dominant: rk[0], secondary: pct[rk[1]] >= 50 ? rk[1] : null, key: reg ? 'r:' + normKey(reg) : 'n:' + normKey(name)
     };
     const ex = state.all.findIndex(x => x.key === p.key && x.dkey === p.dkey);
@@ -783,7 +880,8 @@ function showImportLog(logs) {
 // ═══════════ DADOS DE EXEMPLO (fictícios) ═══════════
 const CSV_HEAD = ['Nome','Matrícula','Cargo','Empresa','Área','Faixa etária','Finalidade','Data da avaliação','D (%)','I (%)','S (%)','C (%)','Dominante','Secundário','Tempo (min)','Qualidade das respostas','Alertas'];
 const QUAL = { ok: 'Respostas consistentes', atencao: 'Atenção', revisar: 'Revisar respostas' };
-function toCSV(lines) { const q = v => '"' + String(v).replace(/"/g, '""') + '"'; return '﻿' + [CSV_HEAD].concat(lines).map(r => r.map(q).join(';')).join('\r\n'); }
+const CSV_HEAD2 = CSV_HEAD.concat(['Mais D','Mais I','Mais S','Mais C','Menos D','Menos I','Menos S','Menos C']);
+function toCSV(lines, head) { const q = v => '"' + String(v).replace(/"/g, '""') + '"'; return '﻿' + [head || CSV_HEAD].concat(lines).map(r => r.map(q).join(';')).join('\r\n'); }
 function demoCSV() {
   const P = [
     ['Ana Exemplo','1001','Analista de DP','Setor Pessoal',20,35,68,42,'ok'], ['Bruno Exemplo','1002','Assistente de RH','RH',25,55,62,38,'ok'],
@@ -1104,7 +1202,7 @@ function renderPeople(list) {
   pageSlice('people', arr).forEach(p => {
     const c = ownCompat(p), v = c == null ? null : verdict(c);
     const sub = (state.privacy === 'name' && p.reg ? 'Mat. ' + esc(p.reg) + ' · ' : '') + (p.date ? 'Aval. ' + esc(p.date) : '') + (p.hist.length > 1 ? ' · ' + p.hist.length + ' avaliações' : '');
-    h += '<tr><td><strong>' + esc(lab.get(p.id)) + '</strong>' + (sub ? '<small>' + sub + '</small>' : '') + '</td>' + (showRole() ? '<td>' + esc(p.role || '—') + '</td>' : '') + '<td>' + esc(areaOf(p) || '—') + '</td>' +
+    h += '<tr><td>' + (state.privacy === 'anon' ? '<strong>' + esc(lab.get(p.id)) + '</strong>' : '<button type="button" class="linkbtn" data-ind="' + p.id + '" title="Abrir o relatório individual">' + esc(lab.get(p.id)) + '</button>') + (sub ? '<small>' + sub + '</small>' : '') + '</td>' + (showRole() ? '<td>' + esc(p.role || '—') + '</td>' : '') + '<td>' + esc(areaOf(p) || '—') + '</td>' +
       DIMS.map(d => '<td class="num"><strong>' + p.pct[d] + '%</strong>' + bar(p.pct[d], DIM_COLORS[d]) + '</td>').join('') +
       '<td><strong style="color:' + DIM_COLORS[p.dominant] + '">' + p.dominant + '</strong>' + (p.secondary ? ' / <strong style="color:' + DIM_COLORS[p.secondary] + '">' + p.secondary + '</strong>' : '') + '</td><td>' + qualityTag(p.quality) + '</td>' +
       '<td>' + (v ? '<strong>' + c + '%</strong> <span class="tag ' + v[1] + '">' + v[0] + '</span>' : '<span style="color:var(--muted)">—</span>') + '</td></tr>';
@@ -1221,6 +1319,238 @@ function openReport() {
 }
 function closeReport() { document.body.classList.remove('report-mode'); $('report-view').hidden = true; renderAll(); window.scrollTo(0, 0); }
 
+const PROFILES = {
+  D: {
+    name: "Dominância",
+    title: "O Realizador Assertivo",
+    color: "var(--D)",
+    tagline: "Orientado a resultados, direto e confiante, o perfil D lidera pelo exemplo e pela velocidade de decisão. Enfrenta desafios de frente e não recua diante de obstáculos.",
+    strengths: ["Liderança natural e assertiva","Foco total em resultados","Tomada de decisão rápida","Alta energia e determinação","Capacidade de enfrentar conflitos","Iniciativa e proatividade"],
+    challenges: ["Pode ser percebido como arrogante","Pouca paciência com processos lentos","Tende a ignorar sentimentos alheios","Dificuldade em delegar","Pode ser excessivamente controlador","Impulsividade nas decisões"],
+    comm: ["Comunicação direta e objetiva","Vai direto ao ponto","Prefere fatos a opiniões","Usa linguagem de ação","Pouco tolerante a rodeios"],
+    motivators: ["Autonomia e poder de decisão","Desafios e metas ambiciosas","Reconhecimento por resultados","Progressão rápida na carreira","Competição saudável"],
+    leadership: ["Liderança diretiva e orientada a metas","Define visão clara e cobra execução","Delega resultados, não métodos","Prefere equipes de alta performance","Tolerância baixa a erros repetidos"],
+    environment: ["Ambientes dinâmicos e desafiadores","Autonomia para tomar decisões","Pouca burocracia","Oportunidades de progresso rápido","Projetos de alto impacto"],
+    fears: ["Perda de controle ou autoridade","Ser visto como fraco","Estagnação e falta de progresso","Dependência excessiva de outros","Ambiguidade prolongada"],
+    develop: ["Praticar escuta ativa","Desenvolver empatia e inteligência emocional","Aprender a valorizar processos","Treinar paciência com diferentes ritmos","Solicitar feedback de sua equipe"],
+    do: ["Seja direto e objetivo","Apresente fatos e resultados","Respeite sua autonomia","Mostre eficiência e competência","Proponha desafios instigantes"],
+    dont: ["Seja indireto ou enrole","Controle excessivamente","Tome muito tempo com detalhes","Mostre fraqueza ou hesitação","Questione sua autoridade sem base sólida"],
+    combo: "DC"
+  },
+  I: {
+    name: "Influência",
+    title: "O Comunicador Inspirador",
+    color: "var(--I)",
+    tagline: "Carismático, entusiasta e orientado a pessoas, o perfil I transforma ambientes com sua energia positiva. Conecta, motiva e cria relações duradouras onde quer que esteja.",
+    strengths: ["Comunicação carismática e persuasiva","Alta inteligência social","Motivação e entusiasmo contagiantes","Criatividade e inovação","Facilidade em construir redes","Otimismo e positividade"],
+    challenges: ["Pode ser superficial em análises","Dificuldade com disciplina e rotina","Tendência a superprometer","Pode ser desorganizado","Sensível a críticas","Dificuldade com tarefas solitárias"],
+    comm: ["Comunicação verbal rica e emotiva","Usa histórias e exemplos","Linguagem entusiasmada e expressiva","Prefere conversas pessoais","Tom amigável e caloroso"],
+    motivators: ["Reconhecimento público e aprovação","Trabalho com pessoas","Projetos criativos e inovadores","Liberdade de expressão","Ambientes sociais vibrantes"],
+    leadership: ["Liderança inspiracional e carismática","Motiva pelo propósito e visão","Cria cultura positiva e engajada","Pode ter dificuldade com disciplina","Muito forte em onboarding e cultura"],
+    environment: ["Ambientes colaborativos e sociais","Liberdade criativa","Reconhecimento frequente","Variedade de tarefas","Pouca burocracia e controle"],
+    fears: ["Rejeição e desaprovação social","Perder o foco da atenção","Ambientes frios e impessoais","Isolamento social","Rotinas muito rígidas"],
+    develop: ["Melhorar foco e disciplina","Desenvolver análise crítica","Aprender a ouvir antes de falar","Cumprir compromissos com rigor","Organizar melhor seu tempo"],
+    do: ["Seja caloroso e amigável","Valorize suas ideias e entusiasmo","Dê espaço para se expressar","Reconheça publicamente","Crie um ambiente animado"],
+    dont: ["Seja frio ou distante","Ignore sua necessidade de reconhecimento","Force rotinas rígidas sem sentido","Corte sua comunicação","Isole-o de interações sociais"],
+    combo: "ID"
+  },
+  S: {
+    name: "Estabilidade",
+    title: "O Colaborador Fiel",
+    color: "var(--S)",
+    tagline: "Paciente, confiável e orientado a relações, o perfil S é o coração de qualquer equipe. Oferece suporte consistente, cria harmonia e garante que ninguém seja deixado para trás.",
+    strengths: ["Paciência e escuta ativa excepcional","Lealdade e confiabilidade","Habilidade de mediar conflitos","Consistência e estabilidade","Trabalho em equipe superior","Empatia profunda"],
+    challenges: ["Resistência a mudanças","Dificuldade em dizer não","Pode ser indeciso sob pressão","Evita conflitos necessários","Tende a acumular ressentimentos","Dificuldade em se autoafirmar"],
+    comm: ["Comunicação gentil e cautelosa","Prefere ouvir a falar","Tom suave e acolhedor","Evita linguagem direta em conflitos","Escolhe palavras com cuidado"],
+    motivators: ["Ambientes estáveis e harmoniosos","Ajudar e servir pessoas","Reconhecimento pela lealdade","Trabalho com propósito humano","Relações profissionais duradouras"],
+    leadership: ["Liderança servidora e participativa","Muito forte em retenção de talentos","Cria equipes coesas e leais","Pode ter dificuldade em dar feedback duro","Excelente em situações de mediação"],
+    environment: ["Ambientes previsíveis e estáveis","Equipes de longo prazo","Cultura de respeito e cuidado","Clareza de papéis e expectativas","Baixo nível de conflito"],
+    fears: ["Conflitos e desentendimentos","Mudanças repentinas sem aviso","Perda de relacionamentos importantes","Ambientes hostis e competitivos","Instabilidade emocional ao redor"],
+    develop: ["Aprender a lidar com mudanças","Desenvolver assertividade","Praticar dar feedback difícil","Definir limites mais claros","Aceitar conflito saudável como parte do crescimento"],
+    do: ["Seja paciente e gentil","Dê tempo para processar mudanças","Mostre lealdade e cuidado","Cumpra o que prometeu","Valorize sua contribuição silenciosa"],
+    dont: ["Force decisões rápidas","Imponha mudanças abruptamente","Ignore suas emoções","Crie ambientes hostis","Trate-o como invisível"],
+    combo: "SC"
+  },
+  C: {
+    name: "Conformidade",
+    title: "O Analista Criterioso",
+    color: "var(--C)",
+    tagline: "Preciso, analítico e orientado à qualidade, o perfil C garante que as coisas sejam feitas do jeito certo. É o guardião dos padrões, da lógica e da excelência técnica.",
+    strengths: ["Análise crítica e pensamento sistêmico","Atenção a detalhes incomparável","Rigor técnico e precisão","Planejamento metódico","Checagem e controle de qualidade","Raciocínio lógico superior"],
+    challenges: ["Análise excessiva (paralisia)","Perfeccionismo que trava entregas","Dificuldade com ambiguidade","Pode ser percebido como frio","Resistência a mudanças sem justificativa","Dificuldade em delegar por falta de confiança"],
+    comm: ["Comunicação formal e estruturada","Usa dados e evidências","Prefere escrita a conversas informais","Tom preciso e cuidadoso","Pode soar distante emocionalmente"],
+    motivators: ["Fazer as coisas com excelência","Clareza e precisão nas regras","Reconhecimento técnico","Ambiente organizado e lógico","Aprendizado contínuo e profundo"],
+    leadership: ["Liderança baseada em especialização","Define processos rigorosos","Exige padrão elevado da equipe","Pode microgerenciar por perfeccionismo","Excelente em ambientes regulatórios"],
+    environment: ["Ambientes bem estruturados","Expectativas claras e precisas","Alto padrão de qualidade","Acesso a dados e informações","Pouco espaço para improviso"],
+    fears: ["Cometer erros em público","Ser criticado por trabalho abaixo do padrão","Ambiguidade e falta de informações","Perda de controle sobre a qualidade","Ser responsabilizado por algo que não fez"],
+    develop: ["Aprender a tomar decisões com dados incompletos","Desenvolver flexibilidade","Praticar comunicação mais calorosa","Confiar mais nas pessoas","Equilibrar perfeição com praticidade"],
+    do: ["Forneça dados e evidências","Seja lógico e estruturado","Respeite sua necessidade de tempo","Mostre como as coisas se conectam","Valorize sua precisão"],
+    dont: ["Seja impreciso ou vago","Imponha decisões sem justificativa","Interrompa seu raciocínio","Ignore erros ou qualidade","Pressione por respostas imediatas"],
+    combo: "CD"
+  }
+};
+
+const COMBO_DESCRIPTIONS = {
+  D: "Perfil de Dominância puro: indivíduo extremamente orientado a resultados, decisivo e competitivo. Maximiza quando tem autonomia total e metas desafiadoras.",
+  I: "Perfil de Influência puro: comunicador nato, construtor de redes e motivador de pessoas. Seu maior ativo é a capacidade de inspirar e conectar.",
+  S: "Perfil de Estabilidade puro: âncora emocional de qualquer equipe, consistente e leal. Brilha em ambientes que valorizam colaboração e cuidado humano.",
+  C: "Perfil de Conformidade puro: analista meticuloso e guardião da qualidade. Seu diferencial é a precisão e profundidade de análise.",
+  DI:"Perfil DI – Realizador Influente: combina orientação a resultados com habilidade social. Líderes naturais que sabem como motivar e cobrar ao mesmo tempo.",
+  DC:"Perfil DC – Estrategista Assertivo: foca em resultados com análise calculista. Altamente eficaz em ambientes competitivos que exigem decisão e planejamento.",
+  ID:"Perfil ID – Visionário Carismático: energia empreendedora com enorme poder de influência. Motiva massas e cria movimentos.",
+  IS:"Perfil IS – Comunicador Empático: combina entusiasmo com sensibilidade. Excelente em treinamentos, RH e áreas de cuidado com pessoas.",
+  IC:"Perfil IC – Criativo Criterioso: une criatividade com rigor. Perfil raro que combina inovação com qualidade.",
+  SI:"Perfil SI – Colaborador Animado: une estabilidade com entusiasmo. Cria ambientes positivos e duradouros.",
+  SC:"Perfil SC – Suporte Organizado: paciência e método lado a lado. Confiável, consistente e de alta qualidade.",
+  CS:"Perfil CS – Analista Colaborativo: combina análise técnica com sensibilidade humana. Ótimo para ciências humanas e de saúde.",
+  CI:"Perfil CI – Analista Comunicativo: une rigor técnico com boa expressão. Explica o complexo com clareza e cuida da qualidade ao mesmo tempo.",
+  CD:"Perfil CD – Especialista Assertivo: precisão técnica com orientação a resultados. Excelente em áreas de engenharia e finanças.",
+  DS:"Perfil DS – Executor Empático: orientação a resultados com cuidado pelas pessoas. Líderes que cobram sem desumanizar.",
+  SD:"Perfil SD – Apoiador Decisivo: estabilidade com foco em resultados. Brilha em coordenação de equipes.",
+};
+
+// ═══════════ RELATÓRIO INDIVIDUAL ═══════════
+const LOW_NOTES = {
+  D: 'No outro extremo, a Dominância é baixa: tende a evitar confrontos e a ceder o espaço de decisão. Pode precisar de apoio para se posicionar com firmeza.',
+  I: 'No outro extremo, a Influência é baixa: mais reservado nas relações, evita holofotes e prefere comunicação pontual a interações sociais intensas.',
+  S: 'No outro extremo, a Estabilidade é baixa: gosta de ritmo acelerado e de mudança, e pode se incomodar com rotinas repetitivas e processos muito lentos.',
+  C: 'No outro extremo, a Conformidade é baixa: flexível com regras e detalhes. Pode pular verificações e precisa de apoio para sustentar padrões e documentação.'
+};
+const REL_LABELS = { ok: ['Respostas consistentes', 'tag-alto'], atencao: ['Atenção', 'tag-medio'], revisar: ['Revisar respostas', 'tag-baixo'] };
+const IND = { id: null, scroll: 0 };
+const fmtSecs = s => Math.floor(s / 60) + ' min ' + String(s % 60).padStart(2, '0') + ' s';
+
+function drawProfileChart(canvas, pct) {
+  const dpr = window.devicePixelRatio || 1, W = 400, H = 300;
+  canvas.width = W * dpr; canvas.height = H * dpr;
+  const ctx = canvas.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+  const L = 40, R = 14, T = 20, B = 52, pw = W - L - R, ph = H - T - B, y = v => T + ph * (1 - v / 100), font = '"DM Sans", sans-serif';
+  [[60, 100, 'rgba(184,134,11,0.12)', 'ALTO'], [40, 60, 'rgba(0,0,0,0.025)', 'MÉDIO'], [0, 40, 'rgba(0,0,0,0.07)', 'BAIXO']].forEach(([a, b, fill, lab]) => {
+    ctx.fillStyle = fill; ctx.fillRect(L, y(b), pw, y(a) - y(b));
+    ctx.fillStyle = '#9a968c'; ctx.font = '600 9px ' + font; ctx.textAlign = 'right'; ctx.textBaseline = 'middle'; ctx.fillText(lab, W - R - 6, y(a) - 9);
+  });
+  ctx.font = '10px ' + font; ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+  [0, 20, 40, 60, 80, 100].forEach(v => { ctx.beginPath(); ctx.strokeStyle = '#e0ddd6'; ctx.lineWidth = 1; ctx.moveTo(L, y(v)); ctx.lineTo(L + pw, y(v)); ctx.stroke(); ctx.fillStyle = '#6B6B6B'; ctx.fillText(v + '%', L - 6, y(v)); });
+  ctx.beginPath(); ctx.setLineDash([5, 4]); ctx.strokeStyle = '#6B6B6B'; ctx.moveTo(L, y(50)); ctx.lineTo(L + pw, y(50)); ctx.stroke(); ctx.setLineDash([]);
+  const xs = DIMS.map((_, i) => L + pw * (i + 0.5) / 4);
+  ctx.beginPath(); ctx.strokeStyle = '#1A1A1A'; ctx.lineWidth = 2.5; ctx.lineJoin = 'round';
+  DIMS.forEach((d, i) => { i === 0 ? ctx.moveTo(xs[i], y(pct[d])) : ctx.lineTo(xs[i], y(pct[d])); }); ctx.stroke();
+  DIMS.forEach((d, i) => {
+    const py = y(pct[d]);
+    ctx.beginPath(); ctx.arc(xs[i], py, 8, 0, Math.PI * 2); ctx.fillStyle = DIM_COLORS[d]; ctx.fill(); ctx.lineWidth = 2.5; ctx.strokeStyle = '#fff'; ctx.stroke();
+    ctx.fillStyle = '#1A1A1A'; ctx.font = '700 12px ' + font; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(pct[d] + '%', xs[i], py < T + 18 ? py + 20 : py - 18);
+    ctx.fillStyle = DIM_COLORS[d]; ctx.font = '700 17px ' + font; ctx.textBaseline = 'alphabetic'; ctx.fillText(d, xs[i], H - B + 24);
+    ctx.fillStyle = '#6B6B6B'; ctx.font = '10px ' + font; ctx.fillText(DIM_NAMES[d], xs[i], H - B + 40);
+  });
+}
+function drawGaugeEl(cv, pct, color) {
+  const dpr = window.devicePixelRatio || 1; cv.width = 110 * dpr; cv.height = 110 * dpr;
+  const ctx = cv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, 110, 110);
+  ctx.lineCap = 'round'; ctx.lineWidth = 10;
+  ctx.beginPath(); ctx.arc(55, 55, 45, Math.PI * 0.75, Math.PI * 2.25); ctx.strokeStyle = '#E0DDD6'; ctx.stroke();
+  if (pct > 0) { ctx.beginPath(); ctx.arc(55, 55, 45, Math.PI * 0.75, Math.PI * 0.75 + Math.PI * 1.5 * (pct / 100)); ctx.strokeStyle = color; ctx.stroke(); }
+}
+
+function indTeamSection(p) {
+  const list = getFiltered(); if (list.length < 2) return '';
+  const st = stats(list), others = list.filter(q => q.id !== p.id);
+  const rows = DIMS.map(d => {
+    const delta = p.pct[d] - st.avg[d];
+    return '<div class="disc-bar-row"><div class="disc-bar-label"><span style="color:' + DIM_COLORS[d] + ';font-size:18px;font-family:\'Playfair Display\',serif">' + d + '</span><small>' + DIM_NAMES[d] + '</small></div>' +
+      '<div class="disc-bar-track"><div class="disc-bar-fill" style="width:' + p.pct[d] + '%;background:' + DIM_COLORS[d] + '"></div><span class="mid-mark" style="left:' + st.avg[d] + '%;background:#1A1A1A;width:3px" title="Média da equipe"></span></div>' +
+      '<div class="disc-bar-pct">' + p.pct[d] + '%</div>' +
+      '<div class="disc-bar-meta">Equipe: ' + st.avg[d] + '% · <strong style="color:' + (Math.abs(delta) >= 15 ? DIM_COLORS[d] : 'inherit') + '">' + fmtDelta(delta) + ' pts</strong></div></div>';
+  }).join('');
+  const notes = DIMS.filter(d => Math.abs(p.pct[d] - st.avg[d]) >= 15).map(d => {
+    const dl = p.pct[d] - st.avg[d];
+    return '<li>' + (dl > 0 ? 'Traz mais ' : 'Traz menos ') + '<strong>' + DIM_NAMES[d] + '</strong> do que a média do grupo (' + fmtDelta(dl) + ' pts). ' +
+      (dl > 0 ? 'Pode reforçar a equipe em ' + STRENGTH[d] + '.' : 'O grupo já tem mais de ' + STRENGTH[d] + ' do que ela.') + '</li>';
+  });
+  let near = '';
+  if (others.length >= 3) {
+    const sim = q => clamp(Math.round(100 - DIMS.reduce((s, d) => s + Math.abs(p.pct[d] - q.pct[d]), 0) / 4 * 2), 0, 100);
+    const ranked = others.map(q => ({ q, s: sim(q) })).sort((a, b) => b.s - a.s || label(a.q).localeCompare(label(b.q), 'pt-BR', { numeric: true }));
+    const li = r => '<li><strong>' + esc(label(r.q)) + '</strong> · <strong style="color:' + DIM_COLORS[r.q.dominant] + '">' + r.q.dominant + '</strong> · semelhança ' + r.s + '%</li>';
+    near = '<div class="info-grid" style="margin-top:16px"><div class="info-box"><h4>Estilo mais parecido na equipe</h4><ul>' + ranked.slice(0, 3).map(li).join('') + '</ul></div>' +
+      '<div class="info-box"><h4>Estilo mais complementar</h4><ul>' + ranked.slice(-3).reverse().map(li).join('') + '</ul></div></div>';
+  }
+  return '<div class="card no-print"><h2><span class="dot"></span> Comparação com a equipe <span class="tag tag-na" style="font-size:10px;margin-left:8px;vertical-align:middle">Só para o analista</span></h2>' +
+    '<p class="how-to-read" style="margin:-8px 0 16px">Comparada com as ' + list.length + ' pessoas do filtro atual. A marca preta é a média do grupo. Esta seção aparece apenas na tela e não vai para a impressão.</p>' +
+    '<div class="disc-bars">' + rows + '</div>' + (notes.length ? '<ul class="ind-notes">' + notes.join('') + '</ul>' : '<p class="how-to-read">Perfil próximo da média do grupo em todas as dimensões.</p>') + near + '</div>';
+}
+
+function indHTML(p) {
+  const pct = p.pct, rank = rankDims(pct), dominant = rank[0], second = rank[1], secondary = p.secondary || (pct[second] >= 50 ? second : null);
+  const spread = pct[rank[0]] - pct[rank[3]], balanced = spread < 20, tie = (pct[rank[0]] - pct[rank[1]]) <= 3, profile = PROFILES[dominant];
+  const meta = [showRole() ? p.role : '', showRole() ? p.org : '', areaOf(p) || p.area, state.privacy === 'reg' && p.reg ? 'Matrícula ' + p.reg : '', state.privacy === 'name' && p.reg ? 'Matrícula ' + p.reg : '', p.age, p.purpose, p.date ? 'Avaliação em ' + p.date : ''].filter(Boolean);
+  const rc = REL_LABELS[p.quality], relColors = { ok: 'background:rgba(39,174,96,0.3);color:#a8f0c6', atencao: 'background:rgba(230,126,34,0.3);color:#ffd59e', revisar: 'background:rgba(231,76,60,0.3);color:#ffb3aa' };
+  const hero = '<div class="profile-hero" data-letter="' + dominant + '" style="border-top:4px solid ' + profile.color + '"><div class="name-display">' + esc(label(p)) + '</div><div class="meta">' + esc(meta.join(' · ')) + '</div>' +
+    '<h2>Perfil ' + dominant + ' – ' + esc(profile.name) + '</h2><div class="profile-title">' + esc(profile.title) + '</div><div class="tagline">' + esc(profile.tagline) + '</div>' +
+    (rc ? '<div style="margin-top:14px"><span class="pill" style="' + relColors[p.quality] + '">' + (p.quality === 'ok' ? '✦ ' : '⚠ ') + rc[0] + '</span></div>' : '') + '</div>';
+  const bars = DIMS.map(d => '<div class="disc-bar-row"><div class="disc-bar-label"><span style="color:' + DIM_COLORS[d] + ';font-size:18px;font-family:\'Playfair Display\',serif">' + d + '</span><small>' + DIM_NAMES[d] + '</small></div>' +
+    '<div class="disc-bar-track"><div class="disc-bar-fill" style="width:' + pct[d] + '%;background:' + DIM_COLORS[d] + '"></div><span class="mid-mark"></span></div><div class="disc-bar-pct">' + pct[d] + '%</div>' +
+    '<div class="disc-bar-meta"><strong>' + levelOf(pct[d]) + '</strong>' + (p.mais && p.menos ? ' · Mais: ' + p.mais[d] + ' · Menos: ' + p.menos[d] : '') + '</div></div>').join('');
+  const scores = '<div class="card"><h2><span class="dot"></span> Pontuação por Dimensão</h2><div class="disc-bars">' + bars + '</div><p class="how-to-read"><strong>Como ler:</strong> a linha vertical marca 50%, o ponto neutro. Acima de 60% a característica é <em>alta</em>; abaixo de 40%, <em>baixa</em>. Como o teste é de escolha forçada, as quatro dimensões se compensam: subir em uma significa descer em outra.' + (p.mais ? ' "Mais" e "Menos" mostram quantas vezes a dimensão foi marcada em cada sentido (de 28 questões).' : '') + '</p></div>';
+  const flags = (p.alerts || '').split(' | ').map(s => s.trim()).filter(Boolean);
+  const rel = '<div class="card"><h2><span class="dot"></span> Qualidade das Respostas</h2>' + (rc
+    ? '<div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:12px"><span class="pill ' + rc[1] + '">' + rc[0] + '</span>' + (p.secs ? '<span style="font-size:13px;color:var(--muted)">Tempo de resposta: ' + fmtSecs(p.secs) + '</span>' : '') + '</div>' +
+      (flags.length ? '<ul class="flag-list">' + flags.map(f => '<li>' + esc(f) + '</li>').join('') + '</ul>' : '<p style="font-size:13px;color:var(--muted)">Nenhum alerta: tempo de resposta adequado e sem padrões repetitivos de marcação.</p>')
+    : '<p style="font-size:13px;color:var(--muted)">Este arquivo não traz a verificação de qualidade das respostas.</p>') +
+    '<p class="how-to-read">Verificação automática e indicativa. Ela detecta respostas apressadas ou mecânicas, mas não mede honestidade nem substitui uma conversa de devolutiva.</p></div>';
+  const comboKey = secondary ? dominant + secondary : dominant;
+  let tags = '<span class="combo-tag">' + dominant + ' Dominante</span>';
+  if (secondary) tags += '<span class="combo-tag">' + secondary + ' Secundário</span><span class="combo-tag">' + comboKey + '</span>';
+  if (balanced) tags += '<span class="combo-tag" style="background:var(--gold)">Perfil adaptável</span>';
+  const lowest = rank[3]; let nuance = '';
+  if (balanced) nuance += 'As quatro pontuações estão próximas (amplitude de ' + spread + ' pontos): a pessoa tende a adaptar o estilo ao contexto, sem um traço que se imponha. O mais forte é ' + DIM_NAMES[dominant] + '. ';
+  if (tie && !balanced) nuance += 'Atenção: ' + DIM_NAMES[dominant] + ' (' + pct[dominant] + '%) e ' + DIM_NAMES[second] + ' (' + pct[second] + '%) estão praticamente empatadas. Leia os dois estilos como igualmente presentes. ';
+  if (pct[lowest] < 40) nuance += LOW_NOTES[lowest];
+  const chartCombo = '<div class="two-col"><div class="card"><h2><span class="dot"></span> Gráfico de Perfil</h2><div class="quadrant-wrap"><canvas id="ind-chart" width="400" height="300" role="img" aria-label="Gráfico de linha com as pontuações D, I, S e C"></canvas></div></div>' +
+    '<div class="card"><h2><span class="dot"></span> Perfil Combinado</h2><div>' + tags + '</div><p style="font-size:13px;line-height:1.7;color:var(--muted);margin-top:12px">' + esc(COMBO_DESCRIPTIONS[comboKey] || COMBO_DESCRIPTIONS[dominant]) + '</p>' + (nuance.trim() ? '<p style="font-size:13px;line-height:1.7;color:var(--muted);margin-top:10px">' + esc(nuance.trim()) + '</p>' : '') + '</div></div>';
+  const lst = key => { const base = profile[key].slice(0, secondary ? 4 : 5), extra = secondary ? PROFILES[secondary][key].filter(x => !base.includes(x)).slice(0, 2) : [];
+    return '<ul>' + base.map(t => '<li>' + esc(t) + '</li>').join('') + extra.map(t => '<li class="sec" style="--sc:' + DIM_COLORS[secondary] + '">' + esc(t) + '</li>').join('') + '</ul>'; };
+  const box = (title, key) => '<div class="info-box"><h4>' + title + '</h4>' + lst(key) + '</div>';
+  const blend = secondary ? 'Itens com ◆ vêm do estilo secundário (' + secondary + ' – ' + DIM_NAMES[secondary] + '); os demais, do estilo dominante.' : 'O estilo secundário não é marcante (abaixo de 50%), por isso o texto segue o estilo dominante.';
+  const forces = '<div class="card"><h2><span class="dot"></span> Forças & Pontos de Atenção</h2><p class="how-to-read" style="margin:-8px 0 16px">' + blend + '</p><div class="info-grid">' + box('✦ Pontos Fortes', 'strengths') + box('⚠ Pontos de Atenção', 'challenges') + box('🤝 Estilo de Comunicação', 'comm') + box('⚡ Motivadores', 'motivators') + '</div></div>';
+  const lead = '<div class="card"><h2><span class="dot"></span> Liderança & Ambiente Ideal</h2><div class="info-grid">' + box('👑 Estilo de Liderança', 'leadership') + box('🏡 Ambiente de Trabalho Ideal', 'environment') + box('😰 Medos & Pressões', 'fears') + box('📈 Como se Desenvolver', 'develop') + '</div></div>';
+  const ranked = AREA_MAP.map(am => ({ am, compat: calcCompatibility(pct, am.disc).compat })).sort((a, b) => b.compat - a.compat).slice(0, 6);
+  const areas = '<div class="card"><h2><span class="dot"></span> Áreas de Atuação com Maior Afinidade</h2><p class="how-to-read" style="margin:-8px 0 16px">Calculado a partir das quatro pontuações, não apenas do estilo dominante.</p><div class="areas-grid">' +
+    ranked.map(r => '<div class="area-card"><div class="area-icon">' + r.am.icon + '</div><h4>' + esc(r.am.label) + '</h4><p>' + esc(r.am.ideal) + '</p><div class="match-bar"><div class="match-fill" style="width:' + r.compat + '%;background:' + profile.color + '"></div></div><small style="font-size:10px;color:var(--muted)">' + r.compat + '% de afinidade</small></div>').join('') + '</div></div>';
+  const areaText = areaOf(p) || p.area, am = matchArea(areaText); let compat = '', gauge = null;
+  if (!areaText || !am) {
+    compat = '<div class="card"><h2><span class="dot"></span> Compatibilidade com a Área de Atuação</h2><p style="font-size:14px;color:var(--muted);line-height:1.6">Área "' + esc(areaText || '(não informada)') + '" não identificada na base. A seção "Áreas com Maior Afinidade" acima continua válida.</p></div>';
+  } else {
+    const { compat: c, aScore } = calcCompatibility(pct, am.disc), v = c >= 75 ? ['Alta Compatibilidade', 'tag-alto', 'O perfil comportamental tem forte alinhamento com as exigências da área de atuação. A pessoa tende a atuar de forma natural e consistente neste ambiente.']
+      : c >= 50 ? ['Compatibilidade Moderada', 'tag-medio', 'Há alinhamento parcial entre o perfil e a área. Os pontos de convergência trazem facilidade; os de divergência pedem adaptação consciente ou desenvolvimento.']
+      : ['Baixa Compatibilidade', 'tag-baixo', 'O perfil natural difere das exigências predominantes da área. Isso não impede o sucesso, mas exige maior esforço de adaptação e investimento em desenvolvimento.'];
+    gauge = { pct: c, color: c >= 75 ? '#27AE60' : c >= 50 ? '#E67E22' : '#C0392B' };
+    const dims = DIMS.map(d => { const u = pct[d], a = aScore[d], diff = u - a, ds = diff > 0 ? '+' + diff + ' acima' : diff < 0 ? Math.abs(diff) + ' abaixo' : 'alinhado', dc = Math.abs(diff) <= 15 ? '#27AE60' : Math.abs(diff) <= 30 ? '#E67E22' : '#C0392B';
+      return '<div class="compat-dim-card"><div class="dim-letter" style="color:' + DIM_COLORS[d] + '">' + d + '</div><div class="dim-name">' + DIM_NAMES[d] + '</div><div style="font-size:9px;color:var(--muted);margin-bottom:3px">Perfil</div><div class="dim-user-bar-wrap"><div class="dim-user-bar" style="width:' + u + '%;background:' + DIM_COLORS[d] + '"></div></div><div style="font-size:9px;color:var(--muted);margin-bottom:3px">Ideal da área</div><div class="dim-area-bar-wrap"><div class="dim-area-bar" style="width:' + a + '%;background:' + DIM_COLORS[d] + '"></div></div><div class="dim-diff" style="color:' + dc + '">' + ds + '</div><div class="dim-legend">Pessoa: ' + u + '% | Área: ' + a + '%</div></div>'; }).join('');
+    const trs = DIMS.map(d => { const u = pct[d], a = aScore[d], gap = Math.abs(u - a), tc = gap <= 15 ? 'tag-alto' : gap <= 30 ? 'tag-medio' : 'tag-baixo', tl = gap <= 15 ? 'Alinhado' : gap <= 30 ? 'Atenção' : 'Gap', nm = DIM_NAMES[d].toLowerCase();
+      const imp = gap <= 15 ? 'Alinhamento próximo com o que a área costuma pedir em ' + nm + '.' : u > a ? 'O nível de ' + nm + ' é maior que o típico da área: pode ser força ou excesso, conforme o contexto.' : 'A área pede mais ' + nm + ' do que o perfil natural apresenta. Ponto de desenvolvimento.';
+      return '<tr><td><strong style="color:' + DIM_COLORS[d] + '">' + d + '</strong> – ' + DIM_NAMES[d] + '</td><td style="text-align:center"><strong>' + u + '%</strong></td><td style="text-align:center">' + a + '%</td><td style="text-align:center"><span class="tag ' + tc + '">' + tl + '</span></td><td style="font-size:12px;color:var(--muted)">' + imp + '</td></tr>'; }).join('');
+    compat = '<div class="card"><h2><span class="dot"></span> Compatibilidade com a Área de Atuação</h2><div class="compat-hero"><div class="compat-gauge"><canvas id="ind-gauge"></canvas><div class="gauge-label"><div class="gauge-pct">' + c + '%</div><div class="gauge-sub">compat.</div></div></div><div class="compat-info">' +
+      '<div style="font-size:11px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px">Área identificada</div><h3>' + esc(am.label) + '</h3><span class="compat-verdict ' + v[1] + '">' + v[0] + '</span><p>' + v[2] + '</p><p style="margin-top:8px;font-size:12px;font-style:italic">' + esc(am.ideal) + '</p><p style="margin-top:8px;font-size:11px">Resultado indicativo: o desempenho real depende de muito além do perfil comportamental.</p></div></div>' +
+      '<div class="compat-dims">' + dims + '</div><div class="table-scroll"><table class="compat-table"><thead><tr><th>Dimensão</th><th style="text-align:center">Perfil</th><th style="text-align:center">Ideal da Área</th><th style="text-align:center">Status</th><th>Impacto</th></tr></thead><tbody>' + trs + '</tbody></table></div></div>';
+  }
+  const inter = '<div class="card"><h2><span class="dot"></span> Como Interagir com Este Perfil</h2><div class="info-grid">' + box('✅ O que fazer', 'do') + box('🚫 O que evitar', 'dont') + '</div></div>';
+  const hist = p.hist.length > 1 ? '<div class="card"><h2><span class="dot"></span> Histórico de Avaliações</h2><div class="table-scroll" style="margin-top:0"><table class="tbl"><thead><tr><th>Data</th>' + DIMS.map(d => '<th style="text-align:center">' + d + '</th>').join('') + '<th>Perfil</th></tr></thead><tbody>' +
+    p.hist.map(h => '<tr><td>' + esc(h.date || '—') + '</td>' + DIMS.map(d => '<td class="num"><strong>' + h.pct[d] + '%</strong></td>').join('') + '<td><strong style="color:' + DIM_COLORS[h.dominant] + '">' + h.dominant + '</strong>' + (h.secondary ? ' / <strong style="color:' + DIM_COLORS[h.secondary] + '">' + h.secondary + '</strong>' : '') + '</td></tr>').join('') + '</tbody></table></div></div>' : '';
+  const use = '<div class="notice info"><strong>Uso responsável deste resultado.</strong> O DISC descreve preferências de comportamento <em>autodeclaradas</em>. Ele não mede competência, inteligência nem aptidão técnica, e não deve ser o único critério em seleção, promoção ou desligamento. Use-o como apoio para conversas de desenvolvimento, junto com entrevista, histórico profissional e avaliação de desempenho. Este relatório contém dados pessoais (LGPD): compartilhe apenas com quem precisa e com o conhecimento do avaliado.</div>';
+  return { html: hero + scores + rel + chartCombo + forces + lead + areas + compat + hist + inter + indTeamSection(p) + use, gauge, pct };
+}
+
+function openInd(id) {
+  if (state.privacy === 'anon') { toast('Relatório individual indisponível no modo anônimo.'); return; }
+  const p = state.people.find(x => x.id === id); if (!p) return;
+  IND.id = id; IND.scroll = window.scrollY;
+  const r = indHTML(p); $('ind-body').innerHTML = r.html;
+  document.body.classList.add('ind-mode'); $('ind-view').hidden = false; window.scrollTo(0, 0);
+  drawProfileChart($('ind-chart'), r.pct); if (r.gauge) drawGaugeEl($('ind-gauge'), r.gauge.pct, r.gauge.color);
+  document.title = 'Relatório DISC – ' + label(p);
+}
+function closeInd() { document.body.classList.remove('ind-mode'); $('ind-view').hidden = true; $('ind-body').innerHTML = ''; IND.id = null; document.title = 'DISC – Análise de Equipe'; renderAll(); window.scrollTo(0, IND.scroll || 0); }
+
 // ═══════════ RENDER GERAL ═══════════
 function afterDataChange() { buildFilters(); renderAreaMerge(); state.pg.people.page = 1; state.pg.rank.page = 1; renderAll(); }
 function renderAll() {
@@ -1333,7 +1663,7 @@ async function onlLoad(id) {
     clearData();
     const groups = new Map(); subs.forEach(x => { const c = byId.get(x.campaign_id); const k = c ? c.name : 'online'; if (!groups.has(k)) groups.set(k, []); groups.get(k).push(x.data || {}); });
     const logs = [];
-    groups.forEach((list, name) => { logs.push(ingestText(toCSV(list.map(d => CSV_HEAD.map(h => d[h] == null ? '' : String(d[h])))), name)); });
+    groups.forEach((list, name) => { logs.push(ingestText(toCSV(list.map(d => CSV_HEAD2.map(h => d[h] == null ? '' : String(d[h]))), CSV_HEAD2), name)); });
     rebuildPeople(); showImportLog(logs);
     const c = byId.get(id); state.mode = c && c.kind === 'vaga' ? 'vaga' : 'team';
     afterDataChange();
@@ -1416,6 +1746,7 @@ function onlInit() {
   $('min-group').addEventListener('change', e => { state.minGroup = +e.target.value; renderAll(); });
   $('search').addEventListener('input', e => { state.search = e.target.value; state.pg.people.page = 1; renderPeople(getFiltered()); });
   $('people-table').addEventListener('click', e => {
+    const bi = e.target.closest('button[data-ind]'); if (bi) { openInd(+bi.dataset.ind); return; }
     const b = e.target.closest('button[data-sort]'); if (!b) return;
     const k = b.dataset.sort; state.sort = { key: k, dir: state.sort.key === k ? -state.sort.dir : (DIMS.includes(k) || k === 'ad' ? -1 : 1) }; state.pg.people.page = 1; renderPeople(getFiltered());
   });
@@ -1484,9 +1815,10 @@ function onlInit() {
   $('btn-export-vaga').addEventListener('click', exportVaga);
   $('btn-report').addEventListener('click', openReport);
   $('btn-report-close').addEventListener('click', closeReport);
+  $('btn-ind-close').addEventListener('click', closeInd);
 
-  let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { if (state.people.length && !document.body.classList.contains('report-mode')) renderAll(); }, 150); });
-  window.addEventListener('beforeprint', () => { if (state.people.length && !document.body.classList.contains('report-mode')) renderAll(); });
+  let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { if (state.people.length && !document.body.classList.contains('report-mode') && !document.body.classList.contains('ind-mode')) renderAll(); }, 150); });
+  window.addEventListener('beforeprint', () => { if (state.people.length && !document.body.classList.contains('report-mode') && !document.body.classList.contains('ind-mode')) renderAll(); });
   syncSliders();
 })();
 
